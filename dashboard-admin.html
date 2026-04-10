@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>DRL | FPV Arena - Admin Dashboard | Manage Platform</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { 
+                extend: { 
+                    colors: { 
+                        primary: '#3B82F6',
+                        secondary: '#1E3A5F',
+                        darkBg: '#0F172A'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'orbitron': ['Orbitron', 'monospace']
+                    }
+                } 
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+            background: #F9F6F3;
+        }
+        
+        body.dark {
+            background: #0F172A;
+        }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* Logo Styles - Same as Navbar */
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo i {
+            font-size: 1.6rem;
+            color: #3B82F6;
+        }
+        
+        .logo-text {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #3B82F6;
+            letter-spacing: -0.5px;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .dark .logo-text {
+            color: #3B82F6;
+        }
+        
+        /* Dashboard Header */
+        .dashboard-header {
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1920&h=500&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(59, 130, 246, 0.2);
+        }
+        
+        .table-row {
+            transition: all 0.2s ease;
+        }
+        
+        .table-row:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .sidebar-link {
+            transition: all 0.2s ease;
+        }
+        
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white !important;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .toggle-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        /* Mobile Sidebar Menu */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .dark .mobile-sidebar {
+            background: #0F172A;
+        }
+        
+        .mobile-sidebar.open {
+            left: 0;
+        }
+        
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1999;
+            display: none;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+        }
+        
+        .hamburger-btn {
+            display: none;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 1024px) {
+            .desktop-sidebar {
+                display: none;
+            }
+            .hamburger-btn {
+                display: flex;
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            .desktop-sidebar {
+                display: block;
+            }
+            .hamburger-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="light">
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header relative pt-8 pb-12">
+        <div class="absolute inset-0 bg-grid-pattern opacity-20 z-0"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center flex-wrap gap-4">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <!-- Hamburger Menu Button for Mobile -->
+                        <button class="hamburger-btn" onclick="openMobileSidebar()">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <a href="index.html" class="logo">
+                            <i class="fas fa-drone"></i>
+                            <span class="logo-text">DRL | FPV Arena</span>
+                        </a>
+                        <div class="h-6 w-px bg-[#3B82F6]/50 hidden sm:block"></div>
+                        <div class="inline-flex items-center gap-2 bg-[#3B82F6]/20 backdrop-blur-sm text-[#3B82F6] px-4 py-2 rounded-full text-sm font-semibold hidden sm:inline-flex">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <span>Admin Portal</span>
+                        </div>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-black text-white">Welcome back, Admin</h1>
+                    <p class="text-gray-300 mt-2">Here's what's happening with your platform today.</p>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="toggleDirection()" class="toggle-btn" style="width: auto; padding: 0 16px;">LTR</button>
+                    <button onclick="toggleTheme()" class="toggle-btn"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
+                    <button class="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm hover:bg-white/20 transition hidden sm:block">Export Reports</button>
+                    <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-xl text-sm hover:bg-[#2563EB] transition hidden sm:block">+ Create New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+    <!-- Mobile Sidebar Menu -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="p-5">
+            <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-drone text-2xl text-[#3B82F6]"></i>
+                    <span class="font-display font-bold text-lg text-[#3B82F6]">DRL | FPV</span>
+                </div>
+                <button onclick="closeMobileSidebar()" class="text-gray-500 dark:text-gray-400 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="space-y-1">
+                <a href="#" onclick="showSectionMobile('overview'); return false;" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section-mobile="overview">
+                    <i class="fas fa-chart-line w-5"></i> Overview
+                </a>
+                <a href="#" onclick="showSectionMobile('users'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section-mobile="users">
+                    <i class="fas fa-users w-5"></i> Users
+                </a>
+                <a href="#" onclick="showSectionMobile('events'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section-mobile="events">
+                    <i class="fas fa-flag-checkered w-5"></i> Events
+                </a>
+                <a href="#" onclick="showSectionMobile('leaderboard'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section-mobile="leaderboard">
+                    <i class="fas fa-trophy w-5"></i> Leaderboard
+                </a>
+                <a href="#" onclick="showSectionMobile('shop'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section-mobile="shop">
+                    <i class="fas fa-shopping-cart w-5"></i> Shop
+                </a>
+                <a href="#" onclick="showSectionMobile('training'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section-mobile="training">
+                    <i class="fas fa-graduation-cap w-5"></i> Training
+                </a>
+                <a href="#" onclick="showSectionMobile('settings'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section-mobile="settings">
+                    <i class="fas fa-cog w-5"></i> Settings
+                </a>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4">
+                <a href="login.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 font-medium">
+                    <i class="fas fa-sign-out-alt w-5"></i> Logout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="py-8 bg-gray-50 dark:bg-gray-800 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Desktop Sidebar -->
+                <div class="lg:w-64 flex-shrink-0 desktop-sidebar">
+                    <div class="sticky top-8 bg-white dark:bg-gray-900 rounded-2xl p-4 shadow-lg">
+                        <div class="space-y-1">
+                            <a href="#" onclick="showSection('overview'); return false;" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section="overview">
+                                <i class="fas fa-chart-line w-5"></i> Overview
+                            </a>
+                            <a href="#" onclick="showSection('users'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section="users">
+                                <i class="fas fa-users w-5"></i> Users
+                            </a>
+                            <a href="#" onclick="showSection('events'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section="events">
+                                <i class="fas fa-flag-checkered w-5"></i> Events
+                            </a>
+                            <a href="#" onclick="showSection('leaderboard'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section="leaderboard">
+                                <i class="fas fa-trophy w-5"></i> Leaderboard
+                            </a>
+                            <a href="#" onclick="showSection('shop'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section="shop">
+                                <i class="fas fa-shopping-cart w-5"></i> Shop
+                            </a>
+                            <a href="#" onclick="showSection('training'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section="training">
+                                <i class="fas fa-graduation-cap w-5"></i> Training
+                            </a>
+                            <a href="#" onclick="showSection('settings'); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 font-medium" data-section="settings">
+                                <i class="fas fa-cog w-5"></i> Settings
+                            </a>
+                        </div>
+                        <div class="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4">
+                            <a href="index.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 font-medium">
+                                <i class="fas fa-sign-out-alt w-5"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="flex-1">
+                    <!-- Overview Section -->
+                    <div id="overview-section" class="content-section active">
+                        <!-- Stats Grid -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                            <div class="stat-card bg-white dark:bg-gray-900 rounded-2xl p-5 shadow-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm">Total Users</span>
+                                    <i class="fas fa-users text-[#3B82F6] text-xl"></i>
+                                </div>
+                                <div class="text-3xl font-bold text-gray-900 dark:text-white">12,847</div>
+                                <div class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up"></i> +12% from last month</div>
+                            </div>
+                            <div class="stat-card bg-white dark:bg-gray-900 rounded-2xl p-5 shadow-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm">Active Racers</span>
+                                    <i class="fas fa-flag-checkered text-[#3B82F6] text-xl"></i>
+                                </div>
+                                <div class="text-3xl font-bold text-gray-900 dark:text-white">8,234</div>
+                                <div class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up"></i> +8% from last month</div>
+                            </div>
+                            <div class="stat-card bg-white dark:bg-gray-900 rounded-2xl p-5 shadow-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm">Events This Month</span>
+                                    <i class="fas fa-calendar text-[#3B82F6] text-xl"></i>
+                                </div>
+                                <div class="text-3xl font-bold text-gray-900 dark:text-white">24</div>
+                                <div class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up"></i> +4 from last month</div>
+                            </div>
+                            <div class="stat-card bg-white dark:bg-gray-900 rounded-2xl p-5 shadow-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm">Revenue (MTD)</span>
+                                    <i class="fas fa-dollar-sign text-[#3B82F6] text-xl"></i>
+                                </div>
+                                <div class="text-3xl font-bold text-gray-900 dark:text-white">$124K</div>
+                                <div class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up"></i> +18% from last month</div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Section -->
+                        <div class="grid lg:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">User Growth</h3>
+                                <canvas id="userGrowthChart" height="200"></canvas>
+                            </div>
+                            <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Revenue Overview</h3>
+                                <canvas id="revenueChart" height="200"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Recent Events Table -->
+                        <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg mb-8">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Upcoming Events</h3>
+                                <a href="#" onclick="showSection('events'); return false;" class="text-[#3B82F6] text-sm hover:underline">View All →</a>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Event</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Date</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Location</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Registered</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-medium">World Championship Qualifier</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Dec 15, 2024</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Dubai, UAE</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">108/128</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                        </tr>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-medium">Neon Nights Grand Prix</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Jan 5, 2025</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Tokyo, Japan</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">54/128</td>
+                                            <td class="py-3 px-2"><span class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full text-xs">Upcoming</span></td>
+                                        </tr>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-medium">Pro-Am Invitational</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Jan 20, 2025</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Miami, USA</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">91/96</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Recent Users Table -->
+                        <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Recent Registrations</h3>
+                                <a href="#" onclick="showSection('users'); return false;" class="text-[#3B82F6] text-sm hover:underline">Manage Users →</a>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">User</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Email</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Role</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Joined</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-medium">John Davis</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">john@example.com</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Racer</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Nov 25, 2024</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                        </tr>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-medium">Sarah Miller</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">sarah@example.com</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Student</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Nov 24, 2024</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                        </tr>
+                                        <tr class="table-row">
+                                            <td class="py-3 px-2 font-medium">Mike Wilson</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">mike@example.com</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Racer</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Nov 23, 2024</td>
+                                            <td class="py-3 px-2"><span class="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-2 py-1 rounded-full text-xs">Pending</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Users Section -->
+                    <div id="users-section" class="content-section">
+                        <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">User Management</h2>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">+ Add User</button>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                                            <th class="text-left py-3 px-2">ID</th>
+                                            <th class="text-left py-3 px-2">Name</th>
+                                            <th class="text-left py-3 px-2">Email</th>
+                                            <th class="text-left py-3 px-2">Role</th>
+                                            <th class="text-left py-3 px-2">Status</th>
+                                            <th class="text-left py-3 px-2">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2">#001</td>
+                                            <td class="py-3 px-2 font-medium">Alex Rivera</td>
+                                            <td class="py-3 px-2">alex@drl.com</td>
+                                            <td class="py-3 px-2">Pro Racer</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                            <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button> <button class="text-red-500 hover:underline text-sm ml-2">Delete</button></td>
+                                        </tr>
+                                        <tr class="border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2">#002</td>
+                                            <td class="py-3 px-2 font-medium">Sarah Chen</td>
+                                            <td class="py-3 px-2">sarah@drl.com</td>
+                                            <td class="py-3 px-2">Pro Racer</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                            <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button> <button class="text-red-500 hover:underline text-sm ml-2">Delete</button></td>
+                                        </tr>
+                                        <tr class="border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2">#003</td>
+                                            <td class="py-3 px-2 font-medium">Marcus Thompson</td>
+                                            <td class="py-3 px-2">marcus@drl.com</td>
+                                            <td class="py-3 px-2">Pro Racer</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                            <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button> <button class="text-red-500 hover:underline text-sm ml-2">Delete</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Events Section -->
+                    <div id="events-section" class="content-section">
+                        <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Event Management</h2>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">+ Create Event</button>
+                            </div>
+                            <div class="grid gap-4">
+                                <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div>
+                                        <h3 class="font-bold">World Championship Qualifier</h3>
+                                        <p class="text-sm text-gray-500">Dec 15, 2024 • Dubai, UAE</p>
+                                        <p class="text-xs text-gray-400 mt-1">Registered: 108/128</p>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button class="bg-green-500 text-white px-3 py-1 rounded-lg text-sm">Published</button>
+                                        <button class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm">Delete</button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div>
+                                        <h3 class="font-bold">Neon Nights Grand Prix</h3>
+                                        <p class="text-sm text-gray-500">Jan 5, 2025 • Tokyo, Japan</p>
+                                        <p class="text-xs text-gray-400 mt-1">Registered: 54/128</p>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button class="bg-green-500 text-white px-3 py-1 rounded-lg text-sm">Published</button>
+                                        <button class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leaderboard Section -->
+                    <div id="leaderboard-section" class="content-section">
+                        <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Leaderboard Management</h2>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">Update Rankings</button>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                                            <th class="text-left py-3 px-2">Rank</th>
+                                            <th class="text-left py-3 px-2">Pilot</th>
+                                            <th class="text-left py-3 px-2">Points</th>
+                                            <th class="text-left py-3 px-2">Wins</th>
+                                            <th class="text-left py-3 px-2">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-bold text-[#3B82F6]">1</td>
+                                            <td class="py-3 px-2">Alex Rivera</td>
+                                            <td class="py-3 px-2">3,250</td>
+                                            <td class="py-3 px-2">7</td>
+                                            <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button></td>
+                                        </tr>
+                                        <tr class="border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-bold text-[#3B82F6]">2</td>
+                                            <td class="py-3 px-2">Sarah Chen</td>
+                                            <td class="py-3 px-2">2,450</td>
+                                            <td class="py-3 px-2">3</td>
+                                            <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button></td>
+                                        </tr>
+                                        <tr class="border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-bold text-[#3B82F6]">3</td>
+                                            <td class="py-3 px-2">Marcus Thompson</td>
+                                            <td class="py-3 px-2">2,180</td>
+                                            <td class="py-3 px-2">2</td>
+                                            <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shop Section -->
+                    <div id="shop-section" class="content-section">
+                        <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Product Management</h2>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">+ Add Product</button>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div>
+                                        <h3 class="font-bold">DRL Racer X Pro</h3>
+                                        <p class="text-sm text-gray-500">$899 • In Stock: 45</p>
+                                    </div>
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div>
+                                        <h3 class="font-bold">FPV Digital Goggles V3</h3>
+                                        <p class="text-sm text-gray-500">$549 • In Stock: 128</p>
+                                    </div>
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Training Section -->
+                    <div id="training-section" class="content-section">
+                        <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Training Modules</h2>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">+ Add Module</button>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div>
+                                        <h3 class="font-bold">FPV Fundamentals</h3>
+                                        <p class="text-sm text-gray-500">8 Lessons • 2.5 hours • Beginner</p>
+                                    </div>
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div>
+                                        <h3 class="font-bold">Racing Techniques</h3>
+                                        <p class="text-sm text-gray-500">10 Lessons • 4 hours • Intermediate</p>
+                                    </div>
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div id="settings-section" class="content-section">
+                        <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Platform Settings</h2>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div>
+                                        <h3 class="font-bold">Maintenance Mode</h3>
+                                        <p class="text-sm text-gray-500">Enable maintenance mode for the platform</p>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div>
+                                        <h3 class="font-bold">Auto-approve Registrations</h3>
+                                        <p class="text-sm text-gray-500">Automatically approve new user registrations</p>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked>
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                                <button class="bg-[#3B82F6] text-white px-6 py-2 rounded-lg mt-4 hover:bg-[#2563EB] transition">Save All Settings</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        // Initialize Charts
+        const ctx1 = document.getElementById('userGrowthChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+                datasets: [{
+                    label: 'Users',
+                    data: [5200, 5800, 6100, 6700, 7200, 7800, 8500, 9200, 10200, 11200, 12847],
+                    borderColor: '#3B82F6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        const ctx2 = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+                datasets: [{
+                    label: 'Revenue ($K)',
+                    data: [45, 52, 58, 63, 71, 78, 85, 94, 105, 115, 124],
+                    backgroundColor: '#3B82F6',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+        
+        // Desktop Section Navigation
+        function showSection(sectionName) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(`${sectionName}-section`).classList.add('active');
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === sectionName) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Mobile Section Navigation
+        function showSectionMobile(sectionName) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(`${sectionName}-section`).classList.add('active');
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === sectionName || link.getAttribute('data-section-mobile') === sectionName) {
+                    link.classList.add('active');
+                }
+            });
+            closeMobileSidebar();
+        }
+        
+        // Mobile Sidebar Functions
+        function openMobileSidebar() {
+            document.getElementById('mobileSidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('active');
+            document.body.classList.add('menu-open');
+        }
+        
+        function closeMobileSidebar() {
+            document.getElementById('mobileSidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+        
+        // Theme Toggle
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        // Direction Toggle
+        function toggleDirection() {
+            const currentDir = document.documentElement.dir;
+            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+            document.documentElement.dir = newDir;
+            const dirBtn = document.querySelector('.toggle-btn:first-child');
+            if (dirBtn) dirBtn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
+        }
+        
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark');
+        }
+    </script>
+</body>
+</html>

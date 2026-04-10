@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>DRL | FPV Arena - FPV Training & Certification</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { 
+                extend: { 
+                    colors: { 
+                        primary: '#3B82F6',
+                        secondary: '#1E3A5F',
+                        darkBg: '#0F172A'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'orbitron': ['Orbitron', 'monospace']
+                    }
+                } 
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+        
+        body.light {
+            background: #F9F6F3;
+        }
+        
+        body.dark {
+            background: #0F172A;
+        }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* ===== NAVBAR - PERFECT 3-PART LAYOUT ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: #0F172A;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .navbar {
+            background: #0F172A;
+            border-bottom-color: rgba(59, 130, 246, 0.4);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+        }
+        
+        .nav-3-part {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        /* PART 1: LOGO */
+        .nav-part-left {
+            flex-shrink: 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            padding: 6px 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+            color: #3B82F6;
+        }
+        
+        .logo-text {
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: #3B82F6;
+            letter-spacing: -0.5px;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .dark .logo-text {
+            color: #3B82F6;
+        }
+        
+        /* PART 2: LINKS */
+        .nav-part-center {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            white-space: nowrap;
+            overflow: visible;
+        }
+        
+        .nav-link {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 40px;
+            color: #F9F6F3;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .dark .nav-link {
+            color: #F9F6F3;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white !important;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            margin-top: 12px;
+            min-width: 220px;
+            background: #0F172A;
+            border-radius: 24px;
+            padding: 10px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            z-index: 1001;
+        }
+        
+        .dark .dropdown-menu {
+            background: #0F172A;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            border-radius: 16px;
+            color: #F9F6F3;
+            font-weight: 500;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .dark .dropdown-item {
+            color: #F9F6F3;
+        }
+        
+        .dropdown-item i {
+            width: 18px;
+            color: #3B82F6;
+        }
+        
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        /* Profile Dropdown - FIXED FOR BOTH LTR AND RTL */
+        .profile-dropdown {
+            position: relative;
+        }
+        
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            margin-top: 12px;
+            min-width: 220px;
+            background: #0F172A;
+            border-radius: 24px;
+            padding: 10px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            z-index: 1001;
+        }
+        
+        /* LTR: dropdown aligns to right */
+        [dir="ltr"] .profile-dropdown-menu {
+            right: 0;
+            left: auto;
+        }
+        
+        /* RTL: dropdown aligns to left */
+        [dir="rtl"] .profile-dropdown-menu {
+            left: 0;
+            right: auto;
+        }
+        
+        .dark .profile-dropdown-menu {
+            background: #0F172A;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .profile-dropdown:hover .profile-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* PART 3: ICONS */
+        .nav-part-right {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            flex-shrink: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        /* Hamburger Button */
+        .hamburger {
+            display: none;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .hamburger:hover {
+            transform: scale(1.05);
+        }
+        
+        .desktop-auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Profile icon - hidden on mobile, visible on desktop */
+        .profile-icon-mobile {
+            display: none;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .nav-link {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 1100px) {
+            .nav-link {
+                padding: 8px 8px;
+                font-size: 12px;
+            }
+            .nav-part-center {
+                gap: 0.1rem;
+            }
+        }
+        
+        @media (max-width: 1000px) {
+            .nav-part-center {
+                display: none !important;
+            }
+            .desktop-auth-buttons {
+                display: none !important;
+            }
+            .hamburger {
+                display: flex !important;
+            }
+            /* Hide profile icon in mobile view */
+            .profile-dropdown {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 1001px) {
+            .hamburger {
+                display: none !important;
+            }
+            .nav-part-center {
+                display: flex !important;
+            }
+            .desktop-auth-buttons {
+                display: flex !important;
+            }
+            /* Show profile icon only on desktop */
+            .profile-dropdown {
+                display: block !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.5rem 1rem;
+            }
+            .logo {
+                padding: 4px 6px;
+            }
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            .logo i {
+                font-size: 1.5rem;
+            }
+            .action-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 12px;
+            }
+            .hamburger {
+                width: 36px;
+                height: 36px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0.5rem 0.75rem;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
+            .logo i {
+                font-size: 1.3rem;
+            }
+            .action-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 11px;
+            }
+            .hamburger {
+                width: 34px;
+                height: 34px;
+            }
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 85%;
+            max-width: 380px;
+            background: #0F172A;
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .mobile-menu {
+            background: #0F172A;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .mobile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        
+        .mobile-close {
+            width: 48px;
+            height: 48px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .mobile-nav-items {
+            padding: 0 20px 20px 20px;
+        }
+        
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            margin: 6px 0;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #F9F6F3;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        
+        .dark .mobile-nav-link {
+            color: #F9F6F3;
+            background: rgba(59, 130, 246, 0.08);
+            border-color: rgba(59, 130, 246, 0.25);
+        }
+        
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white !important;
+            transform: translateX(5px);
+            border-color: transparent;
+        }
+        
+        .mobile-submenu-items {
+            margin-left: 20px;
+            padding-left: 18px;
+            border-left: 2px solid #3B82F6;
+            display: none;
+            animation: slideDown 0.25s ease;
+        }
+        
+        .mobile-submenu-items.open {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-submenu-items a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+            margin: 8px 0;
+            border-radius: 16px;
+            color: #F9F6F3;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+        }
+        
+        .dark .mobile-submenu-items a {
+            color: #F9F6F3;
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .mobile-submenu-items a:hover,
+        .mobile-submenu-items a.active {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white !important;
+            transform: translateX(5px);
+        }
+        
+        .mobile-settings {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 28px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+        
+        .mobile-setting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+        
+        .mobile-setting-label {
+            font-weight: 600;
+            color: #F9F6F3;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .dark .mobile-setting-label {
+            color: #F9F6F3;
+        }
+        
+        /* FPV Training Specific Styles */
+        .fpv-hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1579820010410-c10411aaaa88?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .dark .fpv-hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1579820010410-c10411aaaa88?w=1920&h=1080&fit=crop');
+            background-blend-mode: overlay;
+        }
+        
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .course-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px -12px rgba(59, 130, 246, 0.25);
+        }
+        
+        .process-step {
+            transition: all 0.3s ease;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cta-enhanced {
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-enhanced::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulseSlow 6s ease-in-out infinite;
+        }
+        
+        .cta-enhanced::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulseSlow 8s ease-in-out infinite reverse;
+        }
+        
+        @keyframes pulseSlow {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+        
+        .cta-card {
+            transition: all 0.3s ease;
+        }
+        
+        .cta-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Footer logo uses same styles as navbar logo */
+        footer .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        footer .logo i {
+            font-size: 1.8rem;
+            color: #3B82F6;
+            transition: all 0.3s ease;
+        }
+
+        footer .logo-text {
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: #3B82F6;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Dark mode support for footer logo */
+        .dark footer .logo-text {
+            color: #3B82F6;
+        }
+
+        /* Responsive footer logo - matches navbar exactly */
+        @media (max-width: 768px) {
+            footer .logo i {
+                font-size: 1.5rem !important;
+            }
+            footer .logo-text {
+                font-size: 1.2rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            footer .logo i {
+                font-size: 1.3rem !important;
+            }
+            footer .logo-text {
+                font-size: 1rem !important;
+            }
+        }
+
+        /* Hover effect same as navbar */
+        footer .logo:hover {
+            transform: scale(1.02);
+        }
+
+        footer .logo:hover i,
+        footer .logo:hover .logo-text {
+            transform: scale(1.02);
+        }
+        
+        /* Footer background same as navbar */
+        footer {
+            background-color: #0F172A !important;
+        }
+        
+        .dark footer {
+            background-color: #0F172A !important;
+        }
+        
+        /* Footer headings color */
+        footer h4 {
+            color: #3B82F6 !important;
+        }
+        
+        /* Card background colors for sections */
+        .service-card {
+            background-color: #1E293B !important;
+        }
+        
+        .testimonial-card {
+            background-color: #1E293B !important;
+        }
+        
+        .dark .service-card {
+            background-color: #1E293B !important;
+        }
+        
+        .dark .testimonial-card {
+            background-color: #1E293B !important;
+        }
+    </style>
+</head>
+<body class="light font-inter">
+
+    <!-- Navbar - Perfect 3-Part Layout (SAME AS HOME1) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-3-part">
+                <!-- PART 1: LOGO -->
+                <div class="nav-part-left">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-drone"></i>
+                        <span class="logo-text">DRL | FPV Arena</span>
+                    </a>
+                </div>
+
+                <!-- PART 2: LINKS - Dashboard after Contact -->
+                <div class="nav-part-center">
+                    <div class="dropdown">
+                        <button class="nav-link active">Home <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home1 - Racing League</a>
+                            <a href="home2.html" class="dropdown-item active">Home2 - FPV Training</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="events.html" class="nav-link">Events</a>
+                    <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+                    <a href="shop.html" class="nav-link">Shop</a>
+                    <a href="training-modules.html" class="nav-link">Training</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <div class="dropdown">
+                        <button class="nav-link">Dashboard <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu">
+                            <a href="dashboard-admin.html" class="dropdown-item">Admin Dashboard</a>
+                            <a href="dashboard-user.html" class="dropdown-item">User Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PART 3: ICONS -->
+                <div class="nav-part-right">
+                    <div class="desktop-auth-buttons">
+                        <button onclick="toggleDirection()" class="action-btn" style="width: auto; padding: 0 12px;">LTR</button>
+                        <button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
+                    </div>
+                    <div class="profile-dropdown">
+                        <button class="action-btn"><i data-lucide="user" class="w-4 h-4"></i></button>
+                        <div class="profile-dropdown-menu">
+                            <a href="login.html" class="dropdown-item"><i data-lucide="log-in"></i>Login</a>
+                            <a href="signup.html" class="dropdown-item"><i data-lucide="user-plus"></i>Signup</a>
+                        </div>
+                    </div>
+                    <button class="hamburger" onclick="openMobileMenu()" aria-label="Menu">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenuPanel">
+        <div class="mobile-header">
+            <a href="index.html" class="logo" onclick="closeMobileMenu()"><i class="fas fa-drone"></i><span class="logo-text">DRL | FPV Arena</span></a>
+            <button onclick="closeMobileMenu()" class="mobile-close"><i data-lucide="x" class="w-6 h-6"></i></button>
+        </div>
+        <div class="mobile-nav-items">
+            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link active">
+                <span><i class="fas fa-home mr-3"></i>HOME</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileHomeSubmenu" class="mobile-submenu-items open">
+                <a href="index.html" onclick="closeMobileMenu()">Home1 - Racing League</a>
+                <a href="home2.html" class="active" onclick="closeMobileMenu()">Home2 - FPV Training</a>
+            </div>
+            <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="events.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-flag-checkered mr-3"></i>EVENTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="leaderboard.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-trophy mr-3"></i>LEADERBOARD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="shop.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-shopping-cart mr-3"></i>SHOP</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="training-modules.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-graduation-cap mr-3"></i>TRAINING</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileDashSubmenu" class="mobile-submenu-items">
+                <a href="dashboard-admin.html" onclick="closeMobileMenu()">Admin Dashboard</a>
+                <a href="dashboard-user.html" onclick="closeMobileMenu()">User Dashboard</a>
+            </div>
+            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileAuthSubmenu" class="mobile-submenu-items">
+                <a href="login.html" onclick="closeMobileMenu()">Login</a>
+                <a href="signup.html" onclick="closeMobileMenu()">Signup</a>
+            </div>
+            <div class="mobile-settings">
+                <div class="mobile-setting-item">
+                    <span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span>
+                    <button onclick="toggleDirectionMobile()" class="action-btn" style="width: auto; padding: 0 12px;">LTR</button>
+                </div>
+                <div class="mobile-setting-item">
+                    <span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span>
+                    <button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FPV Training Hero Section - Centered Content, No Side Image -->
+    <section class="relative min-h-screen flex items-center pt-5 overflow-hidden fpv-hero-bg">
+        <div class="absolute inset-0 bg-black/50 dark:bg-black/70 z-0"></div>
+        <div class="absolute inset-0 bg-grid-pattern opacity-20 z-0"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full text-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 bg-[#3B82F6]/20 backdrop-blur-sm text-[#3B82F6] px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Professional FPV Training Program</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-6 font-orbitron">
+                    Master <span class="text-[#3B82F6]">FPV</span><br>Drone Flying
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                    From complete beginner to professional FPV pilot — structured training modules, simulator practice, and real-flight coaching from world champions.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="training-modules.html" class="bg-[#3B82F6] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#2563EB] transition shadow-lg hover:shadow-xl flex items-center gap-2">
+                        <i class="fas fa-play"></i> Start FPV Training
+                    </a>
+                    <a href="signup.html" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition border border-white/30 flex items-center gap-2">
+                        <i class="fas fa-certificate"></i> Get Certified
+                    </a>
+                </div>
+                <div class="mt-8">
+                    <div class="flex flex-wrap items-center justify-center gap-4">
+                        <div class="flex items-center gap-1">
+                            <div class="w-9 h-9 rounded-full bg-[#3B82F6] text-white flex items-center justify-center text-sm font-bold shadow-sm">MJ</div>
+                            <div class="w-9 h-9 rounded-full bg-[#1E3A5F] text-white flex items-center justify-center text-sm font-bold shadow-sm">SC</div>
+                            <div class="w-9 h-9 rounded-full bg-[#3B82F6] text-white flex items-center justify-center text-sm font-bold shadow-sm">AR</div>
+                            <div class="w-9 h-9 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">+24</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="text-right">
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-2xl font-bold text-[#3B82F6]">10K</span>
+                                    <span class="text-sm text-gray-400">+</span>
+                                </div>
+                                <p class="text-xs text-gray-400">Pilots Trained</p>
+                            </div>
+                            <div class="w-px h-8 bg-gray-600 hidden sm:block"></div>
+                            <div class="hidden sm:block">
+                                <p class="text-xs text-gray-400">Success Rate</p>
+                                <p class="text-xs font-semibold text-[#3B82F6]">↑ 94%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-white dark:bg-gray-900"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-2 md:grid-cols-4 gap-6"><div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl"><div class="text-4xl font-bold text-[#3B82F6] mb-2">10,000+</div><p class="text-gray-600 dark:text-gray-400">FPV Pilots Trained</p></div><div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl"><div class="text-4xl font-bold text-[#3B82F6] mb-2">50+</div><p class="text-gray-600 dark:text-gray-400">FPV Modules</p></div><div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl"><div class="text-4xl font-bold text-[#3B82F6] mb-2">25+</div><p class="text-gray-600 dark:text-gray-400">Expert Instructors</p></div><div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl"><div class="text-4xl font-bold text-[#3B82F6] mb-2">94%</div><p class="text-gray-600 dark:text-gray-400">Success Rate</p></div></div></div></section>
+
+    <!-- FPV Training Paths -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-3xl mx-auto mb-16"><span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">FPV Learning Paths</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Your Journey to Becoming an FPV Pilot</h2><p class="text-gray-600 dark:text-gray-400 mt-4">Structured FPV training paths from absolute beginner to professional racing pilot</p></div><div class="grid md:grid-cols-3 gap-8"><div class="course-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"><div class="bg-gradient-to-r from-green-500 to-emerald-600 p-4 text-center"><i class="fas fa-seedling text-4xl text-white"></i></div><div class="p-6"><h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Beginner FPV</h3><p class="text-gray-500 mb-4">Start your FPV journey from zero</p><ul class="space-y-2 mb-6 text-sm"><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> FPV drone setup & safety</li><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> Understanding FPV goggles</li><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> FPV simulator training</li><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> Your first FPV flight</li></ul><div class="flex justify-between items-center"><span class="text-[#3B82F6] font-bold">8 Modules</span><a href="training-modules.html" class="text-[#3B82F6] font-semibold hover:underline">Start FPV →</a></div></div></div><div class="course-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 transform scale-105 md:scale-100 lg:scale-105 z-10"><div class="bg-gradient-to-r from-[#3B82F6] to-blue-600 p-4 text-center"><i class="fas fa-chart-line text-4xl text-white"></i></div><div class="p-6"><h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Intermediate FPV</h3><p class="text-gray-500 mb-4">Master advanced FPV maneuvers</p><ul class="space-y-2 mb-6 text-sm"><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> FPV racing lines & gates</li><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> FPV freestyle techniques</li><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> FPV drone tuning basics</li><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> FPV track navigation</li></ul><div class="flex justify-between items-center"><span class="text-[#3B82F6] font-bold">10 Modules</span><a href="training-modules.html" class="text-[#3B82F6] font-semibold hover:underline">Start FPV →</a></div></div></div><div class="course-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"><div class="bg-gradient-to-r from-purple-500 to-pink-600 p-4 text-center"><i class="fas fa-trophy text-4xl text-white"></i></div><div class="p-6"><h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Pro FPV Elite</h3><p class="text-gray-500 mb-4">Championship level FPV training</p><ul class="space-y-2 mb-6 text-sm"><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> Advanced FPV racing tactics</li><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> FPV competition preparation</li><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> FPV mental conditioning</li><li class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6]"></i> Pro-level FPV tuning</li></ul><div class="flex justify-between items-center"><span class="text-[#3B82F6] font-bold">12 Modules</span><a href="training-modules.html" class="text-[#3B82F6] font-semibold hover:underline">Start FPV →</a></div></div></div></div></div></section>
+
+    <!-- FPV Video Showcase -->
+    <section class="py-20 bg-white dark:bg-gray-900"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid lg:grid-cols-2 gap-12 items-center"><div class="order-2 lg:order-1"><span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">FPV Training Videos</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-4">Learn FPV Through <span class="text-[#3B82F6]">Interactive Videos</span></h2><p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">Watch and learn FPV flying from world champion pilots through our comprehensive video library. Each FPV module includes step-by-step tutorials, real flight demonstrations from FPV goggles perspective, and downloadable FPV resources.</p><div class="flex flex-wrap gap-4"><div class="flex items-center gap-3"><i class="fas fa-video text-[#3B82F6] text-2xl"></i><div><p class="font-bold">50+ Hours</p><p class="text-sm text-gray-500">FPV Video Content</p></div></div><div class="flex items-center gap-3"><i class="fas fa-download text-[#3B82F6] text-2xl"></i><div><p class="font-bold">100+</p><p class="text-sm text-gray-500">FPV Resources</p></div></div></div><a href="training-modules.html" class="inline-flex items-center gap-2 text-[#3B82F6] font-semibold mt-6 hover:gap-3 transition-all group">Browse All FPV Courses <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i></a></div><div class="order-1 lg:order-2 relative"><div class="relative rounded-2xl overflow-hidden shadow-xl"><img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600&h=400&fit=crop" alt="FPV Training Video" class="w-full rounded-2xl"><div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent flex items-center justify-center"><div class="w-16 h-16 bg-[#3B82F6] rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition"><i class="fas fa-play text-white text-xl ml-1"></i></div></div></div></div></div></div></section>
+
+    <!-- Why Train FPV With Us -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-3xl mx-auto mb-16"><span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">Why Train FPV With Us</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">World-Class FPV Training Platform</h2><p class="text-gray-600 dark:text-gray-400 mt-4">What makes our FPV training the best choice for aspiring pilots</p></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><div class="flex gap-4 p-4 rounded-xl bg-white dark:bg-gray-900 hover:shadow-lg transition"><i class="fas fa-chalkboard-user text-3xl text-[#3B82F6]"></i><div><h3 class="font-bold text-lg mb-1">Expert FPV Instructors</h3><p class="text-gray-500 text-sm">Learn FPV from world champion pilots with years of competitive experience.</p></div></div><div class="flex gap-4 p-4 rounded-xl bg-white dark:bg-gray-900 hover:shadow-lg transition"><i class="fas fa-laptop-code text-3xl text-[#3B82F6]"></i><div><h3 class="font-bold text-lg mb-1">FPV Simulator Training</h3><p class="text-gray-500 text-sm">Practice FPV flying risk-free with our advanced drone simulator integration.</p></div></div><div class="flex gap-4 p-4 rounded-xl bg-white dark:bg-gray-900 hover:shadow-lg transition"><i class="fas fa-certificate text-3xl text-[#3B82F6]"></i><div><h3 class="font-bold text-lg mb-1">FPV Certification</h3><p class="text-gray-500 text-sm">Earn recognized FPV certificates to showcase your piloting skills.</p></div></div><div class="flex gap-4 p-4 rounded-xl bg-white dark:bg-gray-900 hover:shadow-lg transition"><i class="fas fa-users text-3xl text-[#3B82F6]"></i><div><h3 class="font-bold text-lg mb-1">FPV Community</h3><p class="text-gray-500 text-sm">Join a global community of FPV enthusiasts and learners.</p></div></div><div class="flex gap-4 p-4 rounded-xl bg-white dark:bg-gray-900 hover:shadow-lg transition"><i class="fas fa-tachometer-alt text-3xl text-[#3B82F6]"></i><div><h3 class="font-bold text-lg mb-1">FPV Progress Tracking</h3><p class="text-gray-500 text-sm">Monitor your FPV improvement with detailed analytics.</p></div></div><div class="flex gap-4 p-4 rounded-xl bg-white dark:bg-gray-900 hover:shadow-lg transition"><i class="fas fa-mobile-alt text-3xl text-[#3B82F6]"></i><div><h3 class="font-bold text-lg mb-1">Learn FPV Anywhere</h3><p class="text-gray-500 text-sm">Access FPV courses on desktop, tablet, or mobile device.</p></div></div></div></div></section>
+
+    <!-- Meet Your FPV Coaches -->
+    <section class="py-20 bg-white dark:bg-gray-900"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">Meet Your FPV Coaches</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Elite FPV Instructor Team</h2></div><div class="grid md:grid-cols-3 gap-8"><div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl"><div class="w-28 h-28 mx-auto bg-gradient-to-br from-[#3B82F6] to-blue-400 rounded-full flex items-center justify-center text-5xl text-white shadow-lg"><i class="fas fa-user-astronaut"></i></div><h3 class="text-xl font-bold mt-4">Captain Alex Chen</h3><p class="text-[#3B82F6] mb-3">3x FPV World Champion</p><p class="text-gray-500 text-sm">Former professional FPV racer with 10+ years of FPV flying experience</p></div><div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl"><div class="w-28 h-28 mx-auto bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-5xl text-white shadow-lg"><i class="fas fa-user-graduate"></i></div><h3 class="text-xl font-bold mt-4">Sarah Mitchell</h3><p class="text-[#3B82F6] mb-3">Head of FPV Training</p><p class="text-gray-500 text-sm">Certified FPV flight instructor & educational specialist</p></div><div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl"><div class="w-28 h-28 mx-auto bg-gradient-to-br from-indigo-500 to-purple-400 rounded-full flex items-center justify-center text-5xl text-white shadow-lg"><i class="fas fa-user-ninja"></i></div><h3 class="text-xl font-bold mt-4">Marcus "Drone" Lee</h3><p class="text-[#3B82F6] mb-3">FPV Freestyle Master</p><p class="text-gray-500 text-sm">Known for creative FPV flight techniques & tutorials</p></div></div></div></section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">Testimonials</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">What Our Students Say</h2></div><div class="grid md:grid-cols-3 gap-8"><div class="bg-gray-800 rounded-2xl p-8 border border-gray-700"><div class="flex text-[#3B82F6] mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mb-6 text-gray-300">"The FPV training program took me from zero to confident pilot in just 3 months. The instructors are world-class!"</p><div class="font-bold text-white">David Kim</div><div class="text-sm text-gray-400">Graduate, Class of 2024</div></div><div class="bg-gray-800 rounded-2xl p-8 border border-gray-700"><div class="flex text-[#3B82F6] mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mb-6 text-gray-300">"The simulator training was a game-changer. I could practice without crashing real drones. Highly recommended!"</p><div class="font-bold text-white">Lisa Wong</div><div class="text-sm text-gray-400">FPV Racer</div></div><div class="bg-gray-800 rounded-2xl p-8 border border-gray-700"><div class="flex text-[#3B82F6] mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mb-6 text-gray-300">"Best investment in my FPV journey. The community support and expert feedback helped me improve rapidly."</p><div class="font-bold text-white">Carlos Mendez</div><div class="text-sm text-gray-400">Certified Pilot</div></div></div></div></section>
+
+    <!-- FPV Certification CTA -->
+    <section class="cta-enhanced py-20"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid lg:grid-cols-2 gap-12 items-center"><div class="text-center lg:text-left"><div class="inline-flex items-center gap-2 bg-[#3B82F6]/20 backdrop-blur-sm text-[#3B82F6] px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-[#3B82F6]/30"><i class="fas fa-certificate"></i><span>Get FPV Certified Today</span></div><h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">Become a Certified <span class="text-[#3B82F6]">FPV Pilot</span></h2><p class="text-lg text-gray-300 mb-6 max-w-lg mx-auto lg:mx-0">Join thousands of successful FPV pilots who started their journey with us</p><div class="flex flex-wrap gap-4 justify-center lg:justify-start"><a href="signup.html" class="bg-[#3B82F6] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#2563EB] transition shadow-lg hover:shadow-xl inline-flex items-center gap-2 group"><i class="fas fa-user-plus"></i> Start FPV Free Trial <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i></a><a href="training-modules.html" class="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition inline-flex items-center gap-2"><i class="fas fa-eye"></i> View FPV Curriculum</a></div><div class="flex flex-wrap gap-6 mt-8 justify-center lg:justify-start"><div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6] text-sm"></i><span class="text-sm text-gray-300">Free Trial Access</span></div><div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6] text-sm"></i><span class="text-sm text-gray-300">50+ Training Videos</span></div><div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6] text-sm"></i><span class="text-sm text-gray-300">Simulator Included</span></div><div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#3B82F6] text-sm"></i><span class="text-sm text-gray-300">Certificate on Completion</span></div></div></div><div class="relative"><div class="cta-card bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"><div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center"><i class="fas fa-graduation-cap text-[#3B82F6] text-xl"></i></div><div><p class="text-white text-sm">Active Students</p><p class="text-2xl font-bold text-white">5,000+</p></div></div><div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center"><i class="fas fa-clock text-[#3B82F6] text-xl"></i></div><div><p class="text-white text-sm">Training Hours</p><p class="text-2xl font-bold text-white">50,000+</p></div></div><div class="flex items-center gap-3"><div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center"><i class="fas fa-globe text-[#3B82F6] text-xl"></i></div><div><p class="text-white text-sm">Countries</p><p class="text-2xl font-bold text-white">60+</p></div></div></div></div></div></div></section>
+
+    <!-- Footer - Only 3 icons: LinkedIn, WhatsApp, Mail -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:grid md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
+                        <i class="fas fa-drone text-2xl text-[#3B82F6]"></i>
+                        <span class="logo-text">DRL | FPV Arena</span>
+                    </a>
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                        The premier destination for drone racing and FPV training. Compete, learn, and grow with the best community.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fab fa-linkedin-in text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fab fa-whatsapp text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fas fa-envelope text-xs"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4 text-[#3B82F6]">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="events.html" class="hover:text-white transition">Events</a></li>
+                        <li><a href="leaderboard.html" class="hover:text-white transition">Leaderboard</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4 text-[#3B82F6]">Resources</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="training-modules.html" class="hover:text-white transition">FPV Training Modules</a></li>
+                        <li><a href="shop.html" class="hover:text-white transition">FPV Equipment Shop</a></li>
+                        <li><a href="#" class="hover:text-white transition">FPV Community</a></li>
+                        <li><a href="#" class="hover:text-white transition">Support Center</a></li>
+                        <li><a href="#" class="hover:text-white transition">Sponsorship Program</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4 text-[#3B82F6]">Contact Info</h4>
+                    <div class="space-y-3 text-gray-400 text-sm">
+                        <p><i class="fas fa-map-marker-alt text-[#3B82F6] mr-2"></i> New York, USA</p>
+                        <p><i class="fas fa-envelope text-[#3B82F6] mr-2"></i> <a href="mailto:info@drl-fpv.com" class="hover:text-white">info@drl-fpv.com</a></p>
+                        <p><i class="fas fa-phone text-[#3B82F6] mr-2"></i> <a href="tel:+12125550123" class="hover:text-white">+1 (212) 555-0123</a></p>
+                        <p><i class="fas fa-clock text-[#3B82F6] mr-2"></i> Mon-Fri: 9AM - 6PM EST</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
+                <p>© 2024 DRL | FPV Arena — Drone Racing League & FPV Training. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        function openMobileMenu() {
+            document.getElementById('mobileMenuPanel').classList.add('open');
+            document.getElementById('mobileOverlay').classList.add('active');
+            document.body.classList.add('menu-open');
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobileMenuPanel').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+        
+        function toggleMobileSubmenu(id) {
+            const submenu = document.getElementById(id);
+            if (submenu) {
+                submenu.classList.toggle('open');
+                const btn = submenu.previousElementSibling;
+                const icon = btn?.querySelector('i:last-child');
+                if (icon) {
+                    icon.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            }
+        }
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            setTimeout(() => lucide.createIcons(), 10);
+        }
+        
+        function toggleThemeMobile() {
+            toggleTheme();
+        }
+        
+        function toggleDirection() {
+            const currentDir = document.documentElement.dir;
+            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+            document.documentElement.dir = newDir;
+            const dirBtn = document.querySelector('.action-btn[onclick="toggleDirection()"]');
+            if (dirBtn) {
+                dirBtn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
+            }
+            const mobileDirBtn = document.querySelector('.mobile-setting-item .action-btn');
+            if (mobileDirBtn) {
+                mobileDirBtn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
+            }
+        }
+        
+        function toggleDirectionMobile() {
+            toggleDirection();
+        }
+        
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            const dirBtn = document.querySelector('.action-btn[onclick="toggleDirection()"]');
+            if (dirBtn && document.documentElement.dir === 'rtl') {
+                dirBtn.textContent = 'RTL';
+            }
+        });
+    </script>
+</body>
+</html>
