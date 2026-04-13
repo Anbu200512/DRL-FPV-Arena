@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>DRL | FPV Arena - Events | Drone Racing League & FPV Training</title>
     <link rel="icon" type="image/png" href="images/logo.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -851,32 +851,34 @@
 
     <!-- Upcoming Events Section -->
     <section class="py-16 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">Don't Miss Out</span>
-                <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Upcoming Events</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-4">Register now for these exciting races</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Event 1 -->
-                <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/home-bg.jpg" alt="Dubai Race" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-[#3B82F6] text-white px-3 py-1 rounded-full text-xs font-bold">HOT</div>
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                            <span class="text-white text-sm font-semibold">🏆 Championship Series</span>
-                        </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">Don't Miss Out</span>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Upcoming Events</h2>
+            <p class="text-gray-600 dark:text-gray-400 mt-4">Register now for these exciting races</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- Event 1 -->
+            <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col">
+                <div class="relative h-48 overflow-hidden flex-shrink-0">
+                    <img src="images/home-bg.jpg" alt="Dubai Race" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-[#3B82F6] text-white px-3 py-1 rounded-full text-xs font-bold">HOT</div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                        <span class="text-white text-sm font-semibold">🏆 Championship Series</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">World Championship Qualifier</h3>
-                        <div class="space-y-2 mb-4">
-                            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-calendar-alt text-[#3B82F6] w-5"></i> December 15, 2024</p>
-                            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-[#3B82F6] w-5"></i> Dubai, UAE</p>
-                            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-users text-[#3B82F6] w-5"></i> 128 Pilots Registered</p>
-                        </div>
-                        <div class="flex items-center justify-between mt-4">
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">World Championship Qualifier</h3>
+                    <div class="space-y-2 mb-4 flex-grow">
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-calendar-alt text-[#3B82F6] w-5"></i> December 15, 2024</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-[#3B82F6] w-5"></i> Dubai, UAE</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-users text-[#3B82F6] w-5"></i> 128 Pilots Registered</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
                             <div class="text-[#3B82F6] font-bold">$50,000 Prize Pool</div>
-                            <a href="signup.html" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2563EB] transition">Register Now →</a>
+                            <a href="signup.html" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2563EB] transition whitespace-nowrap">Register →</a>
                         </div>
                         <div class="mt-3 w-full bg-gray-200 rounded-full h-1.5">
                             <div class="bg-[#3B82F6] h-1.5 rounded-full" style="width: 85%"></div>
@@ -884,26 +886,28 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Event 2 -->
-                <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/home2-bg.jpg" alt="Tokyo Race" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">EARLY BIRD</div>
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                            <span class="text-white text-sm font-semibold">🌃 Neon Nights Grand Prix</span>
-                        </div>
+            <!-- Event 2 -->
+            <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col">
+                <div class="relative h-48 overflow-hidden flex-shrink-0">
+                    <img src="images/home2-bg.jpg" alt="Tokyo Race" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">EARLY BIRD</div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                        <span class="text-white text-sm font-semibold">🌃 Neon Nights Grand Prix</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Neon Nights Grand Prix</h3>
-                        <div class="space-y-2 mb-4">
-                            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-calendar-alt text-[#3B82F6] w-5"></i> January 5, 2025</p>
-                            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-[#3B82F6] w-5"></i> Tokyo, Japan</p>
-                            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-users text-[#3B82F6] w-5"></i> 64 Pilots Registered</p>
-                        </div>
-                        <div class="flex items-center justify-between mt-4">
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Neon Nights Grand Prix</h3>
+                    <div class="space-y-2 mb-4 flex-grow">
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-calendar-alt text-[#3B82F6] w-5"></i> January 5, 2025</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-[#3B82F6] w-5"></i> Tokyo, Japan</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-users text-[#3B82F6] w-5"></i> 64 Pilots Registered</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
                             <div class="text-[#3B82F6] font-bold">$75,000 Prize Pool</div>
-                            <a href="signup.html" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2563EB] transition">Register Now →</a>
+                            <a href="signup.html" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2563EB] transition whitespace-nowrap">Register →</a>
                         </div>
                         <div class="mt-3 w-full bg-gray-200 rounded-full h-1.5">
                             <div class="bg-[#3B82F6] h-1.5 rounded-full" style="width: 42%"></div>
@@ -911,26 +915,28 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Event 3 -->
-                <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/home2-bg.jpg" alt="Miami Race" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">LIMITED</div>
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                            <span class="text-white text-sm font-semibold">🏆 Pro-Am Invitational</span>
-                        </div>
+            <!-- Event 3 -->
+            <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col">
+                <div class="relative h-48 overflow-hidden flex-shrink-0">
+                    <img src="images/home2-bg.jpg" alt="Miami Race" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">LIMITED</div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                        <span class="text-white text-sm font-semibold">🏆 Pro-Am Invitational</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Pro-Am Invitational</h3>
-                        <div class="space-y-2 mb-4">
-                            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-calendar-alt text-[#3B82F6] w-5"></i> January 20, 2025</p>
-                            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-[#3B82F6] w-5"></i> Miami, USA</p>
-                            <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-users text-[#3B82F6] w-5"></i> 96 Pilots Registered</p>
-                        </div>
-                        <div class="flex items-center justify-between mt-4">
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Pro-Am Invitational</h3>
+                    <div class="space-y-2 mb-4 flex-grow">
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-calendar-alt text-[#3B82F6] w-5"></i> January 20, 2025</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-[#3B82F6] w-5"></i> Miami, USA</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-users text-[#3B82F6] w-5"></i> 96 Pilots Registered</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
                             <div class="text-[#3B82F6] font-bold">$100,000 Prize Pool</div>
-                            <a href="signup.html" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2563EB] transition">Register Now →</a>
+                            <a href="signup.html" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2563EB] transition whitespace-nowrap">Register →</a>
                         </div>
                         <div class="mt-3 w-full bg-gray-200 rounded-full h-1.5">
                             <div class="bg-[#3B82F6] h-1.5 rounded-full" style="width: 95%"></div>
@@ -939,14 +945,101 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Event 4 -->
+            <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col">
+                <div class="relative h-48 overflow-hidden flex-shrink-0">
+                    <img src="images/d1.jpeg" alt="London Race" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">NEW</div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                        <span class="text-white text-sm font-semibold">🇬🇧 UK Open Championship</span>
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">UK Open Championship</h3>
+                    <div class="space-y-2 mb-4 flex-grow">
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-calendar-alt text-[#3B82F6] w-5"></i> February 10, 2025</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-[#3B82F6] w-5"></i> London, UK</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-users text-[#3B82F6] w-5"></i> 52 Pilots Registered</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <div class="text-[#3B82F6] font-bold">$40,000 Prize Pool</div>
+                            <a href="signup.html" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2563EB] transition whitespace-nowrap">Register →</a>
+                        </div>
+                        <div class="mt-3 w-full bg-gray-200 rounded-full h-1.5">
+                            <div class="bg-[#3B82F6] h-1.5 rounded-full" style="width: 35%"></div>
+                            <p class="text-xs text-gray-500 mt-1">35% Full</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event 5 -->
+            <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col">
+                <div class="relative h-48 overflow-hidden flex-shrink-0">
+                    <img src="images/j1.jpeg" alt="Sydney Race" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold">POPULAR</div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                        <span class="text-white text-sm font-semibold">🌏 Asia Pacific Championship</span>
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Asia Pacific Championship</h3>
+                    <div class="space-y-2 mb-4 flex-grow">
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-calendar-alt text-[#3B82F6] w-5"></i> March 5, 2025</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-[#3B82F6] w-5"></i> Sydney, Australia</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-users text-[#3B82F6] w-5"></i> 78 Pilots Registered</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <div class="text-[#3B82F6] font-bold">$60,000 Prize Pool</div>
+                            <a href="signup.html" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2563EB] transition whitespace-nowrap">Register →</a>
+                        </div>
+                        <div class="mt-3 w-full bg-gray-200 rounded-full h-1.5">
+                            <div class="bg-[#3B82F6] h-1.5 rounded-full" style="width: 28%"></div>
+                            <p class="text-xs text-gray-500 mt-1">28% Full</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event 6 -->
+            <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col">
+                <div class="relative h-48 overflow-hidden flex-shrink-0">
+                    <img src="images/p1.jpeg" alt="Brazil Race" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold">COMING</div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                        <span class="text-white text-sm font-semibold">🏆 South American Grand Prix</span>
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">South American Grand Prix</h3>
+                    <div class="space-y-2 mb-4 flex-grow">
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-calendar-alt text-[#3B82F6] w-5"></i> April 18, 2025</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-[#3B82F6] w-5"></i> São Paulo, Brazil</p>
+                        <p class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm"><i class="fas fa-users text-[#3B82F6] w-5"></i> 45 Pilots Registered</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <div class="text-[#3B82F6] font-bold">$55,000 Prize Pool</div>
+                            <a href="signup.html" class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2563EB] transition whitespace-nowrap">Register →</a>
+                        </div>
+                        <div class="mt-3 w-full bg-gray-200 rounded-full h-1.5">
+                            <div class="bg-[#3B82F6] h-1.5 rounded-full" style="width: 18%"></div>
+                            <p class="text-xs text-gray-500 mt-1">18% Full</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- More Upcoming Events -->
     <section class="py-16 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Event 4 -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">                <!-- Event 4 -->
                 <div class="event-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
                     <div class="relative h-48 overflow-hidden">
                         <img src="images/d1.jpeg" alt="London Race" class="w-full h-full object-cover">
