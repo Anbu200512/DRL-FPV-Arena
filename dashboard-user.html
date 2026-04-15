@@ -128,6 +128,11 @@
             background: rgba(59, 130, 246, 0.05);
         }
         
+        /* Dark mode table row hover - improved contrast */
+        .dark .table-row:hover {
+            background: rgba(59, 130, 246, 0.15);
+        }
+        
         .sidebar-link {
             transition: all 0.2s ease;
         }
@@ -178,6 +183,10 @@
             background: #e5e7eb;
             border-radius: 4px;
             overflow: hidden;
+        }
+        
+        .dark .progress-bar {
+            background: #374151;
         }
         
         .progress-fill {
@@ -260,6 +269,32 @@
                 display: none;
             }
         }
+        
+        /* Chart.js dark mode text color fix */
+        .dark canvas {
+            filter: brightness(0.9);
+        }
+        
+        /* Input fields dark mode */
+        input, select, textarea {
+            transition: all 0.2s ease;
+        }
+        
+        .dark input, .dark select, .dark textarea {
+            background: #1f2937;
+            border-color: #374151;
+            color: #f3f4f6;
+        }
+        
+        .dark input:focus, .dark select:focus, .dark textarea:focus {
+            border-color: #3B82F6;
+            outline: none;
+        }
+        
+        .dark input[readonly] {
+            background: #111827;
+            color: #9ca3af;
+        }
     </style>
 </head>
 <body class="light">
@@ -289,7 +324,7 @@
                     <p class="text-gray-300 mt-2">Track your racing progress, manage registrations, and continue your training.</p>
                 </div>
                 <div class="flex gap-3">
-                    <button onclick="toggleDirection()" class="toggle-btn" style="width: auto; padding: 0 16px;">LTR</button>
+                    <button onclick="toggleDirection()" class="toggle-btn" style="width: auto; padding: 0 16px;"><i class="fas fa-arrow-right-arrow-left mr-1"></i> LTR</button>
                     <button onclick="toggleTheme()" class="toggle-btn"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
                     <button class="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm hover:bg-white/20 transition hidden sm:block">Edit Profile</button>
                 </div>
@@ -308,7 +343,7 @@
                     <i class="fas fa-drone text-2xl text-[#3B82F6]"></i>
                     <span class="font-display font-bold text-lg text-[#3B82F6]">DRL | FPV</span>
                 </div>
-                <button onclick="closeMobileSidebar()" class="text-gray-500 dark:text-gray-400 hover:text-gray-700">
+                <button onclick="closeMobileSidebar()" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
@@ -317,7 +352,7 @@
                     <i class="fas fa-user-astronaut"></i>
                 </div>
                 <h3 class="font-bold text-gray-900 dark:text-white">Alex Rivera</h3>
-                <p class="text-xs text-gray-500">Member since Jan 2024</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Member since Jan 2024</p>
                 <span class="inline-block mt-2 px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-xs">Pro Racer</span>
             </div>
             <div class="space-y-1">
@@ -363,7 +398,7 @@
                                 <i class="fas fa-user-astronaut"></i>
                             </div>
                             <h3 class="font-bold text-gray-900 dark:text-white">Alex Rivera</h3>
-                            <p class="text-xs text-gray-500">Member since Jan 2024</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Member since Jan 2024</p>
                             <span class="inline-block mt-2 px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-xs">Pro Racer</span>
                         </div>
                         <div class="space-y-1">
@@ -452,22 +487,22 @@
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">World Championship Qualifier</h3>
-                                        <p class="text-sm text-gray-500">Dec 15, 2024 • Dubai, UAE</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">World Championship Qualifier</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Dec 15, 2024 • Dubai, UAE</p>
                                     </div>
                                     <div class="text-right">
                                         <span class="text-green-500 text-sm font-semibold">Registered</span>
-                                        <p class="text-xs text-gray-400">Confirmed</p>
+                                        <p class="text-xs text-gray-400 dark:text-gray-500">Confirmed</p>
                                     </div>
                                 </div>
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">Neon Nights Grand Prix</h3>
-                                        <p class="text-sm text-gray-500">Jan 5, 2025 • Tokyo, Japan</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Neon Nights Grand Prix</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Jan 5, 2025 • Tokyo, Japan</p>
                                     </div>
                                     <div class="text-right">
                                         <span class="text-blue-500 text-sm font-semibold">Pending</span>
-                                        <p class="text-xs text-gray-400">Awaiting confirmation</p>
+                                        <p class="text-xs text-gray-400 dark:text-gray-500">Awaiting confirmation</p>
                                     </div>
                                 </div>
                             </div>
@@ -479,23 +514,23 @@
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 <div class="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <i class="fas fa-trophy text-3xl text-yellow-500 mb-2"></i>
-                                    <p class="font-bold text-sm">1st Place</p>
-                                    <p class="text-xs text-gray-500">Dubai Open</p>
+                                    <p class="font-bold text-sm text-gray-900 dark:text-white">1st Place</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">Dubai Open</p>
                                 </div>
                                 <div class="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <i class="fas fa-medal text-3xl text-gray-400 mb-2"></i>
-                                    <p class="font-bold text-sm">Fastest Lap</p>
-                                    <p class="text-xs text-gray-500">Tokyo Circuit</p>
+                                    <p class="font-bold text-sm text-gray-900 dark:text-white">Fastest Lap</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">Tokyo Circuit</p>
                                 </div>
                                 <div class="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <i class="fas fa-chart-line text-3xl text-[#3B82F6] mb-2"></i>
-                                    <p class="font-bold text-sm">Rank #1</p>
-                                    <p class="text-xs text-gray-500">Global Leaderboard</p>
+                                    <p class="font-bold text-sm text-gray-900 dark:text-white">Rank #1</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">Global Leaderboard</p>
                                 </div>
                                 <div class="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <i class="fas fa-certificate text-3xl text-green-500 mb-2"></i>
-                                    <p class="font-bold text-sm">Pro Certified</p>
-                                    <p class="text-xs text-gray-500">FPV License</p>
+                                    <p class="font-bold text-sm text-gray-900 dark:text-white">Pro Certified</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">FPV License</p>
                                 </div>
                             </div>
                         </div>
@@ -508,15 +543,15 @@
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
-                                    <input type="text" value="Alex Rivera" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                                    <input type="text" value="Alex Rivera" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-                                    <input type="email" value="alex@drl-fpv.com" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                                    <input type="email" value="alex@drl-fpv.com" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Country</label>
-                                    <select class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                                    <select class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                                         <option>United States</option>
                                         <option>Spain</option>
                                         <option>United Kingdom</option>
@@ -524,11 +559,11 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Racer Category</label>
-                                    <input type="text" value="Pro League" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-700" readonly>
+                                    <input type="text" value="Pro League" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300" readonly>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Bio</label>
-                                    <textarea rows="3" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">Professional drone racer with 7 championship wins. Passionate about FPV and pushing the limits of speed.</textarea>
+                                    <textarea rows="3" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">Professional drone racer with 7 championship wins. Passionate about FPV and pushing the limits of speed.</textarea>
                                 </div>
                             </div>
                             <button class="mt-6 bg-[#3B82F6] text-white px-6 py-2 rounded-lg hover:bg-[#2563EB] transition">Save Changes</button>
@@ -543,32 +578,32 @@
                                 <table class="w-full">
                                     <thead>
                                         <tr class="border-b border-gray-200 dark:border-gray-700">
-                                            <th class="text-left py-3 px-2">Event</th>
-                                            <th class="text-left py-3 px-2">Date</th>
-                                            <th class="text-left py-3 px-2">Location</th>
-                                            <th class="text-left py-3 px-2">Status</th>
-                                            <th class="text-left py-3 px-2">Action</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Event</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Date</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Location</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Status</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2 font-medium">World Championship Qualifier</td>
-                                            <td class="py-3 px-2">Dec 15, 2024</td>
-                                            <td class="py-3 px-2">Dubai, UAE</td>
-                                            <td class="py-3 px-2"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Confirmed</span></td>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">World Championship Qualifier</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Dec 15, 2024</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Dubai, UAE</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Confirmed</span></td>
                                             <td class="py-3 px-2"><button class="text-red-500 text-sm">Cancel</button></td>
                                         </tr>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2 font-medium">Neon Nights Grand Prix</td>
-                                            <td class="py-3 px-2">Jan 5, 2025</td>
-                                            <td class="py-3 px-2">Tokyo, Japan</td>
-                                            <td class="py-3 px-2"><span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full text-xs">Pending</span></td>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Neon Nights Grand Prix</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Jan 5, 2025</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Tokyo, Japan</td>
+                                            <td class="py-3 px-2"><span class="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-2 py-1 rounded-full text-xs">Pending</span></td>
                                             <td class="py-3 px-2"><button class="text-red-500 text-sm">Cancel</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <button class="mt-6 bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">+ Register for Event</button>
+                            <button class="mt-6 bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm hover:bg-[#2563EB] transition">+ Register for Event</button>
                         </div>
                     </div>
 
@@ -581,17 +616,17 @@
                                     <div class="text-5xl font-bold text-[#3B82F6] mb-2">#1</div>
                                     <p class="text-gray-600 dark:text-gray-400">Global Ranking</p>
                                     <div class="mt-4">
-                                        <div class="flex justify-between text-sm mb-1"><span>Points</span><span>3,250</span></div>
+                                        <div class="flex justify-between text-sm mb-1 text-gray-700 dark:text-gray-300"><span>Points</span><span>3,250</span></div>
                                         <div class="progress-bar"><div class="progress-fill" style="width: 95%"></div></div>
                                     </div>
                                 </div>
                                 <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
-                                    <h3 class="font-bold mb-3">Season Stats</h3>
+                                    <h3 class="font-bold mb-3 text-gray-900 dark:text-white">Season Stats</h3>
                                     <div class="space-y-2">
-                                        <div class="flex justify-between"><span>Events Participated:</span><span class="font-semibold">15</span></div>
-                                        <div class="flex justify-between"><span>Wins:</span><span class="font-semibold text-green-500">7</span></div>
-                                        <div class="flex justify-between"><span>Podiums:</span><span class="font-semibold text-blue-500">12</span></div>
-                                        <div class="flex justify-between"><span>Fastest Lap:</span><span class="font-semibold">23.4 sec</span></div>
+                                        <div class="flex justify-between text-gray-600 dark:text-gray-400"><span>Events Participated:</span><span class="font-semibold text-gray-900 dark:text-white">15</span></div>
+                                        <div class="flex justify-between text-gray-600 dark:text-gray-400"><span>Wins:</span><span class="font-semibold text-green-500">7</span></div>
+                                        <div class="flex justify-between text-gray-600 dark:text-gray-400"><span>Podiums:</span><span class="font-semibold text-blue-500">12</span></div>
+                                        <div class="flex justify-between text-gray-600 dark:text-gray-400"><span>Fastest Lap:</span><span class="font-semibold text-gray-900 dark:text-white">23.4 sec</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -605,30 +640,30 @@
                             <div class="space-y-4">
                                 <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div class="flex justify-between mb-2">
-                                        <h3 class="font-bold">FPV Fundamentals</h3>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">FPV Fundamentals</h3>
                                         <span class="text-green-500 font-semibold">100%</span>
                                     </div>
                                     <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-                                    <p class="text-xs text-gray-500 mt-2">Completed • 8 lessons</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Completed • 8 lessons</p>
                                 </div>
                                 <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div class="flex justify-between mb-2">
-                                        <h3 class="font-bold">Racing Techniques</h3>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Racing Techniques</h3>
                                         <span class="text-blue-500 font-semibold">75%</span>
                                     </div>
                                     <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
-                                    <p class="text-xs text-gray-500 mt-2">In Progress • 6/8 lessons</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">In Progress • 6/8 lessons</p>
                                 </div>
                                 <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div class="flex justify-between mb-2">
-                                        <h3 class="font-bold">Pro Racing Mastery</h3>
-                                        <span class="text-gray-500 font-semibold">40%</span>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Pro Racing Mastery</h3>
+                                        <span class="text-gray-500 dark:text-gray-400 font-semibold">40%</span>
                                     </div>
                                     <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
-                                    <p class="text-xs text-gray-500 mt-2">In Progress • 4/10 lessons</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">In Progress • 4/10 lessons</p>
                                 </div>
                             </div>
-                            <button class="mt-6 bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">Continue Training →</button>
+                            <button class="mt-6 bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm hover:bg-[#2563EB] transition">Continue Training →</button>
                         </div>
                     </div>
 
@@ -640,27 +675,27 @@
                                 <table class="w-full">
                                     <thead>
                                         <tr class="border-b border-gray-200 dark:border-gray-700">
-                                            <th class="text-left py-3 px-2">Order ID</th>
-                                            <th class="text-left py-3 px-2">Product</th>
-                                            <th class="text-left py-3 px-2">Date</th>
-                                            <th class="text-left py-3 px-2">Total</th>
-                                            <th class="text-left py-3 px-2">Status</th>
-                                         </tr>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Order ID</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Product</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Date</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Total</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Status</th>
+                                         <tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2">#ORD-001</td>
-                                            <td class="py-3 px-2">DRL Racer X Pro</td>
-                                            <td class="py-3 px-2">Nov 15, 2024</td>
-                                            <td class="py-3 px-2">$899</td>
-                                            <td class="py-3 px-2"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Delivered</span></td>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">#ORD-001</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">DRL Racer X Pro</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Nov 15, 2024</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">$899</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Delivered</span></td>
                                         </tr>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2">#ORD-002</td>
-                                            <td class="py-3 px-2">FPV Digital Goggles V3</td>
-                                            <td class="py-3 px-2">Nov 20, 2024</td>
-                                            <td class="py-3 px-2">$549</td>
-                                            <td class="py-3 px-2"><span class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs">Shipped</span></td>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">#ORD-002</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">FPV Digital Goggles V3</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Nov 20, 2024</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">$549</td>
+                                            <td class="py-3 px-2"><span class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full text-xs">Shipped</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -675,8 +710,8 @@
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">Email Notifications</h3>
-                                        <p class="text-sm text-gray-500">Receive event updates and news</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Email Notifications</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Receive event updates and news</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" class="sr-only peer" checked>
@@ -685,8 +720,8 @@
                                 </div>
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">Two-Factor Authentication</h3>
-                                        <p class="text-sm text-gray-500">Add an extra layer of security</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Two-Factor Authentication</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Add an extra layer of security</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" class="sr-only peer">
@@ -774,6 +809,9 @@
             document.documentElement.classList.toggle('dark');
             document.body.classList.toggle('dark');
             localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 10);
         }
         
         // Direction Toggle
@@ -782,7 +820,7 @@
             const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
             document.documentElement.dir = newDir;
             const dirBtn = document.querySelector('.toggle-btn:first-child');
-            if (dirBtn) dirBtn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
+            if (dirBtn) dirBtn.innerHTML = newDir === 'rtl' ? '<i class="fas fa-arrow-right-arrow-left mr-1"></i> RTL' : '<i class="fas fa-arrow-right-arrow-left mr-1"></i> LTR';
         }
         
         // Load saved theme
@@ -790,6 +828,12 @@
             document.documentElement.classList.add('dark');
             document.body.classList.add('dark');
         }
+
+        
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>

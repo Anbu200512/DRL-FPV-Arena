@@ -128,6 +128,11 @@
             background: rgba(59, 130, 246, 0.05);
         }
         
+        /* Dark mode table row hover - improved contrast */
+        .dark .table-row:hover {
+            background: rgba(59, 130, 246, 0.15);
+        }
+        
         .sidebar-link {
             transition: all 0.2s ease;
         }
@@ -247,6 +252,11 @@
                 display: none;
             }
         }
+        
+        /* Chart.js dark mode text color fix */
+        .dark canvas {
+            filter: brightness(0.9);
+        }
     </style>
 </head>
 <body class="light">
@@ -276,7 +286,7 @@
                     <p class="text-gray-300 mt-2">Here's what's happening with your platform today.</p>
                 </div>
                 <div class="flex gap-3">
-                    <button onclick="toggleDirection()" class="toggle-btn" style="width: auto; padding: 0 16px;">LTR</button>
+                    <button onclick="toggleDirection()" class="toggle-btn" style="width: auto; padding: 0 16px;"><i class="fas fa-arrow-right-arrow-left mr-1"></i> LTR</button>
                     <button onclick="toggleTheme()" class="toggle-btn"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
                     <button class="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm hover:bg-white/20 transition hidden sm:block">Export Reports</button>
                     <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-xl text-sm hover:bg-[#2563EB] transition hidden sm:block">+ Create New</button>
@@ -296,7 +306,7 @@
                     <i class="fas fa-drone text-2xl text-[#3B82F6]"></i>
                     <span class="font-display font-bold text-lg text-[#3B82F6]">DRL | FPV</span>
                 </div>
-                <button onclick="closeMobileSidebar()" class="text-gray-500 dark:text-gray-400 hover:text-gray-700">
+                <button onclick="closeMobileSidebar()" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
@@ -324,7 +334,7 @@
                 </a>
             </div>
             <div class="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4">
-                <a href="login.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 font-medium">
+                <a href="index.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 font-medium">
                     <i class="fas fa-sign-out-alt w-5"></i> Logout
                 </a>
             </div>
@@ -362,7 +372,7 @@
                             </a>
                         </div>
                         <div class="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4">
-                            <a href="index.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 font-medium">
+                            <a href="login.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 font-medium">
                                 <i class="fas fa-sign-out-alt w-5"></i> Logout
                             </a>
                         </div>
@@ -436,30 +446,30 @@
                                             <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Location</th>
                                             <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Registered</th>
                                             <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Status</th>
-                                        </tr>
+                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="table-row border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2 font-medium">World Championship Qualifier</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">World Championship Qualifier</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Dec 15, 2024</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Dubai, UAE</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">108/128</td>
                                             <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
-                                        </tr>
+                                         </tr>
                                         <tr class="table-row border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2 font-medium">Neon Nights Grand Prix</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Neon Nights Grand Prix</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Jan 5, 2025</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Tokyo, Japan</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">54/128</td>
                                             <td class="py-3 px-2"><span class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full text-xs">Upcoming</span></td>
-                                        </tr>
+                                         </tr>
                                         <tr class="table-row border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2 font-medium">Pro-Am Invitational</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Pro-Am Invitational</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Jan 20, 2025</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Miami, USA</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">91/96</td>
                                             <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
-                                        </tr>
+                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -480,30 +490,30 @@
                                             <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Role</th>
                                             <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Joined</th>
                                             <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400 text-sm">Status</th>
-                                        </tr>
+                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="table-row border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2 font-medium">John Davis</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">John Davis</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">john@example.com</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Racer</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Nov 25, 2024</td>
                                             <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
-                                        </tr>
+                                         </tr>
                                         <tr class="table-row border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2 font-medium">Sarah Miller</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Sarah Miller</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">sarah@example.com</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Student</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Nov 24, 2024</td>
                                             <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
-                                        </tr>
+                                         </tr>
                                         <tr class="table-row">
-                                            <td class="py-3 px-2 font-medium">Mike Wilson</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Mike Wilson</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">mike@example.com</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Racer</td>
                                             <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Nov 23, 2024</td>
                                             <td class="py-3 px-2"><span class="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-2 py-1 rounded-full text-xs">Pending</span></td>
-                                        </tr>
+                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -515,45 +525,45 @@
                         <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
                             <div class="flex justify-between items-center mb-6">
                                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white">User Management</h2>
-                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">+ Add User</button>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm hover:bg-[#2563EB] transition">+ Add User</button>
                             </div>
                             <div class="overflow-x-auto">
                                 <table class="w-full">
                                     <thead>
                                         <tr class="border-b border-gray-200 dark:border-gray-700">
-                                            <th class="text-left py-3 px-2">ID</th>
-                                            <th class="text-left py-3 px-2">Name</th>
-                                            <th class="text-left py-3 px-2">Email</th>
-                                            <th class="text-left py-3 px-2">Role</th>
-                                            <th class="text-left py-3 px-2">Status</th>
-                                            <th class="text-left py-3 px-2">Actions</th>
-                                        </tr>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">ID</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Name</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Email</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Role</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Status</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Actions</th>
+                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2">#001</td>
-                                            <td class="py-3 px-2 font-medium">Alex Rivera</td>
-                                            <td class="py-3 px-2">alex@drl.com</td>
-                                            <td class="py-3 px-2">Pro Racer</td>
-                                            <td class="py-3 px-2"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">#001</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Alex Rivera</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">alex@drl.com</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Pro Racer</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
                                             <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button> <button class="text-red-500 hover:underline text-sm ml-2">Delete</button></td>
-                                        </tr>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2">#002</td>
-                                            <td class="py-3 px-2 font-medium">Sarah Chen</td>
-                                            <td class="py-3 px-2">sarah@drl.com</td>
-                                            <td class="py-3 px-2">Pro Racer</td>
-                                            <td class="py-3 px-2"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                         </tr>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">#002</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Sarah Chen</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">sarah@drl.com</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Pro Racer</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
                                             <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button> <button class="text-red-500 hover:underline text-sm ml-2">Delete</button></td>
-                                        </tr>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
-                                            <td class="py-3 px-2">#003</td>
-                                            <td class="py-3 px-2 font-medium">Marcus Thompson</td>
-                                            <td class="py-3 px-2">marcus@drl.com</td>
-                                            <td class="py-3 px-2">Pro Racer</td>
-                                            <td class="py-3 px-2"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Active</span></td>
+                                         </tr>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">#003</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Marcus Thompson</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">marcus@drl.com</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">Pro Racer</td>
+                                            <td class="py-3 px-2"><span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs">Active</span></td>
                                             <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button> <button class="text-red-500 hover:underline text-sm ml-2">Delete</button></td>
-                                        </tr>
+                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -565,14 +575,14 @@
                         <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
                             <div class="flex justify-between items-center mb-6">
                                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Event Management</h2>
-                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">+ Create Event</button>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm hover:bg-[#2563EB] transition">+ Create Event</button>
                             </div>
                             <div class="grid gap-4">
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">World Championship Qualifier</h3>
-                                        <p class="text-sm text-gray-500">Dec 15, 2024 • Dubai, UAE</p>
-                                        <p class="text-xs text-gray-400 mt-1">Registered: 108/128</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">World Championship Qualifier</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Dec 15, 2024 • Dubai, UAE</p>
+                                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Registered: 108/128</p>
                                     </div>
                                     <div class="flex gap-2">
                                         <button class="bg-green-500 text-white px-3 py-1 rounded-lg text-sm">Published</button>
@@ -581,9 +591,9 @@
                                 </div>
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">Neon Nights Grand Prix</h3>
-                                        <p class="text-sm text-gray-500">Jan 5, 2025 • Tokyo, Japan</p>
-                                        <p class="text-xs text-gray-400 mt-1">Registered: 54/128</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Neon Nights Grand Prix</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Jan 5, 2025 • Tokyo, Japan</p>
+                                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Registered: 54/128</p>
                                     </div>
                                     <div class="flex gap-2">
                                         <button class="bg-green-500 text-white px-3 py-1 rounded-lg text-sm">Published</button>
@@ -599,41 +609,41 @@
                         <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
                             <div class="flex justify-between items-center mb-6">
                                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Leaderboard Management</h2>
-                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">Update Rankings</button>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm hover:bg-[#2563EB] transition">Update Rankings</button>
                             </div>
                             <div class="overflow-x-auto">
                                 <table class="w-full">
                                     <thead>
                                         <tr class="border-b border-gray-200 dark:border-gray-700">
-                                            <th class="text-left py-3 px-2">Rank</th>
-                                            <th class="text-left py-3 px-2">Pilot</th>
-                                            <th class="text-left py-3 px-2">Points</th>
-                                            <th class="text-left py-3 px-2">Wins</th>
-                                            <th class="text-left py-3 px-2">Actions</th>
-                                        </tr>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Rank</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Pilot</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Points</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Wins</th>
+                                            <th class="text-left py-3 px-2 text-gray-600 dark:text-gray-400">Actions</th>
+                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
                                             <td class="py-3 px-2 font-bold text-[#3B82F6]">1</td>
-                                            <td class="py-3 px-2">Alex Rivera</td>
-                                            <td class="py-3 px-2">3,250</td>
-                                            <td class="py-3 px-2">7</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Alex Rivera</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">3,250</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">7</td>
                                             <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button></td>
-                                        </tr>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
+                                          </tr>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
                                             <td class="py-3 px-2 font-bold text-[#3B82F6]">2</td>
-                                            <td class="py-3 px-2">Sarah Chen</td>
-                                            <td class="py-3 px-2">2,450</td>
-                                            <td class="py-3 px-2">3</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Sarah Chen</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">2,450</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">3</td>
                                             <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button></td>
-                                        </tr>
-                                        <tr class="border-b border-gray-100 dark:border-gray-800">
+                                          </tr>
+                                        <tr class="table-row border-b border-gray-100 dark:border-gray-800">
                                             <td class="py-3 px-2 font-bold text-[#3B82F6]">3</td>
-                                            <td class="py-3 px-2">Marcus Thompson</td>
-                                            <td class="py-3 px-2">2,180</td>
-                                            <td class="py-3 px-2">2</td>
+                                            <td class="py-3 px-2 font-medium text-gray-900 dark:text-white">Marcus Thompson</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">2,180</td>
+                                            <td class="py-3 px-2 text-gray-600 dark:text-gray-400">2</td>
                                             <td class="py-3 px-2"><button class="text-[#3B82F6] hover:underline text-sm">Edit</button></td>
-                                        </tr>
+                                          </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -645,20 +655,20 @@
                         <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
                             <div class="flex justify-between items-center mb-6">
                                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Product Management</h2>
-                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">+ Add Product</button>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm hover:bg-[#2563EB] transition">+ Add Product</button>
                             </div>
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">DRL Racer X Pro</h3>
-                                        <p class="text-sm text-gray-500">$899 • In Stock: 45</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">DRL Racer X Pro</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">$899 • In Stock: 45</p>
                                     </div>
                                     <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
                                 </div>
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">FPV Digital Goggles V3</h3>
-                                        <p class="text-sm text-gray-500">$549 • In Stock: 128</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">FPV Digital Goggles V3</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">$549 • In Stock: 128</p>
                                     </div>
                                     <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
                                 </div>
@@ -671,20 +681,20 @@
                         <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
                             <div class="flex justify-between items-center mb-6">
                                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Training Modules</h2>
-                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm">+ Add Module</button>
+                                <button class="bg-[#3B82F6] text-white px-4 py-2 rounded-lg text-sm hover:bg-[#2563EB] transition">+ Add Module</button>
                             </div>
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">FPV Fundamentals</h3>
-                                        <p class="text-sm text-gray-500">8 Lessons • 2.5 hours • Beginner</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">FPV Fundamentals</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">8 Lessons • 2.5 hours • Beginner</p>
                                     </div>
                                     <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
                                 </div>
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">Racing Techniques</h3>
-                                        <p class="text-sm text-gray-500">10 Lessons • 4 hours • Intermediate</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Racing Techniques</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">10 Lessons • 4 hours • Intermediate</p>
                                     </div>
                                     <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
                                 </div>
@@ -699,8 +709,8 @@
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">Maintenance Mode</h3>
-                                        <p class="text-sm text-gray-500">Enable maintenance mode for the platform</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Maintenance Mode</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Enable maintenance mode for the platform</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" class="sr-only peer">
@@ -709,8 +719,8 @@
                                 </div>
                                 <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                                     <div>
-                                        <h3 class="font-bold">Auto-approve Registrations</h3>
-                                        <p class="text-sm text-gray-500">Automatically approve new user registrations</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white">Auto-approve Registrations</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Automatically approve new user registrations</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" class="sr-only peer" checked>
@@ -817,6 +827,9 @@
             document.documentElement.classList.toggle('dark');
             document.body.classList.toggle('dark');
             localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 10);
         }
         
         // Direction Toggle
@@ -825,7 +838,7 @@
             const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
             document.documentElement.dir = newDir;
             const dirBtn = document.querySelector('.toggle-btn:first-child');
-            if (dirBtn) dirBtn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
+            if (dirBtn) dirBtn.innerHTML = newDir === 'rtl' ? '<i class="fas fa-arrow-right-arrow-left mr-1"></i> RTL' : '<i class="fas fa-arrow-right-arrow-left mr-1"></i> LTR';
         }
         
         // Load saved theme
@@ -833,6 +846,10 @@
             document.documentElement.classList.add('dark');
             document.body.classList.add('dark');
         }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>

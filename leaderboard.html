@@ -727,6 +727,11 @@
         .rank-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent); }
         .rank-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent); }
         .rank-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent); }
+        
+        /* Dark mode table row backgrounds */
+        .dark .rank-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), transparent); }
+        .dark .rank-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.15), transparent); }
+        .dark .rank-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.15), transparent); }
     </style>
 </head>
 <body class="light font-inter">
@@ -799,12 +804,12 @@
                 <a href="index.html" onclick="closeMobileMenu()">Home1 - Racing League</a>
                 <a href="home2.html" onclick="closeMobileMenu()">Home2 - FPV Training</a>
             </div>
-            <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span></a>
-            <a href="events.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-flag-checkered mr-3"></i>EVENTS</span></a>
-            <a href="leaderboard.html" class="mobile-nav-link active" onclick="closeMobileMenu()"><span><i class="fas fa-trophy mr-3"></i>LEADERBOARD</span></a>
-            <a href="shop.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-shopping-cart mr-3"></i>SHOP</span></a>
-            <a href="training-modules.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-graduation-cap mr-3"></i>TRAINING</span></a>
-            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span></a>
+            <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="events.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-flag-checkered mr-3"></i>EVENTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="leaderboard.html" class="mobile-nav-link active" onclick="closeMobileMenu()"><span><i class="fas fa-trophy mr-3"></i>LEADERBOARD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="shop.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-shopping-cart mr-3"></i>SHOP</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="training-modules.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-graduation-cap mr-3"></i>TRAINING</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
             <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link">
                 <span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span>
                 <i data-lucide="chevron-down" class="w-5 h-5"></i>
@@ -853,8 +858,9 @@
         </div>
     </section>
 
-    <!-- Category Tabs -->
-    <!-- <section class="py-6 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-[72px] z-20">
+    <!-- Category Tabs - Fixed for dark mode (commented but improved) -->
+    <!-- 
+    <section class="py-6 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-[72px] z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap justify-center gap-3">
                 <button class="category-tab active px-6 py-2 rounded-full font-semibold bg-[#3B82F6] text-white">Overall Rankings</button>
@@ -864,7 +870,8 @@
                 <button class="category-tab px-6 py-2 rounded-full font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#3B82F6] hover:text-white transition">Rookie</button>
             </div>
         </div>
-    </section> -->
+    </section>
+    -->
 
     <!-- Top 3 Podium Section -->
     <section class="py-12 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
@@ -880,10 +887,10 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">Sarah Chen</h3>
                     <p class="text-[#3B82F6] text-sm mb-2">2,450 pts</p>
-                    <p class="text-gray-500 text-xs">🏆 3 Wins • 5 Podiums</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs">🏆 3 Wins • 5 Podiums</p>
                     <div class="mt-3 flex justify-center gap-2">
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">🇺🇸 USA</span>
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">🔥 +245 pts</span>
+                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🇺🇸 USA</span>
+                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🔥 +245 pts</span>
                     </div>
                 </div>
 
@@ -897,9 +904,9 @@
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Alex Rivera</h3>
                     <p class="text-[#3B82F6] text-base mb-2 font-bold">3,250 pts</p>
-                    <p class="text-gray-500 text-sm">🏆 7 Wins • 12 Podiums</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">🏆 7 Wins • 12 Podiums</p>
                     <div class="mt-3 flex justify-center gap-2">
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">🇪🇸 Spain</span>
+                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🇪🇸 Spain</span>
                         <span class="text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-2 py-1 rounded-full">👑 World Champion</span>
                     </div>
                 </div>
@@ -914,10 +921,10 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">Marcus Thompson</h3>
                     <p class="text-[#3B82F6] text-sm mb-2">2,180 pts</p>
-                    <p class="text-gray-500 text-xs">🏆 2 Wins • 4 Podiums</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs">🏆 2 Wins • 4 Podiums</p>
                     <div class="mt-3 flex justify-center gap-2">
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">🇬🇧 UK</span>
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">📈 +189 pts</span>
+                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🇬🇧 UK</span>
+                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">📈 +189 pts</span>
                     </div>
                 </div>
             </div>
@@ -947,115 +954,115 @@
                 <table class="leaderboard-table">
                     <thead>
                         <tr class="bg-gray-50 dark:bg-gray-800">
-                            <th class="rounded-l-xl">Rank</th>
-                            <th>Pilot</th>
-                            <th>Country</th>
-                            <th>Points</th>
-                            <th>Wins</th>
-                            <th>Podiums</th>
-                            <th>Events</th>
-                            <th class="rounded-r-xl">Trend</th>
+                            <th class="rounded-l-xl text-gray-700 dark:text-gray-300">Rank</th>
+                            <th class="text-gray-700 dark:text-gray-300">Pilot</th>
+                            <th class="text-gray-700 dark:text-gray-300">Country</th>
+                            <th class="text-gray-700 dark:text-gray-300">Points</th>
+                            <th class="text-gray-700 dark:text-gray-300">Wins</th>
+                            <th class="text-gray-700 dark:text-gray-300">Podiums</th>
+                            <th class="text-gray-700 dark:text-gray-300">Events</th>
+                            <th class="rounded-r-xl text-gray-700 dark:text-gray-300">Trend</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="rank-1">
                             <td class="font-bold text-[#3B82F6]">1</td>
-                            <td><span class="font-semibold">Alex Rivera</span></td>
-                            <td>🇪🇸 Spain</td>
-                            <td class="font-bold">3,250</td>
-                            <td>7</td>
-                            <td>12</td>
-                            <td>15</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">Alex Rivera</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇪🇸 Spain</td>
+                            <td class="font-bold text-gray-900 dark:text-white">3,250</td>
+                            <td class="text-gray-600 dark:text-gray-400">7</td>
+                            <td class="text-gray-600 dark:text-gray-400">12</td>
+                            <td class="text-gray-600 dark:text-gray-400">15</td>
                             <td><span class="text-green-500">↑ 2</span></td>
                         </tr>
                         <tr class="rank-2">
                             <td class="font-bold text-[#3B82F6]">2</td>
-                            <td><span class="font-semibold">Sarah Chen</span></td>
-                            <td>🇺🇸 USA</td>
-                            <td class="font-bold">2,450</td>
-                            <td>3</td>
-                            <td>5</td>
-                            <td>14</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">Sarah Chen</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇺🇸 USA</td>
+                            <td class="font-bold text-gray-900 dark:text-white">2,450</td>
+                            <td class="text-gray-600 dark:text-gray-400">3</td>
+                            <td class="text-gray-600 dark:text-gray-400">5</td>
+                            <td class="text-gray-600 dark:text-gray-400">14</td>
                             <td><span class="text-green-500">↑ 1</span></td>
                         </tr>
                         <tr class="rank-3">
                             <td class="font-bold text-[#3B82F6]">3</td>
-                            <td><span class="font-semibold">Marcus Thompson</span></td>
-                            <td>🇬🇧 UK</td>
-                            <td class="font-bold">2,180</td>
-                            <td>2</td>
-                            <td>4</td>
-                            <td>13</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">Marcus Thompson</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇬🇧 UK</td>
+                            <td class="font-bold text-gray-900 dark:text-white">2,180</td>
+                            <td class="text-gray-600 dark:text-gray-400">2</td>
+                            <td class="text-gray-600 dark:text-gray-400">4</td>
+                            <td class="text-gray-600 dark:text-gray-400">13</td>
                             <td><span class="text-red-500">↓ 1</span></td>
                         </tr>
                         <tr>
-                            <td class="font-bold text-gray-500">4</td>
-                            <td><span class="font-semibold">Yuki Tanaka</span></td>
-                            <td>🇯🇵 Japan</td>
-                            <td>1,950</td>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>14</td>
+                            <td class="font-bold text-gray-500 dark:text-gray-400">4</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">Yuki Tanaka</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇯🇵 Japan</td>
+                            <td class="font-bold text-gray-900 dark:text-white">1,950</td>
+                            <td class="text-gray-600 dark:text-gray-400">1</td>
+                            <td class="text-gray-600 dark:text-gray-400">3</td>
+                            <td class="text-gray-600 dark:text-gray-400">14</td>
                             <td><span class="text-green-500">↑ 3</span></td>
                         </tr>
                         <tr>
-                            <td class="font-bold text-gray-500">5</td>
-                            <td><span class="font-semibold">Lucas Silva</span></td>
-                            <td>🇧🇷 Brazil</td>
-                            <td>1,820</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>12</td>
+                            <td class="font-bold text-gray-500 dark:text-gray-400">5</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">Lucas Silva</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇧🇷 Brazil</td>
+                            <td class="font-bold text-gray-900 dark:text-white">1,820</td>
+                            <td class="text-gray-600 dark:text-gray-400">1</td>
+                            <td class="text-gray-600 dark:text-gray-400">2</td>
+                            <td class="text-gray-600 dark:text-gray-400">12</td>
                             <td><span class="text-green-500">↑ 1</span></td>
                         </tr>
                         <tr>
-                            <td class="font-bold text-gray-500">6</td>
-                            <td><span class="font-semibold">Emma van der Berg</span></td>
-                            <td>🇳🇱 Netherlands</td>
-                            <td>1,750</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>13</td>
+                            <td class="font-bold text-gray-500 dark:text-gray-400">6</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">Emma van der Berg</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇳🇱 Netherlands</td>
+                            <td class="font-bold text-gray-900 dark:text-white">1,750</td>
+                            <td class="text-gray-600 dark:text-gray-400">0</td>
+                            <td class="text-gray-600 dark:text-gray-400">2</td>
+                            <td class="text-gray-600 dark:text-gray-400">13</td>
                             <td><span class="text-red-500">↓ 2</span></td>
                         </tr>
                         <tr>
-                            <td class="font-bold text-gray-500">7</td>
-                            <td><span class="font-semibold">David Kim</span></td>
-                            <td>🇰🇷 South Korea</td>
-                            <td>1,680</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>12</td>
+                            <td class="font-bold text-gray-500 dark:text-gray-400">7</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">David Kim</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇰🇷 South Korea</td>
+                            <td class="font-bold text-gray-900 dark:text-white">1,680</td>
+                            <td class="text-gray-600 dark:text-gray-400">0</td>
+                            <td class="text-gray-600 dark:text-gray-400">1</td>
+                            <td class="text-gray-600 dark:text-gray-400">12</td>
                             <td><span class="text-green-500">↑ 4</span></td>
                         </tr>
                         <tr>
-                            <td class="font-bold text-gray-500">8</td>
-                            <td><span class="font-semibold">Sofia Rossi</span></td>
-                            <td>🇮🇹 Italy</td>
-                            <td>1,590</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>11</td>
+                            <td class="font-bold text-gray-500 dark:text-gray-400">8</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">Sofia Rossi</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇮🇹 Italy</td>
+                            <td class="font-bold text-gray-900 dark:text-white">1,590</td>
+                            <td class="text-gray-600 dark:text-gray-400">0</td>
+                            <td class="text-gray-600 dark:text-gray-400">1</td>
+                            <td class="text-gray-600 dark:text-gray-400">11</td>
                             <td><span class="text-red-500">↓ 1</span></td>
                         </tr>
                         <tr>
-                            <td class="font-bold text-gray-500">9</td>
-                            <td><span class="font-semibold">Maxim Volkov</span></td>
-                            <td>🇷🇺 Russia</td>
-                            <td>1,520</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>12</td>
+                            <td class="font-bold text-gray-500 dark:text-gray-400">9</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">Maxim Volkov</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇷🇺 Russia</td>
+                            <td class="font-bold text-gray-900 dark:text-white">1,520</td>
+                            <td class="text-gray-600 dark:text-gray-400">0</td>
+                            <td class="text-gray-600 dark:text-gray-400">0</td>
+                            <td class="text-gray-600 dark:text-gray-400">12</td>
                             <td><span class="text-green-500">↑ 2</span></td>
                         </tr>
                         <tr>
-                            <td class="font-bold text-gray-500">10</td>
-                            <td><span class="font-semibold">Carlos Mendez</span></td>
-                            <td>🇲🇽 Mexico</td>
-                            <td>1,450</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>11</td>
+                            <td class="font-bold text-gray-500 dark:text-gray-400">10</td>
+                            <td><span class="font-semibold text-gray-900 dark:text-white">Carlos Mendez</span></td>
+                            <td class="text-gray-600 dark:text-gray-400">🇲🇽 Mexico</td>
+                            <td class="font-bold text-gray-900 dark:text-white">1,450</td>
+                            <td class="text-gray-600 dark:text-gray-400">0</td>
+                            <td class="text-gray-600 dark:text-gray-400">0</td>
+                            <td class="text-gray-600 dark:text-gray-400">11</td>
                             <td><span class="text-red-500">↓ 3</span></td>
                         </tr>
                     </tbody>
@@ -1063,13 +1070,13 @@
             </div>
 
             <div class="flex justify-between items-center mt-6 pt-4 border-t border-gray-200 dark:border-gray-800">
-                <p class="text-sm text-gray-500">Showing 1-10 of 250 pilots</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Showing 1-10 of 250 pilots</p>
                 <div class="flex gap-2">
-                    <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">Previous</button>
+                    <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">Previous</button>
                     <button class="px-3 py-1 rounded bg-[#3B82F6] text-white">1</button>
-                    <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">2</button>
-                    <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">3</button>
-                    <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">Next</button>
+                    <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">2</button>
+                    <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">3</button>
+                    <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">Next</button>
                 </div>
             </div>
         </div>
@@ -1085,27 +1092,27 @@
             <div class="grid md:grid-cols-4 gap-6">
                 <div class="bg-white dark:bg-gray-900 rounded-xl p-5 text-center">
                     <div class="text-3xl mb-2">🏆</div>
-                    <div class="font-bold text-lg">Fastest Lap</div>
+                    <div class="font-bold text-lg text-gray-900 dark:text-white">Fastest Lap</div>
                     <div class="text-[#3B82F6] font-bold text-xl mt-1">Alex Rivera</div>
-                    <div class="text-sm text-gray-500">23.4 seconds</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">23.4 seconds</div>
                 </div>
                 <div class="bg-white dark:bg-gray-900 rounded-xl p-5 text-center">
                     <div class="text-3xl mb-2">📈</div>
-                    <div class="font-bold text-lg">Most Improved</div>
+                    <div class="font-bold text-lg text-gray-900 dark:text-white">Most Improved</div>
                     <div class="text-[#3B82F6] font-bold text-xl mt-1">David Kim</div>
-                    <div class="text-sm text-gray-500">+4 positions</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">+4 positions</div>
                 </div>
                 <div class="bg-white dark:bg-gray-900 rounded-xl p-5 text-center">
                     <div class="text-3xl mb-2">🎯</div>
-                    <div class="font-bold text-lg">Highest Accuracy</div>
+                    <div class="font-bold text-lg text-gray-900 dark:text-white">Highest Accuracy</div>
                     <div class="text-[#3B82F6] font-bold text-xl mt-1">Sarah Chen</div>
-                    <div class="text-sm text-gray-500">98% gate pass</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">98% gate pass</div>
                 </div>
                 <div class="bg-white dark:bg-gray-900 rounded-xl p-5 text-center">
                     <div class="text-3xl mb-2">⚡</div>
-                    <div class="font-bold text-lg">Rookie of the Week</div>
+                    <div class="font-bold text-lg text-gray-900 dark:text-white">Rookie of the Week</div>
                     <div class="text-[#3B82F6] font-bold text-xl mt-1">Lisa Wong</div>
-                    <div class="text-sm text-gray-500">First top-10 finish</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">First top-10 finish</div>
                 </div>
             </div>
         </div>
