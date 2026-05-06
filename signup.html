@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>DRL | FPV Arena - Sign Up | Create Your Account</title>
-    <link rel="icon" type="image/png" href="images/logo.png">
-    <script src="tailwind.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <title>DRL | FPV Arena - Sign Up | Join the Elite Racing League</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3204/3204886.png">
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -28,6 +25,9 @@
             }
         }
     </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
         * {
@@ -51,11 +51,42 @@
             background: linear-gradient(135deg, #0F172A 0%, #0a0f1a 100%);
         }
         
-        /* Logo Styles */
-        .logo {
-            display: inline-flex;
+        /* ===== NAVBAR - Fixed with Logo & Toggles (matching login page) ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        body.light .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        body.dark .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+        }
+        
+        /* Logo - Consistent with login */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             text-decoration: none;
             transition: all 0.3s ease;
         }
@@ -65,42 +96,63 @@
         }
         
         .logo i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #3B82F6;
         }
         
         .logo-text {
             font-weight: 900;
-            font-size: 1.5rem;
-            color: #3B82F6;
+            font-size: 1.4rem;
             letter-spacing: -0.5px;
             font-family: 'Orbitron', monospace;
+            color: #3B82F6 !important;
         }
         
-        .dark .logo-text {
-            color: #3B82F6;
+        /* Toggle Buttons - Clean Professional */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
-        /* Toggle Buttons */
         .toggle-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 40px;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            width: 42px;
+            height: 42px;
+            border-radius: 42px;
+            background: rgba(59, 130, 246, 0.1);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #3B82F6;
             cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.25);
             font-size: 14px;
             font-weight: 600;
         }
         
+        .toggle-btn.large {
+            width: auto;
+            padding: 0 20px;
+            gap: 8px;
+        }
+        
         .toggle-btn:hover {
-            transform: translateY(-2px) scale(1.05);
+            transform: translateY(-2px);
+            background: #3B82F6;
+            color: white;
+            border-color: #3B82F6;
+        }
+        
+        body.dark .toggle-btn {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60A5FA;
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        
+        body.dark .toggle-btn:hover {
+            background: #3B82F6;
+            color: white;
         }
         
         /* Form Input Styles */
@@ -248,7 +300,7 @@
             background: rgba(15, 23, 42, 0.98);
         }
         
-        /* Desktop Layout */
+        /* Desktop Layout - Split View */
         .desktop-layout {
             display: none;
         }
@@ -283,7 +335,6 @@
             50% { transform: translateY(-10px) rotate(5deg); }
         }
         
-        /* No gap between columns */
         .no-gap {
             gap: 0;
         }
@@ -298,14 +349,59 @@
             border-bottom-left-radius: 0;
         }
         
-        /* Terms text */
-        .terms-text {
-            font-size: 0.75rem;
-            line-height: 1.5;
+        /* Signup container spacing due to fixed navbar */
+        .signup-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 40px;
+        }
+        
+        @media (max-width: 640px) {
+            .navbar {
+                padding: 0.75rem 1rem;
+            }
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            .logo i {
+                font-size: 1.4rem;
+            }
+            .toggle-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .toggle-btn.large {
+                padding: 0 14px;
+            }
+            .signup-container {
+                padding: 90px 16px 30px;
+            }
         }
     </style>
 </head>
 <body class="light">
+
+    <!-- Fixed Navbar - Exactly like Login Page -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-drone"></i>
+                <span class="logo-text">DRL | FPV Arena</span>
+            </a>
+            <div class="toggle-group">
+                <button onclick="toggleDirection()" class="toggle-btn large">
+                    <i class="fas fa-arrow-right-arrow-left text-sm"></i>
+                    <span>LTR</span>
+                </button>
+                <button onclick="toggleTheme()" class="toggle-btn">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
     <!-- Animated Background Shapes -->
     <div class="shape shape-1"></div>
@@ -313,211 +409,49 @@
     <div class="shape shape-3"></div>
     <div class="shape shape-4"></div>
 
-    <!-- MOBILE VIEW - Only Form -->
-    <div class="mobile-layout relative z-10 min-h-screen items-center justify-center p-4">
-        <div class="w-full max-w-md mx-auto">
-            <div class="glass-card p-8">
-                <!-- Logo and Toggles Row -->
-                <div class="flex justify-between items-center mb-6">
-                    <a href="index.html" class="logo">
-                        <i class="fas fa-drone"></i>
-                        <span class="logo-text">DRL | FPV</span>
-                    </a>
-                    <div class="flex gap-2">
-                        <button onclick="toggleDirection()" class="toggle-btn" style="width: auto; padding: 0 12px; font-size: 12px;">LTR</button>
-                        <button onclick="toggleTheme()" class="toggle-btn">
-                            <i class="fas fa-moon dark:hidden"></i>
-                            <i class="fas fa-sun hidden dark:block"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Form Header -->
-                <div class="text-center mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Create Account</h2>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Join the racing community</p>
-                </div>
-
-                <!-- Signup Form -->
-                <form onsubmit="event.preventDefault(); window.location.href='dashboard-user.html'">
-                    <div class="space-y-4">
-                        <div>
-                            <input type="text" class="form-input" placeholder="Full Name" required>
-                        </div>
-                        <div>
-                            <input type="email" class="form-input" placeholder="Email Address" required>
-                        </div>
-                        <div class="password-container">
-                            <input type="password" id="mobile-password" class="form-input" placeholder="Password" required>
-                            <button type="button" class="password-toggle" onclick="togglePassword('mobile-password', this)">
-                                <i class="far fa-eye"></i>
-                            </button>
-                        </div>
-                        <div class="password-container">
-                            <input type="password" id="mobile-confirm-password" class="form-input" placeholder="Confirm Password" required>
-                            <button type="button" class="password-toggle" onclick="togglePassword('mobile-confirm-password', this)">
-                                <i class="far fa-eye"></i>
-                            </button>
-                        </div>
-                        
-                        <div class="flex items-center gap-2">
-                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-[#3B82F6]" required>
-                            <span class="text-xs text-gray-600 dark:text-gray-400">I agree to the <a href="#" class="text-[#3B82F6]">Terms</a> and <a href="#" class="text-[#3B82F6]">Privacy Policy</a></span>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white py-3 rounded-xl font-semibold text-base hover:shadow-lg transition-all">
-                            Sign Up
-                        </button>
-                    </div>
-                </form>
-
-                <!-- OR Divider -->
-                <div class="or-divider my-6">
-                    <span>or</span>
-                </div>
-
-                <!-- Social Login -->
-                <div class="grid grid-cols-2 gap-3">
-                    <button class="social-btn text-sm">
-                        <i class="fab fa-google text-red-500"></i>
-                        Google
-                    </button>
-                    <button class="social-btn text-sm">
-                        <i class="fab fa-apple text-gray-700 dark:text-gray-300"></i>
-                        Apple
-                    </button>
-                </div>
-
-                <!-- Login Link -->
-                <p class="text-center text-gray-600 dark:text-gray-400 text-sm mt-6">
-                    Already have an account? 
-                    <a href="login.html" class="text-[#3B82F6] font-semibold">Sign In</a>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- DESKTOP VIEW - Full Layout -->
-    <div class="desktop-layout relative z-10 min-h-screen items-center justify-center p-8">
-        <div class="w-full max-w-6xl mx-auto">
-            <div class="flex no-gap">
-                <!-- Left Side - Branding & Info -->
-                <div class="w-1/2 left-column glass-card rounded-left">
-                    <div class="h-full flex flex-col justify-between">
-                        <div>
-                            <div class="text-center lg:text-left">
-                                <div class="drone-icon mb-6">
-                                    <i class="fas fa-drone text-6xl text-[#3B82F6]"></i>
-                                </div>
-                                <h1 class="text-4xl font-bold text-gray-900 dark:text-white font-orbitron">
-                                    Join <span class="text-[#3B82F6]">Us!</span>
-                                </h1>
-                                <p class="text-gray-600 dark:text-gray-400 mt-4 text-lg">
-                                    Create your account to start racing,<br>
-                                    track your performance, and join events.
-                                </p>
-                            </div>
-                            
-                            <div class="space-y-6 mt-10">
-                                <div class="flex items-center gap-4 p-4 rounded-xl hover:bg-[#3B82F6]/5 transition">
-                                    <div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-trophy text-[#3B82F6] text-xl"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-900 dark:text-white">Compete Globally</p>
-                                        <p class="text-sm text-gray-500">Join races worldwide</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-4 p-4 rounded-xl hover:bg-[#3B82F6]/5 transition">
-                                    <div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-chart-line text-[#3B82F6] text-xl"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-900 dark:text-white">Track Performance</p>
-                                        <p class="text-sm text-gray-500">Monitor your progress</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-4 p-4 rounded-xl hover:bg-[#3B82F6]/5 transition">
-                                    <div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-users text-[#3B82F6] text-xl"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-900 dark:text-white">Community Support</p>
-                                        <p class="text-sm text-gray-500">Connect with pilots</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Stats -->
-                        <div class="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-[#3B82F6]">10K+</div>
-                                <p class="text-xs text-gray-500">Active Pilots</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-[#3B82F6]">250+</div>
-                                <p class="text-xs text-gray-500">Events/Year</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-[#3B82F6]">60+</div>
-                                <p class="text-xs text-gray-500">Countries</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Side - Signup Form -->
-                <div class="w-1/2 glass-card rounded-right p-10">
-                    <!-- Logo and Toggles Row -->
-                    <div class="flex justify-between items-center mb-8">
-                        <a href="index.html" class="logo">
-                            <i class="fas fa-drone"></i>
-                            <span class="logo-text">DRL | FPV Arena</span>
-                        </a>
-                        <div class="flex gap-2">
-                            <button onclick="toggleDirection()" class="toggle-btn" style="width: auto; padding: 0 16px;">LTR</button>
-                            <button onclick="toggleTheme()" class="toggle-btn">
-                                <i class="fas fa-moon dark:hidden"></i>
-                                <i class="fas fa-sun hidden dark:block"></i>
-                            </button>
-                        </div>
-                    </div>
-
+    <!-- MOBILE VIEW - Signup Form with Same Navbar (already fixed) -->
+    <div class="mobile-layout relative z-10">
+        <div class="signup-container w-full">
+            <div class="w-full max-w-md mx-auto">
+                <div class="glass-card p-8">
                     <!-- Form Header -->
                     <div class="text-center mb-8">
-                        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Create Account</h2>
-                        <p class="text-gray-500 dark:text-gray-400 mt-2">Join the world's premier racing league</p>
+                        <div class="inline-flex items-center gap-2 bg-blue-500/10 px-4 py-1 rounded-full mb-3">
+                            <i class="fas fa-rocket text-blue-500 text-xs"></i>
+                            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400">BECOME A PILOT</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Create Account</h2>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Join the racing community</p>
                     </div>
 
                     <!-- Signup Form -->
-                    <form onsubmit="event.preventDefault(); window.location.href='dashboard-user.html'">
+                    <form id="mobileSignupForm" onsubmit="handleSignup(event)">
                         <div class="space-y-4">
                             <div>
-                                <input type="text" class="form-input" placeholder="Full Name" required>
+                                <input type="text" id="mobileFullname" class="form-input" placeholder="Full Name" required>
                             </div>
                             <div>
-                                <input type="email" class="form-input" placeholder="Email Address" required>
+                                <input type="email" id="mobileEmail" class="form-input" placeholder="Email Address" required>
                             </div>
                             <div class="password-container">
-                                <input type="password" id="desktop-password" class="form-input" placeholder="Password" required>
-                                <button type="button" class="password-toggle" onclick="togglePassword('desktop-password', this)">
+                                <input type="password" id="mobilePassword" class="form-input" placeholder="Password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('mobilePassword', this)">
                                     <i class="far fa-eye"></i>
                                 </button>
                             </div>
                             <div class="password-container">
-                                <input type="password" id="desktop-confirm-password" class="form-input" placeholder="Confirm Password" required>
-                                <button type="button" class="password-toggle" onclick="togglePassword('desktop-confirm-password', this)">
+                                <input type="password" id="mobileConfirmPassword" class="form-input" placeholder="Confirm Password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('mobileConfirmPassword', this)">
                                     <i class="far fa-eye"></i>
                                 </button>
                             </div>
                             
                             <div class="flex items-center gap-2">
-                                <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-[#3B82F6]" required>
-                                <span class="text-sm text-gray-600 dark:text-gray-400">I agree to the <a href="#" class="text-[#3B82F6] hover:underline">Terms of Service</a> and <a href="#" class="text-[#3B82F6] hover:underline">Privacy Policy</a></span>
+                                <input type="checkbox" id="mobileTerms" class="w-4 h-4 rounded border-gray-300 text-[#3B82F6]" required>
+                                <span class="text-xs text-gray-600 dark:text-gray-400">I agree to the <a href="#" class="text-[#3B82F6] hover:underline">Terms</a> and <a href="#" class="text-[#3B82F6] hover:underline">Privacy Policy</a></span>
                             </div>
                             
-                            <button type="submit" class="w-full bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white py-3 rounded-xl font-semibold text-lg hover:shadow-lg transition-all">
+                            <button type="submit" class="w-full bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white py-3 rounded-xl font-semibold text-base hover:shadow-lg transition-all">
                                 Sign Up
                             </button>
                         </div>
@@ -525,23 +459,23 @@
 
                     <!-- OR Divider -->
                     <div class="or-divider my-6">
-                        <span>or continue with</span>
+                        <span>or</span>
                     </div>
 
                     <!-- Social Login -->
                     <div class="grid grid-cols-2 gap-3">
-                        <button class="social-btn">
-                            <i class="fab fa-google text-red-500 text-lg"></i>
+                        <button class="social-btn text-sm" id="mobileGoogleBtn">
+                            <i class="fab fa-google text-red-500"></i>
                             Google
                         </button>
-                        <button class="social-btn">
-                            <i class="fab fa-apple text-gray-700 dark:text-gray-300 text-lg"></i>
+                        <button class="social-btn text-sm" id="mobileAppleBtn">
+                            <i class="fab fa-apple text-gray-700 dark:text-gray-300"></i>
                             Apple
                         </button>
                     </div>
 
                     <!-- Login Link -->
-                    <p class="text-center text-gray-600 dark:text-gray-400 mt-8">
+                    <p class="text-center text-gray-600 dark:text-gray-400 text-sm mt-6">
                         Already have an account? 
                         <a href="login.html" class="text-[#3B82F6] font-semibold hover:underline">Sign In</a>
                     </p>
@@ -550,28 +484,188 @@
         </div>
     </div>
 
+    <!-- DESKTOP VIEW - Split Layout with Consistent Navbar (already fixed) -->
+    <div class="desktop-layout relative z-10">
+        <div class="signup-container w-full">
+            <div class="w-full max-w-6xl mx-auto">
+                <div class="flex no-gap">
+                    <!-- Left Side - Branding & Info -->
+                    <div class="w-1/2 left-column glass-card rounded-left">
+                        <div class="h-full flex flex-col justify-between">
+                            <div>
+                                <div class="text-center lg:text-left">
+                                    <div class="drone-icon mb-6">
+                                        <i class="fas fa-drone text-6xl text-[#3B82F6]"></i>
+                                    </div>
+                                    <h1 class="text-4xl font-bold text-gray-900 dark:text-white font-orbitron">
+                                        Join <span class="text-[#3B82F6]">Us!</span>
+                                    </h1>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-4 text-lg">
+                                        Create your account to start racing,<br>
+                                        track your performance, and join events.
+                                    </p>
+                                </div>
+                                
+                                <div class="space-y-6 mt-10">
+                                    <div class="flex items-center gap-4 p-4 rounded-xl hover:bg-[#3B82F6]/5 transition">
+                                        <div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-trophy text-[#3B82F6] text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-gray-900 dark:text-white">Compete Globally</p>
+                                            <p class="text-sm text-gray-500">Join races worldwide</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4 p-4 rounded-xl hover:bg-[#3B82F6]/5 transition">
+                                        <div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-chart-line text-[#3B82F6] text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-gray-900 dark:text-white">Track Performance</p>
+                                            <p class="text-sm text-gray-500">Monitor your progress</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4 p-4 rounded-xl hover:bg-[#3B82F6]/5 transition">
+                                        <div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-users text-[#3B82F6] text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-gray-900 dark:text-white">Community Support</p>
+                                            <p class="text-sm text-gray-500">Connect with pilots</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Stats -->
+                            <div class="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-[#3B82F6]">10K+</div>
+                                    <p class="text-xs text-gray-500">Active Pilots</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-[#3B82F6]">250+</div>
+                                    <p class="text-xs text-gray-500">Events/Year</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-[#3B82F6]">60+</div>
+                                    <p class="text-xs text-gray-500">Countries</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side - Signup Form -->
+                    <div class="w-1/2 glass-card rounded-right p-10">
+                        <!-- Form Header with Unique Badge -->
+                        <div class="text-center mb-8">
+                            <div class="inline-flex items-center gap-2 bg-blue-500/10 px-4 py-1.5 rounded-full mb-3">
+                                <i class="fas fa-user-plus text-blue-500 text-xs"></i>
+                                <span class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wide">New Pilot Registration</span>
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Create Account</h2>
+                            <p class="text-gray-500 dark:text-gray-400 mt-2">Join the world's premier racing league</p>
+                        </div>
+
+                        <!-- Signup Form -->
+                        <form id="desktopSignupForm" onsubmit="handleSignup(event)">
+                            <div class="space-y-4">
+                                <div>
+                                    <input type="text" id="desktopFullname" class="form-input" placeholder="Full Name" required>
+                                </div>
+                                <div>
+                                    <input type="email" id="desktopEmail" class="form-input" placeholder="Email Address" required>
+                                </div>
+                                <div class="password-container">
+                                    <input type="password" id="desktopPassword" class="form-input" placeholder="Password" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('desktopPassword', this)">
+                                        <i class="far fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="password-container">
+                                    <input type="password" id="desktopConfirmPassword" class="form-input" placeholder="Confirm Password" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('desktopConfirmPassword', this)">
+                                        <i class="far fa-eye"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="flex items-center gap-2">
+                                    <input type="checkbox" id="desktopTerms" class="w-4 h-4 rounded border-gray-300 text-[#3B82F6]" required>
+                                    <span class="text-sm text-gray-600 dark:text-gray-400">I agree to the <a href="#" class="text-[#3B82F6] hover:underline">Terms of Service</a> and <a href="#" class="text-[#3B82F6] hover:underline">Privacy Policy</a></span>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white py-3 rounded-xl font-semibold text-lg hover:shadow-lg transition-all">
+                                    Sign Up
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- OR Divider -->
+                        <div class="or-divider my-6">
+                            <span>or continue with</span>
+                        </div>
+
+                        <!-- Social Login -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="social-btn" id="desktopGoogleBtn">
+                                <i class="fab fa-google text-red-500 text-lg"></i>
+                                Google
+                            </button>
+                            <button class="social-btn" id="desktopAppleBtn">
+                                <i class="fab fa-apple text-gray-700 dark:text-gray-300 text-lg"></i>
+                                Apple
+                            </button>
+                        </div>
+
+                        <!-- Login Link -->
+                        <p class="text-center text-gray-600 dark:text-gray-400 mt-8">
+                            Already have an account? 
+                            <a href="login.html" class="text-[#3B82F6] font-semibold hover:underline">Sign In</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         lucide.createIcons();
         
+        // Theme Toggle
         function toggleTheme() {
             document.documentElement.classList.toggle('dark');
             document.body.classList.toggle('dark');
             localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            
+            // Update toggle button icons
+            const moonIcon = document.querySelector('.toggle-btn .fa-moon');
+            const sunIcon = document.querySelector('.toggle-btn .fa-sun');
+            if (moonIcon && sunIcon) {
+                if (document.documentElement.classList.contains('dark')) {
+                    moonIcon.classList.add('hidden');
+                    sunIcon.classList.remove('hidden');
+                } else {
+                    moonIcon.classList.remove('hidden');
+                    sunIcon.classList.add('hidden');
+                }
+            }
         }
         
+        // Direction Toggle
         function toggleDirection() {
             const currentDir = document.documentElement.dir;
             const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
             document.documentElement.dir = newDir;
-            const dirBtns = document.querySelectorAll('.toggle-btn:first-child');
-            dirBtns.forEach(btn => {
-                if (btn.textContent === 'LTR' || btn.textContent === 'RTL') {
-                    btn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
+            const dirSpans = document.querySelectorAll('.toggle-btn.large span');
+            dirSpans.forEach(span => {
+                if (span.textContent === 'LTR' || span.textContent === 'RTL') {
+                    span.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
                 }
             });
         }
         
-        function togglePassword(inputId, button) {
+        // Password Visibility Toggle
+        window.togglePassword = function(inputId, button) {
             const input = document.getElementById(inputId);
             const icon = button.querySelector('i');
             
@@ -584,12 +678,117 @@
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
             }
+        };
+        
+        // Signup Handler - validates password match and redirects
+        window.handleSignup = function(event) {
+            event.preventDefault();
+            
+            // Determine which form (mobile or desktop)
+            const isMobile = !!document.getElementById('mobileFullname');
+            const passwordField = isMobile ? document.getElementById('mobilePassword') : document.getElementById('desktopPassword');
+            const confirmField = isMobile ? document.getElementById('mobileConfirmPassword') : document.getElementById('desktopConfirmPassword');
+            const termsCheck = isMobile ? document.getElementById('mobileTerms') : document.getElementById('desktopTerms');
+            const fullnameField = isMobile ? document.getElementById('mobileFullname') : document.getElementById('desktopFullname');
+            const emailField = isMobile ? document.getElementById('mobileEmail') : document.getElementById('desktopEmail');
+            
+            const password = passwordField?.value || '';
+            const confirm = confirmField?.value || '';
+            const termsAccepted = termsCheck?.checked || false;
+            const fullname = fullnameField?.value.trim() || '';
+            const email = emailField?.value.trim() || '';
+            
+            if (!fullname || !email || !password || !confirm) {
+                showToast('Please fill in all fields', 'error');
+                return;
+            }
+            
+            if (password !== confirm) {
+                showToast('Passwords do not match!', 'error');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showToast('Password must be at least 6 characters', 'error');
+                return;
+            }
+            
+            if (!termsAccepted) {
+                showToast('Please accept the Terms & Privacy Policy', 'error');
+                return;
+            }
+            
+            // Simulate account creation and redirect to dashboard
+            const submitBtn = event.submitter || event.target.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Creating Account...';
+                submitBtn.disabled = true;
+                setTimeout(() => {
+                    // Store a flag to simulate new signup
+                    localStorage.setItem('fpv_signup_email', email);
+                    window.location.href = 'dashboard-user.html';
+                }, 800);
+            } else {
+                setTimeout(() => { window.location.href = 'dashboard-user.html'; }, 300);
+            }
+        };
+        
+        // Toast notification helper
+        function showToast(message, type = 'error') {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 ${type === 'error' ? 'bg-red-600' : 'bg-green-600'} text-white px-5 py-2.5 rounded-full shadow-xl text-sm font-semibold z-50 backdrop-blur-sm`;
+            toast.innerHTML = `<i class="fas ${type === 'error' ? 'fa-exclamation-triangle' : 'fa-check-circle'} mr-2"></i> ${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
         }
         
+        // Social login handlers
+        function setupSocialButtons() {
+            const googleBtns = ['mobileGoogleBtn', 'desktopGoogleBtn'];
+            const appleBtns = ['mobileAppleBtn', 'desktopAppleBtn'];
+            
+            googleBtns.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        showToast('Google Sign-Up Demo — Redirecting...', 'success');
+                        setTimeout(() => { window.location.href = 'dashboard-user.html'; }, 600);
+                    });
+                }
+            });
+            appleBtns.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        showToast('Apple ID Demo — Welcome Pilot!', 'success');
+                        setTimeout(() => { window.location.href = 'dashboard-user.html'; }, 600);
+                    });
+                }
+            });
+        }
+        
+        // Load saved theme
         if (localStorage.getItem('theme') === 'dark') {
             document.documentElement.classList.add('dark');
             document.body.classList.add('dark');
+            // Update icons
+            const moonIcon = document.querySelector('.toggle-btn .fa-moon');
+            const sunIcon = document.querySelector('.toggle-btn .fa-sun');
+            if (moonIcon && sunIcon) {
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+            }
         }
+        
+        // Initialize direction button text
+        document.addEventListener('DOMContentLoaded', () => {
+            const dirSpan = document.querySelector('.toggle-btn.large span');
+            if (dirSpan && document.documentElement.dir === 'rtl') {
+                dirSpan.textContent = 'RTL';
+            }
+            setupSocialButtons();
+        });
     </script>
 </body>
 </html>
