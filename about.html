@@ -45,7 +45,7 @@
         }
         
         body.light {
-            background: #F9F6F3;
+            background: #FFFFFF;
         }
         
         body.dark {
@@ -56,22 +56,30 @@
             overflow: hidden;
         }
         
-        /* ===== NAVBAR - PERFECT 3-PART LAYOUT ===== */
+        /* ===== NAVBAR - LIGHT MODE WHITE BACKGROUND, DARK MODE DARK ===== */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: #0F172A;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.25);
             transition: all 0.3s ease;
         }
         
-        .dark .navbar {
+        /* Light mode navbar - white background */
+        body.light .navbar {
+            background: #FFFFFF;
+            backdrop-filter: blur(0px);
+            border-bottom: 1px solid #E5E7EB;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        
+        /* Dark mode navbar - dark background */
+        body.dark .navbar {
             background: #0F172A;
-            border-bottom-color: rgba(59, 130, 246, 0.4);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+            box-shadow: none;
         }
         
         .nav-container {
@@ -87,7 +95,7 @@
             gap: 1rem;
         }
         
-        /* PART 1: LOGO */
+        /* PART 1: LOGO - FIXED BLUE COLOR IN BOTH MODES */
         .nav-part-left {
             flex-shrink: 0;
         }
@@ -113,13 +121,9 @@
         .logo-text {
             font-weight: 900;
             font-size: 1.4rem;
-            color: #3B82F6;
             letter-spacing: -0.5px;
             font-family: 'Orbitron', monospace;
-        }
-        
-        .dark .logo-text {
-            color: #3B82F6;
+            color: #3B82F6 !important;
         }
         
         /* PART 2: LINKS */
@@ -138,7 +142,6 @@
             font-weight: 600;
             padding: 8px 12px;
             border-radius: 40px;
-            color: #F9F6F3;
             transition: all 0.3s ease;
             background: transparent;
             border: none;
@@ -150,7 +153,13 @@
             white-space: nowrap;
         }
         
-        .dark .nav-link {
+        /* Light mode nav links - BLACK text */
+        body.light .nav-link {
+            color: #1F2937;
+        }
+        
+        /* Dark mode nav links - LIGHT text */
+        body.dark .nav-link {
             color: #F9F6F3;
         }
         
@@ -167,26 +176,32 @@
             position: relative;
         }
         
+        /* Light mode dropdown menu - white background */
+        body.light .dropdown-menu {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Dark mode dropdown menu - dark background */
+        body.dark .dropdown-menu {
+            background: #0F172A;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+        }
+        
         .dropdown-menu {
             position: absolute;
             top: 100%;
             margin-top: 12px;
             min-width: 220px;
-            background: #0F172A;
             border-radius: 24px;
             padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.2);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-8px);
             transition: all 0.25s ease;
             z-index: 1001;
-        }
-        
-        .dark .dropdown-menu {
-            background: #0F172A;
-            border-color: rgba(59, 130, 246, 0.3);
         }
         
         .dropdown:hover .dropdown-menu {
@@ -195,21 +210,26 @@
             transform: translateY(0);
         }
         
+        /* Light mode dropdown items - dark text */
+        body.light .dropdown-item {
+            color: #1F2937;
+        }
+        
+        /* Dark mode dropdown items - light text */
+        body.dark .dropdown-item {
+            color: #F9F6F3;
+        }
+        
         .dropdown-item {
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 10px 16px;
             border-radius: 16px;
-            color: #F9F6F3;
             font-weight: 500;
             font-size: 13px;
             transition: all 0.2s ease;
             text-decoration: none;
-        }
-        
-        .dark .dropdown-item {
-            color: #F9F6F3;
         }
         
         .dropdown-item i {
@@ -223,9 +243,23 @@
             transform: translateX(5px);
         }
         
-        /* Profile Dropdown - FIXED FOR BOTH LTR AND RTL */
+        /* Profile Dropdown */
         .profile-dropdown {
             position: relative;
+        }
+        
+        /* Light mode profile dropdown - white background */
+        body.light .profile-dropdown-menu {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Dark mode profile dropdown - dark background */
+        body.dark .profile-dropdown-menu {
+            background: #0F172A;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
         }
         
         .profile-dropdown-menu {
@@ -233,11 +267,8 @@
             top: 100%;
             margin-top: 12px;
             min-width: 220px;
-            background: #0F172A;
             border-radius: 24px;
             padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.2);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-8px);
@@ -245,21 +276,14 @@
             z-index: 1001;
         }
         
-        /* LTR: dropdown aligns to right */
         [dir="ltr"] .profile-dropdown-menu {
             right: 0;
             left: auto;
         }
         
-        /* RTL: dropdown aligns to left */
         [dir="rtl"] .profile-dropdown-menu {
             left: 0;
             right: auto;
-        }
-        
-        .dark .profile-dropdown-menu {
-            background: #0F172A;
-            border-color: rgba(59, 130, 246, 0.3);
         }
         
         .profile-dropdown:hover .profile-dropdown-menu {
@@ -276,19 +300,31 @@
             gap: 0.5rem;
         }
         
+        /* Light mode action buttons - light gray background */
+        body.light .action-btn {
+            background: #F3F4F6;
+            color: #374151;
+            border: 1px solid #E5E7EB;
+            box-shadow: none;
+        }
+        
+        /* Dark mode action buttons - gradient blue */
+        body.dark .action-btn {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
         .action-btn {
             width: 40px;
             height: 40px;
             border-radius: 40px;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
             flex-shrink: 0;
             font-size: 14px;
             font-weight: 600;
@@ -298,36 +334,58 @@
             transform: translateY(-2px) scale(1.05);
         }
         
+        body.light .action-btn:hover {
+            background: #E5E7EB;
+        }
+        
+        body.dark .action-btn:hover {
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        }
+        
         /* Hamburger Button */
         .hamburger {
             display: none;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
-            border: none;
             cursor: pointer;
             width: 40px;
             height: 40px;
             border-radius: 40px;
             align-items: center;
             justify-content: center;
-            color: white;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
             transition: all 0.3s ease;
             flex-shrink: 0;
+        }
+        
+        /* Light mode hamburger */
+        body.light .hamburger {
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            color: #374151;
+        }
+        
+        /* Dark mode hamburger */
+        body.dark .hamburger {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
         .hamburger:hover {
             transform: scale(1.05);
         }
         
+        body.light .hamburger:hover {
+            background: #E5E7EB;
+        }
+        
+        body.dark .hamburger:hover {
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        }
+        
         .desktop-auth-buttons {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-        
-        /* Profile icon - hidden on mobile, visible on desktop */
-        .profile-icon-mobile {
-            display: none;
         }
         
         /* RESPONSIVE */
@@ -358,7 +416,6 @@
             .hamburger {
                 display: flex !important;
             }
-            /* Hide profile icon in mobile view */
             .profile-dropdown {
                 display: none !important;
             }
@@ -374,7 +431,6 @@
             .desktop-auth-buttons {
                 display: flex !important;
             }
-            /* Show profile icon only on desktop */
             .profile-dropdown {
                 display: block !important;
             }
@@ -444,6 +500,20 @@
             visibility: visible;
         }
         
+        /* Light mode mobile menu - white background */
+        body.light .mobile-menu {
+            background: #FFFFFF;
+            backdrop-filter: blur(0px);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Dark mode mobile menu - dark background */
+        body.dark .mobile-menu {
+            background: #0F172A;
+            backdrop-filter: blur(20px);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+        
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -451,21 +521,24 @@
             bottom: 0;
             width: 85%;
             max-width: 380px;
-            background: #0F172A;
-            backdrop-filter: blur(20px);
             z-index: 2000;
             transform: translateX(100%);
             transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .mobile-menu {
-            background: #0F172A;
         }
         
         .mobile-menu.open {
             transform: translateX(0);
+        }
+        
+        /* Light mode mobile header */
+        body.light .mobile-header {
+            background: linear-gradient(135deg, #F9FAFB, #F3F4F6);
+        }
+        
+        /* Dark mode mobile header */
+        body.dark .mobile-header {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
         }
         
         .mobile-header {
@@ -474,27 +547,52 @@
             align-items: center;
             padding: 20px 24px;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
+        }
+        
+        /* Mobile menu logo text - FIXED BLUE */
+        .mobile-header .logo-text {
+            color: #3B82F6 !important;
+        }
+        
+        /* Light mode mobile close button */
+        body.light .mobile-close {
+            background: #F3F4F6;
+            color: #1F2937;
+            border: 1px solid #E5E7EB;
+        }
+        
+        /* Dark mode mobile close button */
+        body.dark .mobile-close {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
         }
         
         .mobile-close {
             width: 48px;
             height: 48px;
             border-radius: 30px;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: white;
-            border: none;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
         }
         
-        .mobile-nav-items {
-            padding: 0 20px 20px 20px;
+        /* Light mode mobile nav items */
+        body.light .mobile-nav-link {
+            color: #1F2937;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        
+        /* Dark mode mobile nav items */
+        body.dark .mobile-nav-link {
+            color: #F9F6F3;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
         
         .mobile-nav-link {
@@ -506,19 +604,10 @@
             border-radius: 20px;
             font-weight: 600;
             font-size: 1rem;
-            color: #F9F6F3;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
             width: 100%;
             cursor: pointer;
             transition: all 0.25s ease;
             text-decoration: none;
-        }
-        
-        .dark .mobile-nav-link {
-            color: #F9F6F3;
-            background: rgba(59, 130, 246, 0.08);
-            border-color: rgba(59, 130, 246, 0.25);
         }
         
         .mobile-nav-link:hover,
@@ -552,6 +641,20 @@
             }
         }
         
+        /* Light mode mobile submenu items */
+        body.light .mobile-submenu-items a {
+            color: #1F2937;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        
+        /* Dark mode mobile submenu items */
+        body.dark .mobile-submenu-items a {
+            color: #F9F6F3;
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+        }
+        
         .mobile-submenu-items a {
             display: flex;
             align-items: center;
@@ -559,18 +662,10 @@
             padding: 12px 18px;
             margin: 8px 0;
             border-radius: 16px;
-            color: #F9F6F3;
             font-weight: 500;
             font-size: 0.9rem;
             text-decoration: none;
             transition: all 0.2s ease;
-            background: rgba(59, 130, 246, 0.08);
-            border: 1px solid rgba(59, 130, 246, 0.15);
-        }
-        
-        .dark .mobile-submenu-items a {
-            color: #F9F6F3;
-            background: rgba(59, 130, 246, 0.05);
         }
         
         .mobile-submenu-items a:hover,
@@ -580,9 +675,19 @@
             transform: translateX(5px);
         }
         
-        .mobile-settings {
+        /* Light mode mobile settings */
+        body.light .mobile-settings {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        
+        /* Dark mode mobile settings */
+        body.dark .mobile-settings {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
             border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .mobile-settings {
             border-radius: 28px;
             padding: 20px;
             margin-top: 25px;
@@ -595,16 +700,21 @@
             padding: 12px 0;
         }
         
+        /* Light mode mobile setting label */
+        body.light .mobile-setting-label {
+            color: #1F2937;
+        }
+        
+        /* Dark mode mobile setting label */
+        body.dark .mobile-setting-label {
+            color: #F9F6F3;
+        }
+        
         .mobile-setting-label {
             font-weight: 600;
-            color: #F9F6F3;
             display: flex;
             align-items: center;
             gap: 12px;
-        }
-        
-        .dark .mobile-setting-label {
-            color: #F9F6F3;
         }
         
         /* About Page Specific Styles */
@@ -648,7 +758,7 @@
         }
         
         .milestone-item:hover {
-            transform: translateX(5px);
+            transform: translateY(-5px);
         }
         
         .team-card {
@@ -659,36 +769,52 @@
             transform: translateY(-5px);
         }
         
-        /* Footer logo uses same styles as navbar logo */
-        footer .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        /* Section backgrounds - alternating white and light grey */
+        .section-white { background: #FFFFFF; }
+        .section-light-gray { background: #F9FAFB; }
+        
+        body.dark .section-white { background: #0F172A; }
+        body.dark .section-light-gray { background: #0A0F1A; }
+        
+        /* Footer - WHITE BACKGROUND IN LIGHT MODE */
+        footer {
+            background-color: #FFFFFF !important;
+            border-top: 1px solid #E5E7EB;
         }
-
+        
+        body.dark footer {
+            background-color: #0F172A !important;
+            border-top: 1px solid #2D2D2D;
+        }
+        
         footer .logo i {
-            font-size: 1.8rem;
             color: #3B82F6;
-            transition: all 0.3s ease;
         }
-
+        
         footer .logo-text {
-            font-weight: 900;
-            font-size: 1.4rem;
-            color: #3B82F6;
-            letter-spacing: -0.5px;
-            transition: all 0.3s ease;
-            font-family: 'Orbitron', monospace;
+            color: #3B82F6 !important;
         }
-
-        /* Dark mode support for footer logo */
-        .dark footer .logo-text {
-            color: #3B82F6;
+        
+        body.light footer p,
+        body.light footer li,
+        body.light footer a {
+            color: #6B7280 !important;
         }
-
-        /* Responsive footer logo - matches navbar exactly */
+        
+        body.light footer h4 {
+            color: #1F2937 !important;
+        }
+        
+        body.dark footer p,
+        body.dark footer li,
+        body.dark footer a {
+            color: #9CA3AF !important;
+        }
+        
+        body.dark footer h4 {
+            color: #3B82F6 !important;
+        }
+        
         @media (max-width: 768px) {
             footer .logo i {
                 font-size: 1.5rem !important;
@@ -697,7 +823,7 @@
                 font-size: 1.2rem !important;
             }
         }
-
+        
         @media (max-width: 480px) {
             footer .logo i {
                 font-size: 1.3rem !important;
@@ -706,35 +832,15 @@
                 font-size: 1rem !important;
             }
         }
-
-        /* Hover effect same as navbar */
+        
         footer .logo:hover {
             transform: scale(1.02);
-        }
-
-        footer .logo:hover i,
-        footer .logo:hover .logo-text {
-            transform: scale(1.02);
-        }
-        
-        /* Footer background same as navbar */
-        footer {
-            background-color: #0F172A !important;
-        }
-        
-        .dark footer {
-            background-color: #0F172A !important;
-        }
-        
-        /* Footer headings color */
-        footer h4 {
-            color: #3B82F6 !important;
         }
     </style>
 </head>
 <body class="light font-inter">
 
-    <!-- Navbar - Perfect 3-Part Layout -->
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-3-part">
@@ -856,8 +962,8 @@
         </div>
     </section>
 
-    <!-- Our Story Section -->
-    <section class="py-20 bg-white dark:bg-gray-900">
+    <!-- Our Story Section - WHITE background -->
+    <section class="section-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="order-2 lg:order-1">
@@ -890,8 +996,8 @@
         </div>
     </section>
 
-    <!-- Mission & Vision Section -->
-    <section class="py-20 bg-gray-50 dark:bg-gray-800">
+    <!-- Mission & Vision Section - LIGHT GREY background -->
+    <section class="section-light-gray py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg text-center value-card">
@@ -916,8 +1022,8 @@
         </div>
     </section>
 
-    <!-- Core Values Section -->
-    <section class="py-20 bg-white dark:bg-gray-900">
+    <!-- Core Values Section - WHITE background -->
+    <section class="section-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">What We Stand For</span>
@@ -957,8 +1063,8 @@
         </div>
     </section>
 
-    <!-- Key Milestones Section -->
-    <section class="py-20 bg-gray-50 dark:bg-gray-800">
+    <!-- Key Milestones Section - LIGHT GREY background -->
+    <section class="section-light-gray py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">Our Journey</span>
@@ -967,7 +1073,7 @@
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Milestone 1 -->
-                <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg milestone-item hover:transform hover:translate-y-[-8px] transition-all">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg milestone-item">
                     <div class="h-40 overflow-hidden">
                         <img src="images/d1.jpeg" alt="Foundation" class="w-full h-full object-cover">
                     </div>
@@ -980,7 +1086,7 @@
                     </div>
                 </div>
                 <!-- Milestone 2 -->
-                <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg milestone-item hover:transform hover:translate-y-[-8px] transition-all">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg milestone-item">
                     <div class="h-40 overflow-hidden">
                         <img src="images/j1.jpeg" alt="Global Expansion" class="w-full h-full object-cover">
                     </div>
@@ -993,7 +1099,7 @@
                     </div>
                 </div>
                 <!-- Milestone 3 -->
-                <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg milestone-item hover:transform hover:translate-y-[-8px] transition-all">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg milestone-item">
                     <div class="h-40 overflow-hidden">
                         <img src="images/t1.jpeg" alt="FPV Training" class="w-full h-full object-cover">
                     </div>
@@ -1006,7 +1112,7 @@
                     </div>
                 </div>
                 <!-- Milestone 4 -->
-                <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg milestone-item hover:transform hover:translate-y-[-8px] transition-all">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg milestone-item">
                     <div class="h-40 overflow-hidden">
                         <img src="images/p1.jpeg" alt="10K Pilots" class="w-full h-full object-cover">
                     </div>
@@ -1022,8 +1128,8 @@
         </div>
     </section>
 
-    <!-- Leadership Team Section - FIXED: Better contrast for descriptions -->
-    <section class="py-20 bg-white dark:bg-gray-900">
+    <!-- Leadership Team Section - WHITE background -->
+    <section class="section-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">Leadership</span>
@@ -1037,7 +1143,7 @@
                     </div>
                     <h3 class="text-xl font-bold mt-4 text-gray-900 dark:text-white">James Wilson</h3>
                     <p class="text-[#3B82F6] mb-3">CEO & Co-Founder</p>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Former professional drone racer with 10+ championships</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Former professional drone racer with 10+ championships</p>
                 </div>
                 <div class="team-card text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
                     <div class="w-32 h-32 mx-auto bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-5xl text-white shadow-lg">
@@ -1045,7 +1151,7 @@
                     </div>
                     <h3 class="text-xl font-bold mt-4 text-gray-900 dark:text-white">Dr. Emily Chen</h3>
                     <p class="text-[#3B82F6] mb-3">CTO & Co-Founder</p>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">PhD in Robotics, pioneer in drone simulation technology</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">PhD in Robotics, pioneer in drone simulation technology</p>
                 </div>
                 <div class="team-card text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
                     <div class="w-32 h-32 mx-auto bg-gradient-to-br from-indigo-500 to-purple-400 rounded-full flex items-center justify-center text-5xl text-white shadow-lg">
@@ -1053,7 +1159,7 @@
                     </div>
                     <h3 class="text-xl font-bold mt-4 text-gray-900 dark:text-white">Marcus Rodriguez</h3>
                     <p class="text-[#3B82F6] mb-3">Head of Training</p>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">World champion pilot & certified FPV instructor</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">World champion pilot & certified FPV instructor</p>
                 </div>
             </div>
         </div>
@@ -1083,8 +1189,8 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-white dark:bg-gray-900">
+    <!-- CTA Section - WHITE background -->
+    <section class="section-white py-20">
         <div class="max-w-4xl mx-auto text-center px-4">
             <div class="inline-flex items-center gap-2 bg-[#3B82F6]/20 text-[#3B82F6] px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 <i class="fas fa-rocket"></i> Join Our Community
@@ -1095,15 +1201,15 @@
                 <a href="signup.html" class="bg-[#3B82F6] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#2563EB] transition shadow-lg inline-flex items-center gap-2">
                     <i class="fas fa-user-plus"></i> Sign Up Free
                 </a>
-                <a href="contact.html" class="bg-white/10 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-white px-8 py-4 rounded-xl font-bold hover:bg-gray-100 dark:hover:bg-gray-700 transition inline-flex items-center gap-2">
+                <a href="contact.html" class="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-white px-8 py-4 rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition inline-flex items-center gap-2">
                     <i class="fas fa-envelope"></i> Contact Us
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
+    <!-- Footer - WHITE BACKGROUND IN LIGHT MODE -->
+    <footer class="bg-white dark:bg-gray-900 pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:grid md:grid-cols-4 gap-8 mb-10">
                 <div>
@@ -1111,55 +1217,55 @@
                         <i class="fas fa-drone text-2xl text-[#3B82F6]"></i>
                         <span class="logo-text">DRL | FPV Arena</span>
                     </a>
-                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 leading-relaxed">
                         The premier destination for drone racing and FPV training. Compete, learn, and grow with the best community.
                     </p>
                     <div class="flex gap-3">
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fab fa-linkedin-in text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fab fa-whatsapp text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fas fa-envelope text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition text-gray-600 dark:text-gray-400"><i class="fab fa-linkedin-in text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition text-gray-600 dark:text-gray-400"><i class="fab fa-whatsapp text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition text-gray-600 dark:text-gray-400"><i class="fas fa-envelope text-xs"></i></a>
                     </div>
                 </div>
                 
                 <div>
-                    <h4 class="font-bold mb-4 text-[#3B82F6]">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
-                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="events.html" class="hover:text-white transition">Events</a></li>
-                        <li><a href="leaderboard.html" class="hover:text-white transition">Leaderboard</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+                    <h4 class="font-bold mb-4 text-gray-700 dark:text-[#3B82F6]">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-gray-700 dark:hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-gray-700 dark:hover:text-white transition">About Us</a></li>
+                        <li><a href="events.html" class="hover:text-gray-700 dark:hover:text-white transition">Events</a></li>
+                        <li><a href="leaderboard.html" class="hover:text-gray-700 dark:hover:text-white transition">Leaderboard</a></li>
+                        <li><a href="contact.html" class="hover:text-gray-700 dark:hover:text-white transition">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="font-bold mb-4 text-[#3B82F6]">Resources</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="training-modules.html" class="hover:text-white transition">Training Modules</a></li>
-                        <li><a href="shop.html" class="hover:text-white transition">Equipment Shop</a></li>
-                        <li><a href="#" class="hover:text-white transition">Community Guidelines</a></li>
-                        <li><a href="#" class="hover:text-white transition">Support Center</a></li>
-                        <li><a href="#" class="hover:text-white transition">Sponsorship Program</a></li>
+                    <h4 class="font-bold mb-4 text-gray-700 dark:text-[#3B82F6]">Resources</h4>
+                    <ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm">
+                        <li><a href="training-modules.html" class="hover:text-gray-700 dark:hover:text-white transition">Training Modules</a></li>
+                        <li><a href="shop.html" class="hover:text-gray-700 dark:hover:text-white transition">Equipment Shop</a></li>
+                        <li><a href="#" class="hover:text-gray-700 dark:hover:text-white transition">Community Guidelines</a></li>
+                        <li><a href="#" class="hover:text-gray-700 dark:hover:text-white transition">Support Center</a></li>
+                        <li><a href="#" class="hover:text-gray-700 dark:hover:text-white transition">Sponsorship Program</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="font-bold mb-4 text-[#3B82F6]">Contact Info</h4>
-                    <div class="space-y-3 text-gray-400 text-sm">
+                    <h4 class="font-bold mb-4 text-gray-700 dark:text-[#3B82F6]">Contact Info</h4>
+                    <div class="space-y-3 text-gray-500 dark:text-gray-400 text-sm">
                         <p><i class="fas fa-map-marker-alt text-[#3B82F6] mr-2"></i> New York, USA</p>
-                        <p><i class="fas fa-envelope text-[#3B82F6] mr-2"></i> <a href="mailto:info@drl-fpv.com" class="hover:text-white">info@drl-fpv.com</a></p>
-                        <p><i class="fas fa-phone text-[#3B82F6] mr-2"></i> <a href="tel:+12125550123" class="hover:text-white">+1 (212) 555-0123</a></p>
+                        <p><i class="fas fa-envelope text-[#3B82F6] mr-2"></i> <a href="mailto:info@drl-fpv.com" class="hover:text-gray-700 dark:hover:text-white">info@drl-fpv.com</a></p>
+                        <p><i class="fas fa-phone text-[#3B82F6] mr-2"></i> <a href="tel:+12125550123" class="hover:text-gray-700 dark:hover:text-white">+1 (212) 555-0123</a></p>
                         <p><i class="fas fa-clock text-[#3B82F6] mr-2"></i> Mon-Fri: 9AM - 6PM EST</p>
                     </div>
                 </div>
             </div>
             
-            <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
+            <div class="pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-xs">
                 <p>© 2024 DRL | FPV Arena — Drone Racing League & FPV Training. All rights reserved.</p>
                 <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition">Cookie Policy</a>
+                    <a href="#" class="hover:text-gray-600 dark:hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-600 dark:hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-gray-600 dark:hover:text-white transition">Cookie Policy</a>
                 </div>
             </div>
         </div>

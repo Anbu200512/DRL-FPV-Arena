@@ -45,7 +45,7 @@
         }
         
         body.light {
-            background: #F9F6F3;
+            background: #FFFFFF;
         }
         
         body.dark {
@@ -56,22 +56,27 @@
             overflow: hidden;
         }
         
-        /* ===== NAVBAR - PERFECT 3-PART LAYOUT ===== */
+        /* ===== NAVBAR - LIGHT MODE WHITE BACKGROUND ===== */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: #0F172A;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.25);
             transition: all 0.3s ease;
         }
         
-        .dark .navbar {
+        body.light .navbar {
+            background: #FFFFFF;
+            backdrop-filter: blur(0px);
+            border-bottom: 1px solid #E5E7EB;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        
+        body.dark .navbar {
             background: #0F172A;
-            border-bottom-color: rgba(59, 130, 246, 0.4);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.25);
         }
         
         .nav-container {
@@ -112,13 +117,9 @@
         .logo-text {
             font-weight: 900;
             font-size: 1.4rem;
-            color: #3B82F6;
             letter-spacing: -0.5px;
             font-family: 'Orbitron', monospace;
-        }
-        
-        .dark .logo-text {
-            color: #3B82F6;
+            color: #3B82F6 !important;
         }
         
         .nav-part-center {
@@ -136,7 +137,6 @@
             font-weight: 600;
             padding: 8px 12px;
             border-radius: 40px;
-            color: #F9F6F3;
             transition: all 0.3s ease;
             background: transparent;
             border: none;
@@ -148,7 +148,11 @@
             white-space: nowrap;
         }
         
-        .dark .nav-link {
+        body.light .nav-link {
+            color: #1F2937;
+        }
+        
+        body.dark .nav-link {
             color: #F9F6F3;
         }
         
@@ -164,26 +168,29 @@
             position: relative;
         }
         
+        body.light .dropdown-menu {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark .dropdown-menu {
+            background: #0F172A;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
         .dropdown-menu {
             position: absolute;
             top: 100%;
             margin-top: 12px;
             min-width: 220px;
-            background: #0F172A;
             border-radius: 24px;
             padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.2);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-8px);
             transition: all 0.25s ease;
             z-index: 1001;
-        }
-        
-        .dark .dropdown-menu {
-            background: #0F172A;
-            border-color: rgba(59, 130, 246, 0.3);
         }
         
         .dropdown:hover .dropdown-menu {
@@ -192,21 +199,24 @@
             transform: translateY(0);
         }
         
+        body.light .dropdown-item {
+            color: #1F2937;
+        }
+        
+        body.dark .dropdown-item {
+            color: #F9F6F3;
+        }
+        
         .dropdown-item {
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 10px 16px;
             border-radius: 16px;
-            color: #F9F6F3;
             font-weight: 500;
             font-size: 13px;
             transition: all 0.2s ease;
             text-decoration: none;
-        }
-        
-        .dark .dropdown-item {
-            color: #F9F6F3;
         }
         
         .dropdown-item i {
@@ -224,16 +234,23 @@
             position: relative;
         }
         
+        body.light .profile-dropdown-menu {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .profile-dropdown-menu {
+            background: #0F172A;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
         .profile-dropdown-menu {
             position: absolute;
             top: 100%;
             margin-top: 12px;
             min-width: 220px;
-            background: #0F172A;
             border-radius: 24px;
             padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.2);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-8px);
@@ -241,20 +258,8 @@
             z-index: 1001;
         }
         
-        [dir="ltr"] .profile-dropdown-menu {
-            right: 0;
-            left: auto;
-        }
-        
-        [dir="rtl"] .profile-dropdown-menu {
-            left: 0;
-            right: auto;
-        }
-        
-        .dark .profile-dropdown-menu {
-            background: #0F172A;
-            border-color: rgba(59, 130, 246, 0.3);
-        }
+        [dir="ltr"] .profile-dropdown-menu { right: 0; left: auto; }
+        [dir="rtl"] .profile-dropdown-menu { left: 0; right: auto; }
         
         .profile-dropdown:hover .profile-dropdown-menu {
             opacity: 1;
@@ -269,19 +274,29 @@
             gap: 0.5rem;
         }
         
+        body.light .action-btn {
+            background: #F3F4F6;
+            color: #374151;
+            border: 1px solid #E5E7EB;
+            box-shadow: none;
+        }
+        
+        body.dark .action-btn {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
         .action-btn {
             width: 40px;
             height: 40px;
             border-radius: 40px;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
             flex-shrink: 0;
             font-size: 14px;
             font-weight: 600;
@@ -291,124 +306,80 @@
             transform: translateY(-2px) scale(1.05);
         }
         
+        body.light .action-btn:hover { background: #E5E7EB; }
+        body.dark .action-btn:hover { background: linear-gradient(135deg, #2563EB, #1D4ED8); }
+        
         .hamburger {
             display: none;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
-            border: none;
             cursor: pointer;
             width: 40px;
             height: 40px;
             border-radius: 40px;
             align-items: center;
             justify-content: center;
-            color: white;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
             transition: all 0.3s ease;
             flex-shrink: 0;
         }
         
-        .hamburger:hover {
-            transform: scale(1.05);
+        body.light .hamburger {
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            color: #374151;
         }
         
-        .desktop-auth-buttons {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        body.dark .hamburger {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
+        .hamburger:hover { transform: scale(1.05); }
+        body.light .hamburger:hover { background: #E5E7EB; }
+        body.dark .hamburger:hover { background: linear-gradient(135deg, #2563EB, #1D4ED8); }
+        
+        .desktop-auth-buttons { display: flex; align-items: center; gap: 0.5rem; }
+        
+        /* RESPONSIVE - same as contact page */
         @media (max-width: 1200px) {
-            .nav-link {
-                padding: 8px 10px;
-                font-size: 13px;
-            }
+            .nav-link { padding: 8px 10px; font-size: 13px; }
         }
         
         @media (max-width: 1100px) {
-            .nav-link {
-                padding: 8px 8px;
-                font-size: 12px;
-            }
-            .nav-part-center {
-                gap: 0.1rem;
-            }
+            .nav-link { padding: 8px 8px; font-size: 12px; }
+            .nav-part-center { gap: 0.1rem; }
         }
         
         @media (max-width: 1000px) {
-            .nav-part-center {
-                display: none !important;
-            }
-            .desktop-auth-buttons {
-                display: none !important;
-            }
-            .hamburger {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: none !important;
-            }
+            .nav-part-center { display: none !important; }
+            .desktop-auth-buttons { display: none !important; }
+            .hamburger { display: flex !important; }
+            .profile-dropdown { display: none !important; }
         }
         
         @media (min-width: 1001px) {
-            .hamburger {
-                display: none !important;
-            }
-            .nav-part-center {
-                display: flex !important;
-            }
-            .desktop-auth-buttons {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: block !important;
-            }
+            .hamburger { display: none !important; }
+            .nav-part-center { display: flex !important; }
+            .desktop-auth-buttons { display: flex !important; }
+            .profile-dropdown { display: block !important; }
         }
         
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 0.5rem 1rem;
-            }
-            .logo {
-                padding: 4px 6px;
-            }
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            .logo i {
-                font-size: 1.5rem;
-            }
-            .action-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 12px;
-            }
-            .hamburger {
-                width: 36px;
-                height: 36px;
-            }
+            .nav-container { padding: 0.5rem 1rem; }
+            .logo { padding: 4px 6px; }
+            .logo-text { font-size: 1.2rem; }
+            .logo i { font-size: 1.5rem; }
+            .action-btn, .hamburger { width: 36px; height: 36px; font-size: 12px; }
         }
         
         @media (max-width: 480px) {
-            .nav-container {
-                padding: 0.5rem 0.75rem;
-            }
-            .logo-text {
-                font-size: 1rem;
-            }
-            .logo i {
-                font-size: 1.3rem;
-            }
-            .action-btn {
-                width: 34px;
-                height: 34px;
-                font-size: 11px;
-            }
-            .hamburger {
-                width: 34px;
-                height: 34px;
-            }
+            .nav-container { padding: 0.5rem 0.75rem; }
+            .logo-text { font-size: 1rem; }
+            .logo i { font-size: 1.3rem; }
+            .action-btn, .hamburger { width: 34px; height: 34px; font-size: 11px; }
         }
         
+        /* Mobile Menu */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -422,9 +393,17 @@
             transition: all 0.3s ease;
         }
         
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+        
+        body.light .mobile-menu {
+            background: #FFFFFF;
+            backdrop-filter: blur(0px);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark .mobile-menu {
+            background: #0F172A;
+            backdrop-filter: blur(20px);
         }
         
         .mobile-menu {
@@ -434,22 +413,16 @@
             bottom: 0;
             width: 85%;
             max-width: 380px;
-            background: #0F172A;
-            backdrop-filter: blur(20px);
             z-index: 2000;
             transform: translateX(100%);
             transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
         }
         
-        .dark .mobile-menu {
-            background: #0F172A;
-        }
+        .mobile-menu.open { transform: translateX(0); }
         
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
+        body.light .mobile-header { background: linear-gradient(135deg, #F9FAFB, #F3F4F6); }
+        body.dark .mobile-header { background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); }
         
         .mobile-header {
             display: flex;
@@ -457,27 +430,44 @@
             align-items: center;
             padding: 20px 24px;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
+        }
+        
+        .mobile-header .logo-text { color: #3B82F6 !important; }
+        
+        body.light .mobile-close {
+            background: #F3F4F6;
+            color: #1F2937;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .mobile-close {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            border: none;
         }
         
         .mobile-close {
             width: 48px;
             height: 48px;
             border-radius: 30px;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: white;
-            border: none;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
         }
         
-        .mobile-nav-items {
-            padding: 0 20px 20px 20px;
+        body.light .mobile-nav-link {
+            color: #1F2937;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .mobile-nav-link {
+            color: #F9F6F3;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
         
         .mobile-nav-link {
@@ -489,19 +479,10 @@
             border-radius: 20px;
             font-weight: 600;
             font-size: 1rem;
-            color: #F9F6F3;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
             width: 100%;
             cursor: pointer;
             transition: all 0.25s ease;
             text-decoration: none;
-        }
-        
-        .dark .mobile-nav-link {
-            color: #F9F6F3;
-            background: rgba(59, 130, 246, 0.08);
-            border-color: rgba(59, 130, 246, 0.25);
         }
         
         .mobile-nav-link:hover,
@@ -520,19 +501,23 @@
             animation: slideDown 0.25s ease;
         }
         
-        .mobile-submenu-items.open {
-            display: block;
-        }
+        .mobile-submenu-items.open { display: block; }
         
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body.light .mobile-submenu-items a {
+            color: #1F2937;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .mobile-submenu-items a {
+            color: #F9F6F3;
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.15);
         }
         
         .mobile-submenu-items a {
@@ -542,18 +527,10 @@
             padding: 12px 18px;
             margin: 8px 0;
             border-radius: 16px;
-            color: #F9F6F3;
             font-weight: 500;
             font-size: 0.9rem;
             text-decoration: none;
             transition: all 0.2s ease;
-            background: rgba(59, 130, 246, 0.08);
-            border: 1px solid rgba(59, 130, 246, 0.15);
-        }
-        
-        .dark .mobile-submenu-items a {
-            color: #F9F6F3;
-            background: rgba(59, 130, 246, 0.05);
         }
         
         .mobile-submenu-items a:hover,
@@ -563,9 +540,17 @@
             transform: translateX(5px);
         }
         
-        .mobile-settings {
+        body.light .mobile-settings {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .mobile-settings {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
             border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .mobile-settings {
             border-radius: 28px;
             padding: 20px;
             margin-top: 25px;
@@ -578,16 +563,14 @@
             padding: 12px 0;
         }
         
+        body.light .mobile-setting-label { color: #1F2937; }
+        body.dark .mobile-setting-label { color: #F9F6F3; }
+        
         .mobile-setting-label {
             font-weight: 600;
-            color: #F9F6F3;
             display: flex;
             align-items: center;
             gap: 12px;
-        }
-        
-        .dark .mobile-setting-label {
-            color: #F9F6F3;
         }
         
         /* Leaderboard Page Specific Styles */
@@ -622,98 +605,14 @@
         }
         
         .rank-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+            transform: translateY(-5px);
         }
         
-        .top-rank {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1));
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
+        .section-white { background: #FFFFFF; }
+        .section-light-gray { background: #F9FAFB; }
+        body.dark .section-white { background: #0F172A; }
+        body.dark .section-light-gray { background: #0A0F1A; }
         
-        .category-tab {
-            transition: all 0.3s ease;
-        }
-        
-        .category-tab:hover,
-        .category-tab.active {
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
-            color: white !important;
-        }
-        
-        footer .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        footer .logo i {
-            font-size: 1.8rem;
-            color: #3B82F6;
-            transition: all 0.3s ease;
-        }
-
-        footer .logo-text {
-            font-weight: 900;
-            font-size: 1.4rem;
-            color: #3B82F6;
-            letter-spacing: -0.5px;
-            transition: all 0.3s ease;
-            font-family: 'Orbitron', monospace;
-        }
-
-        .dark footer .logo-text {
-            color: #3B82F6;
-        }
-
-        @media (max-width: 768px) {
-            footer .logo i {
-                font-size: 1.5rem !important;
-            }
-            footer .logo-text {
-                font-size: 1.2rem !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            footer .logo i {
-                font-size: 1.3rem !important;
-            }
-            footer .logo-text {
-                font-size: 1rem !important;
-            }
-            /* .lead{
-                display: none;
-            }
-            .lead1{
-                justify-content: center;
-            } */
-        }
-
-        footer .logo:hover {
-            transform: scale(1.02);
-        }
-
-        footer .logo:hover i,
-        footer .logo:hover .logo-text {
-            transform: scale(1.02);
-        }
-        
-        footer {
-            background-color: #0F172A !important;
-        }
-        
-        .dark footer {
-            background-color: #0F172A !important;
-        }
-        
-        footer h4 {
-            color: #3B82F6 !important;
-        }
-        
-        /* Table Styles */
         .leaderboard-table {
             width: 100%;
             border-collapse: collapse;
@@ -730,14 +629,81 @@
             background: rgba(59, 130, 246, 0.05);
         }
         
-        .rank-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent); }
-        .rank-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent); }
-        .rank-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent); }
+        .rank-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.08), transparent); }
+        .rank-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.08), transparent); }
+        .rank-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.08), transparent); }
         
-        /* Dark mode table row backgrounds */
-        .dark .rank-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), transparent); }
-        .dark .rank-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.15), transparent); }
-        .dark .rank-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.15), transparent); }
+        .dark .rank-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.12), transparent); }
+        .dark .rank-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.12), transparent); }
+        .dark .rank-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.12), transparent); }
+        
+        /* Dark mode text colors for table - FIXED to white */
+        body.dark .leaderboard-table td,
+        body.dark .leaderboard-table th {
+            color: #FFFFFF !important;
+        }
+        
+        body.dark .leaderboard-table .font-semibold,
+        body.dark .leaderboard-table .font-bold {
+            color: #FFFFFF !important;
+        }
+        
+        body.dark .leaderboard-table .text-gray-600,
+        body.dark .leaderboard-table .text-gray-500,
+        body.dark .leaderboard-table .text-gray-400 {
+            color: #D1D5DB !important;
+        }
+        
+        body.dark .leaderboard-table .text-green-500 { color: #4ADE80 !important; }
+        body.dark .leaderboard-table .text-red-500 { color: #F87171 !important; }
+        
+        /* Performance Card Styles */
+        .perf-card {
+            transition: all 0.3s ease;
+        }
+        
+        .perf-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .record-card {
+            transition: all 0.3s ease;
+        }
+        
+        .record-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #FFFFFF !important;
+            border-top: 1px solid #E5E7EB;
+        }
+        
+        body.dark footer {
+            background-color: #0F172A !important;
+            border-top: 1px solid #2D2D2D;
+        }
+        
+        footer .logo i { color: #3B82F6; }
+        footer .logo-text { color: #3B82F6 !important; }
+        
+        body.light footer p, body.light footer li, body.light footer a { color: #6B7280 !important; }
+        body.light footer h4 { color: #1F2937 !important; }
+        body.dark footer p, body.dark footer li, body.dark footer a { color: #9CA3AF !important; }
+        body.dark footer h4 { color: #3B82F6 !important; }
+        
+        @media (max-width: 768px) {
+            footer .logo i { font-size: 1.5rem !important; }
+            footer .logo-text { font-size: 1.2rem !important; }
+        }
+        
+        @media (max-width: 480px) {
+            footer .logo i { font-size: 1.3rem !important; }
+            footer .logo-text { font-size: 1rem !important; }
+        }
+        
+        footer .logo:hover { transform: scale(1.02); }
     </style>
 </head>
 <body class="light font-inter">
@@ -802,46 +768,19 @@
             <button onclick="closeMobileMenu()" class="mobile-close"><i data-lucide="x" class="w-6 h-6"></i></button>
         </div>
         <div class="mobile-nav-items">
-            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-home mr-3"></i>HOME</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileHomeSubmenu" class="mobile-submenu-items">
-                <a href="index.html" onclick="closeMobileMenu()">Home1 - Racing League</a>
-                <a href="home2.html" onclick="closeMobileMenu()">Home2 - FPV Training</a>
-            </div>
-            <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="events.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-flag-checkered mr-3"></i>EVENTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="leaderboard.html" class="mobile-nav-link active" onclick="closeMobileMenu()"><span><i class="fas fa-trophy mr-3"></i>LEADERBOARD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="shop.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-shopping-cart mr-3"></i>SHOP</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="training-modules.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-graduation-cap mr-3"></i>TRAINING</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileDashSubmenu" class="mobile-submenu-items">
-                <a href="dashboard-admin.html" onclick="closeMobileMenu()">Admin Dashboard</a>
-                <a href="dashboard-user.html" onclick="closeMobileMenu()">User Dashboard</a>
-            </div>
-            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileAuthSubmenu" class="mobile-submenu-items">
-                <a href="login.html" onclick="closeMobileMenu()">Login</a>
-                <a href="signup.html" onclick="closeMobileMenu()">Signup</a>
-            </div>
-            <div class="mobile-settings">
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span>
-                    <button onclick="toggleDirectionMobile()" class="action-btn" style="width: auto; padding: 0 12px;">LTR</button>
-                </div>
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span>
-                    <button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
-                </div>
-            </div>
+            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link"><span><i class="fas fa-home mr-3"></i>HOME</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileHomeSubmenu" class="mobile-submenu-items"><a href="index.html" onclick="closeMobileMenu()">Home1 - Racing League</a><a href="home2.html" onclick="closeMobileMenu()">Home2 - FPV Training</a></div>
+            <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span></a>
+            <a href="events.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-flag-checkered mr-3"></i>EVENTS</span></a>
+            <a href="leaderboard.html" class="mobile-nav-link active" onclick="closeMobileMenu()"><span><i class="fas fa-trophy mr-3"></i>LEADERBOARD</span></a>
+            <a href="shop.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-shopping-cart mr-3"></i>SHOP</span></a>
+            <a href="training-modules.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-graduation-cap mr-3"></i>TRAINING</span></a>
+            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span></a>
+            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link"><span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileDashSubmenu" class="mobile-submenu-items"><a href="dashboard-admin.html" onclick="closeMobileMenu()">Admin Dashboard</a><a href="dashboard-user.html" onclick="closeMobileMenu()">User Dashboard</a></div>
+            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link"><span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileAuthSubmenu" class="mobile-submenu-items"><a href="login.html" onclick="closeMobileMenu()">Login</a><a href="signup.html" onclick="closeMobileMenu()">Signup</a></div>
+            <div class="mobile-settings"><div class="mobile-setting-item"><span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span><button onclick="toggleDirectionMobile()" class="action-btn" style="width: auto; padding: 0 12px;">LTR</button></div><div class="mobile-setting-item"><span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span><button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button></div></div>
         </div>
     </div>
 
@@ -864,397 +803,106 @@
         </div>
     </section>
 
-    <!-- Category Tabs - Fixed for dark mode (commented but improved) -->
-    <!-- 
-    <section class="py-6 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-[72px] z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap justify-center gap-3">
-                <button class="category-tab active px-6 py-2 rounded-full font-semibold bg-[#3B82F6] text-white">Overall Rankings</button>
-                <button class="category-tab px-6 py-2 rounded-full font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#3B82F6] hover:text-white transition">Pro League</button>
-                <button class="category-tab px-6 py-2 rounded-full font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#3B82F6] hover:text-white transition">Amateur Series</button>
-                <button class="category-tab px-6 py-2 rounded-full font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#3B82F6] hover:text-white transition">Team Rankings</button>
-                <button class="category-tab px-6 py-2 rounded-full font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#3B82F6] hover:text-white transition">Rookie</button>
-            </div>
-        </div>
-    </section>
-    -->
-
-    <!-- Top 3 Podium Section -->
-    <section class="py-12 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+    <!-- Top 3 Podium Section - LIGHT GREY background -->
+    <section class="section-light-gray py-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- 2nd Place -->
                 <div class="rank-card text-center p-6 rounded-2xl bg-white dark:bg-gray-900 shadow-lg order-2 md:order-1">
-                    <div class="relative">
-                        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-gray-300 to-gray-400 rounded-full flex items-center justify-center text-4xl text-white shadow-lg mb-4">
-                            <i class="fas fa-user-astronaut"></i>
-                        </div>
-                        <div class="absolute -top-2 -right-2 w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold shadow-lg">2</div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Sarah Chen</h3>
-                    <p class="text-[#3B82F6] text-sm mb-2">2,450 pts</p>
-                    <p class="text-gray-600 dark:text-gray-400 text-xs">🏆 3 Wins • 5 Podiums</p>
-                    <div class="mt-3 flex justify-center gap-2">
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🇺🇸 USA</span>
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🔥 +245 pts</span>
-                    </div>
+                    <div class="relative"><div class="w-24 h-24 mx-auto bg-gradient-to-br from-gray-300 to-gray-400 rounded-full flex items-center justify-center text-4xl text-white shadow-lg mb-4"><i class="fas fa-user-astronaut"></i></div><div class="absolute -top-2 -right-2 w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold shadow-lg">2</div></div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Sarah Chen</h3><p class="text-[#3B82F6] text-sm mb-2">2,450 pts</p><p class="text-gray-600 dark:text-gray-400 text-xs">🏆 3 Wins • 5 Podiums</p><div class="mt-3 flex justify-center gap-2"><span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🇺🇸 USA</span><span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🔥 +245 pts</span></div>
                 </div>
-
-                <!-- 1st Place -->
                 <div class="rank-card text-center p-6 rounded-2xl bg-gradient-to-br from-[#3B82F6]/10 to-[#2563EB]/5 border-2 border-[#3B82F6] shadow-xl order-1 md:order-2 transform scale-105">
-                    <div class="relative">
-                        <div class="w-28 h-28 mx-auto bg-gradient-to-br from-[#3B82F6] to-blue-500 rounded-full flex items-center justify-center text-5xl text-white shadow-lg mb-4">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <div class="absolute -top-3 -right-3 w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">1</div>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Alex Rivera</h3>
-                    <p class="text-[#3B82F6] text-base mb-2 font-bold">3,250 pts</p>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">🏆 7 Wins • 12 Podiums</p>
-                    <div class="mt-3 flex justify-center gap-2">
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🇪🇸 Spain</span>
-                        <span class="text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-2 py-1 rounded-full">👑 World Champion</span>
-                    </div>
+                    <div class="relative"><div class="w-28 h-28 mx-auto bg-gradient-to-br from-[#3B82F6] to-blue-500 rounded-full flex items-center justify-center text-5xl text-white shadow-lg mb-4"><i class="fas fa-crown"></i></div><div class="absolute -top-3 -right-3 w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">1</div></div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Alex Rivera</h3><p class="text-[#3B82F6] text-base mb-2 font-bold">3,250 pts</p><p class="text-gray-600 dark:text-gray-400 text-sm">🏆 7 Wins • 12 Podiums</p><div class="mt-3 flex justify-center gap-2"><span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🇪🇸 Spain</span><span class="text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-2 py-1 rounded-full">👑 World Champion</span></div>
                 </div>
-
-                <!-- 3rd Place -->
                 <div class="rank-card text-center p-6 rounded-2xl bg-white dark:bg-gray-900 shadow-lg order-3 md:order-3">
-                    <div class="relative">
-                        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-orange-300 to-orange-400 rounded-full flex items-center justify-center text-4xl text-white shadow-lg mb-4">
-                            <i class="fas fa-user-ninja"></i>
-                        </div>
-                        <div class="absolute -top-2 -right-2 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">3</div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Marcus Thompson</h3>
-                    <p class="text-[#3B82F6] text-sm mb-2">2,180 pts</p>
-                    <p class="text-gray-600 dark:text-gray-400 text-xs">🏆 2 Wins • 4 Podiums</p>
-                    <div class="mt-3 flex justify-center gap-2">
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🇬🇧 UK</span>
-                        <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">📈 +189 pts</span>
-                    </div>
+                    <div class="relative"><div class="w-24 h-24 mx-auto bg-gradient-to-br from-orange-300 to-orange-400 rounded-full flex items-center justify-center text-4xl text-white shadow-lg mb-4"><i class="fas fa-user-ninja"></i></div><div class="absolute -top-2 -right-2 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">3</div></div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Marcus Thompson</h3><p class="text-[#3B82F6] text-sm mb-2">2,180 pts</p><p class="text-gray-600 dark:text-gray-400 text-xs">🏆 2 Wins • 4 Podiums</p><div class="mt-3 flex justify-center gap-2"><span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">🇬🇧 UK</span><span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">📈 +189 pts</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Full Leaderboard Table -->
-    <section class="py-12 bg-white dark:bg-gray-900">
+    <!-- Full Leaderboard Table - WHITE background -->
+    <section class="section-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Complete Rankings</h2>
-                <div class="flex gap-3">
-                    <select class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                        <option>Season 2024</option>
-                        <option>Season 2023</option>
-                        <option>Season 2022</option>
-                    </select>
-                    <select class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                        <option>All Categories</option>
-                        <option>Pro League</option>
-                        <option>Amateur</option>
-                    </select>
-                </div>
+                <div class="flex gap-3"><select class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-white"><option>Season 2024</option><option>Season 2023</option></select><select class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-white"><option>All Categories</option><option>Pro League</option><option>Amateur</option></select></div>
             </div>
-
             <div class="overflow-x-auto">
                 <table class="leaderboard-table">
-                    <thead>
-                        <tr class="bg-gray-50 dark:bg-gray-800">
-                            <th class="rounded-l-xl text-gray-700 dark:text-gray-300">Rank</th>
-                            <th class="text-gray-700 dark:text-gray-300">Pilot</th>
-                            <th class="text-gray-700 dark:text-gray-300">Country</th>
-                            <th class="text-gray-700 dark:text-gray-300">Points</th>
-                            <th class="text-gray-700 dark:text-gray-300">Wins</th>
-                            <th class="text-gray-700 dark:text-gray-300">Podiums</th>
-                            <th class="text-gray-700 dark:text-gray-300">Events</th>
-                            <th class="rounded-r-xl text-gray-700 dark:text-gray-300">Trend</th>
-                        </tr>
-                    </thead>
+                    <thead><tr class="bg-gray-50 dark:bg-gray-800"><th class="rounded-l-xl text-gray-700 dark:text-white">Rank</th><th class="text-gray-700 dark:text-white">Pilot</th><th class="text-gray-700 dark:text-white">Country</th><th class="text-gray-700 dark:text-white">Points</th><th class="text-gray-700 dark:text-white">Wins</th><th class="text-gray-700 dark:text-white">Podiums</th><th class="text-gray-700 dark:text-white">Events</th><th class="rounded-r-xl text-gray-700 dark:text-white">Trend</th></tr></thead>
                     <tbody>
-                        <tr class="rank-1">
-                            <td class="font-bold text-[#3B82F6]">1</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">Alex Rivera</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇪🇸 Spain</td>
-                            <td class="font-bold text-gray-900 dark:text-white">3,250</td>
-                            <td class="text-gray-600 dark:text-gray-400">7</td>
-                            <td class="text-gray-600 dark:text-gray-400">12</td>
-                            <td class="text-gray-600 dark:text-gray-400">15</td>
-                            <td><span class="text-green-500">↑ 2</span></td>
-                        </tr>
-                        <tr class="rank-2">
-                            <td class="font-bold text-[#3B82F6]">2</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">Sarah Chen</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇺🇸 USA</td>
-                            <td class="font-bold text-gray-900 dark:text-white">2,450</td>
-                            <td class="text-gray-600 dark:text-gray-400">3</td>
-                            <td class="text-gray-600 dark:text-gray-400">5</td>
-                            <td class="text-gray-600 dark:text-gray-400">14</td>
-                            <td><span class="text-green-500">↑ 1</span></td>
-                        </tr>
-                        <tr class="rank-3">
-                            <td class="font-bold text-[#3B82F6]">3</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">Marcus Thompson</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇬🇧 UK</td>
-                            <td class="font-bold text-gray-900 dark:text-white">2,180</td>
-                            <td class="text-gray-600 dark:text-gray-400">2</td>
-                            <td class="text-gray-600 dark:text-gray-400">4</td>
-                            <td class="text-gray-600 dark:text-gray-400">13</td>
-                            <td><span class="text-red-500">↓ 1</span></td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-gray-500 dark:text-gray-400">4</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">Yuki Tanaka</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇯🇵 Japan</td>
-                            <td class="font-bold text-gray-900 dark:text-white">1,950</td>
-                            <td class="text-gray-600 dark:text-gray-400">1</td>
-                            <td class="text-gray-600 dark:text-gray-400">3</td>
-                            <td class="text-gray-600 dark:text-gray-400">14</td>
-                            <td><span class="text-green-500">↑ 3</span></td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-gray-500 dark:text-gray-400">5</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">Lucas Silva</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇧🇷 Brazil</td>
-                            <td class="font-bold text-gray-900 dark:text-white">1,820</td>
-                            <td class="text-gray-600 dark:text-gray-400">1</td>
-                            <td class="text-gray-600 dark:text-gray-400">2</td>
-                            <td class="text-gray-600 dark:text-gray-400">12</td>
-                            <td><span class="text-green-500">↑ 1</span></td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-gray-500 dark:text-gray-400">6</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">Emma van der Berg</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇳🇱 Netherlands</td>
-                            <td class="font-bold text-gray-900 dark:text-white">1,750</td>
-                            <td class="text-gray-600 dark:text-gray-400">0</td>
-                            <td class="text-gray-600 dark:text-gray-400">2</td>
-                            <td class="text-gray-600 dark:text-gray-400">13</td>
-                            <td><span class="text-red-500">↓ 2</span></td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-gray-500 dark:text-gray-400">7</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">David Kim</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇰🇷 South Korea</td>
-                            <td class="font-bold text-gray-900 dark:text-white">1,680</td>
-                            <td class="text-gray-600 dark:text-gray-400">0</td>
-                            <td class="text-gray-600 dark:text-gray-400">1</td>
-                            <td class="text-gray-600 dark:text-gray-400">12</td>
-                            <td><span class="text-green-500">↑ 4</span></td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-gray-500 dark:text-gray-400">8</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">Sofia Rossi</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇮🇹 Italy</td>
-                            <td class="font-bold text-gray-900 dark:text-white">1,590</td>
-                            <td class="text-gray-600 dark:text-gray-400">0</td>
-                            <td class="text-gray-600 dark:text-gray-400">1</td>
-                            <td class="text-gray-600 dark:text-gray-400">11</td>
-                            <td><span class="text-red-500">↓ 1</span></td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-gray-500 dark:text-gray-400">9</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">Maxim Volkov</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇷🇺 Russia</td>
-                            <td class="font-bold text-gray-900 dark:text-white">1,520</td>
-                            <td class="text-gray-600 dark:text-gray-400">0</td>
-                            <td class="text-gray-600 dark:text-gray-400">0</td>
-                            <td class="text-gray-600 dark:text-gray-400">12</td>
-                            <td><span class="text-green-500">↑ 2</span></td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-gray-500 dark:text-gray-400">10</td>
-                            <td><span class="font-semibold text-gray-900 dark:text-white">Carlos Mendez</span></td>
-                            <td class="text-gray-600 dark:text-gray-400">🇲🇽 Mexico</td>
-                            <td class="font-bold text-gray-900 dark:text-white">1,450</td>
-                            <td class="text-gray-600 dark:text-gray-400">0</td>
-                            <td class="text-gray-600 dark:text-gray-400">0</td>
-                            <td class="text-gray-600 dark:text-gray-400">11</td>
-                            <td><span class="text-red-500">↓ 3</span></td>
-                        </tr>
+                        <tr class="rank-1"><td class="font-bold text-[#3B82F6]">1</td><td class="font-semibold text-gray-900 dark:text-white">Alex Rivera</td><td class="text-gray-600 dark:text-gray-300">🇪🇸 Spain</td><td class="font-bold text-gray-900 dark:text-white">3,250</td><td class="text-gray-600 dark:text-gray-300">7</td><td class="text-gray-600 dark:text-gray-300">12</td><td class="text-gray-600 dark:text-gray-300">15</td><td class="text-green-500 dark:text-green-400">↑ 2</td></tr>
+                        <tr class="rank-2"><td class="font-bold text-[#3B82F6]">2</td><td class="font-semibold text-gray-900 dark:text-white">Sarah Chen</td><td class="text-gray-600 dark:text-gray-300">🇺🇸 USA</td><td class="font-bold text-gray-900 dark:text-white">2,450</td><td class="text-gray-600 dark:text-gray-300">3</td><td class="text-gray-600 dark:text-gray-300">5</td><td class="text-gray-600 dark:text-gray-300">14</td><td class="text-green-500 dark:text-green-400">↑ 1</td></tr>
+                        <tr class="rank-3"><td class="font-bold text-[#3B82F6]">3</td><td class="font-semibold text-gray-900 dark:text-white">Marcus Thompson</td><td class="text-gray-600 dark:text-gray-300">🇬🇧 UK</td><td class="font-bold text-gray-900 dark:text-white">2,180</td><td class="text-gray-600 dark:text-gray-300">2</td><td class="text-gray-600 dark:text-gray-300">4</td><td class="text-gray-600 dark:text-gray-300">13</td><td class="text-red-500 dark:text-red-400">↓ 1</td></tr>
+                        <tr><td class="font-bold text-gray-500 dark:text-gray-300">4</td><td class="font-semibold text-gray-900 dark:text-white">Yuki Tanaka</td><td class="text-gray-600 dark:text-gray-300">🇯🇵 Japan</td><td class="font-bold text-gray-900 dark:text-white">1,950</td><td class="text-gray-600 dark:text-gray-300">1</td><td class="text-gray-600 dark:text-gray-300">3</td><td class="text-gray-600 dark:text-gray-300">14</td><td class="text-green-500 dark:text-green-400">↑ 3</td></tr>
+                        <tr><td class="font-bold text-gray-500 dark:text-gray-300">5</td><td class="font-semibold text-gray-900 dark:text-white">Lucas Silva</td><td class="text-gray-600 dark:text-gray-300">🇧🇷 Brazil</td><td class="font-bold text-gray-900 dark:text-white">1,820</td><td class="text-gray-600 dark:text-gray-300">1</td><td class="text-gray-600 dark:text-gray-300">2</td><td class="text-gray-600 dark:text-gray-300">12</td><td class="text-green-500 dark:text-green-400">↑ 1</td></tr>
+                        <tr><td class="font-bold text-gray-500 dark:text-gray-300">6</td><td class="font-semibold text-gray-900 dark:text-white">Emma van der Berg</td><td class="text-gray-600 dark:text-gray-300">🇳🇱 Netherlands</td><td class="font-bold text-gray-900 dark:text-white">1,750</td><td class="text-gray-600 dark:text-gray-300">0</td><td class="text-gray-600 dark:text-gray-300">2</td><td class="text-gray-600 dark:text-gray-300">13</td><td class="text-red-500 dark:text-red-400">↓ 2</td></tr>
+                        <tr><td class="font-bold text-gray-500 dark:text-gray-300">7</td><td class="font-semibold text-gray-900 dark:text-white">David Kim</td><td class="text-gray-600 dark:text-gray-300">🇰🇷 South Korea</td><td class="font-bold text-gray-900 dark:text-white">1,680</td><td class="text-gray-600 dark:text-gray-300">0</td><td class="text-gray-600 dark:text-gray-300">1</td><td class="text-gray-600 dark:text-gray-300">12</td><td class="text-green-500 dark:text-green-400">↑ 4</td></tr>
+                        <tr><td class="font-bold text-gray-500 dark:text-gray-300">8</td><td class="font-semibold text-gray-900 dark:text-white">Sofia Rossi</td><td class="text-gray-600 dark:text-gray-300">🇮🇹 Italy</td><td class="font-bold text-gray-900 dark:text-white">1,590</td><td class="text-gray-600 dark:text-gray-300">0</td><td class="text-gray-600 dark:text-gray-300">1</td><td class="text-gray-600 dark:text-gray-300">11</td><td class="text-red-500 dark:text-red-400">↓ 1</td></tr>
+                        <tr><td class="font-bold text-gray-500 dark:text-gray-300">9</td><td class="font-semibold text-gray-900 dark:text-white">Maxim Volkov</td><td class="text-gray-600 dark:text-gray-300">🇷🇺 Russia</td><td class="font-bold text-gray-900 dark:text-white">1,520</td><td class="text-gray-600 dark:text-gray-300">0</td><td class="text-gray-600 dark:text-gray-300">0</td><td class="text-gray-600 dark:text-gray-300">12</td><td class="text-green-500 dark:text-green-400">↑ 2</td></tr>
+                        <tr><td class="font-bold text-gray-500 dark:text-gray-300">10</td><td class="font-semibold text-gray-900 dark:text-white">Carlos Mendez</td><td class="text-gray-600 dark:text-gray-300">🇲🇽 Mexico</td><td class="font-bold text-gray-900 dark:text-white">1,450</td><td class="text-gray-600 dark:text-gray-300">0</td><td class="text-gray-600 dark:text-gray-300">0</td><td class="text-gray-600 dark:text-gray-300">11</td><td class="text-red-500 dark:text-red-400">↓ 3</td></tr>
                     </tbody>
                 </table>
             </div>
-
-            <div class="flex flex-col sm:flex-row justify-between items-center mt-6 pt-4 border-t border-gray-200 dark:border-gray-800">
-    <p class="hidden sm:block text-sm text-gray-500 dark:text-gray-400 mb-3 sm:mb-0">Showing 1-10 of 250 pilots</p>
-    <div class="flex gap-2 justify-center w-full sm:w-auto">
-        <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">Previous</button>
-        <button class="px-3 py-1 rounded bg-[#3B82F6] text-white">1</button>
-        <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">2</button>
-        <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">3</button>
-        <button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">Next</button>
-    </div>
-</div>
+            <div class="flex flex-col sm:flex-row justify-between items-center mt-6 pt-4 border-t border-gray-200 dark:border-gray-800"><p class="text-sm text-gray-500 dark:text-gray-400 mb-3 sm:mb-0">Showing 1-10 of 250 pilots</p><div class="flex gap-2"><button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition">Previous</button><button class="px-3 py-1 rounded bg-[#3B82F6] text-white">1</button><button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition">2</button><button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition">3</button><button class="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition">Next</button></div></div>
         </div>
     </section>
 
-    <!-- Weekly Stats Section -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <!-- Weekly Performance Section - Enhanced & Attention-Grabbing -->
+    <section class="section-light-gray py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Weekly Performance</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-2">Top performers from the last race</p>
-            </div>
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="bg-white dark:bg-gray-900 rounded-xl p-5 text-center">
-                    <div class="text-3xl mb-2">🏆</div>
-                    <div class="font-bold text-lg text-gray-900 dark:text-white">Fastest Lap</div>
-                    <div class="text-[#3B82F6] font-bold text-xl mt-1">Alex Rivera</div>
-                    <div class="text-sm text-gray-500 dark:text-gray-400">23.4 seconds</div>
-                </div>
-                <div class="bg-white dark:bg-gray-900 rounded-xl p-5 text-center">
-                    <div class="text-3xl mb-2">📈</div>
-                    <div class="font-bold text-lg text-gray-900 dark:text-white">Most Improved</div>
-                    <div class="text-[#3B82F6] font-bold text-xl mt-1">David Kim</div>
-                    <div class="text-sm text-gray-500 dark:text-gray-400">+4 positions</div>
-                </div>
-                <div class="bg-white dark:bg-gray-900 rounded-xl p-5 text-center">
-                    <div class="text-3xl mb-2">🎯</div>
-                    <div class="font-bold text-lg text-gray-900 dark:text-white">Highest Accuracy</div>
-                    <div class="text-[#3B82F6] font-bold text-xl mt-1">Sarah Chen</div>
-                    <div class="text-sm text-gray-500 dark:text-gray-400">98% gate pass</div>
-                </div>
-                <div class="bg-white dark:bg-gray-900 rounded-xl p-5 text-center">
-                    <div class="text-3xl mb-2">⚡</div>
-                    <div class="font-bold text-lg text-gray-900 dark:text-white">Rookie of the Week</div>
-                    <div class="text-[#3B82F6] font-bold text-xl mt-1">Lisa Wong</div>
-                    <div class="text-sm text-gray-500 dark:text-gray-400">First top-10 finish</div>
-                </div>
+            <div class="text-center mb-10"><span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider bg-blue-50 dark:bg-blue-950/30 px-4 py-1.5 rounded-full inline-block mb-4">Weekly Standouts</span><h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white">Weekly Performance Highlights</h2><p class="text-gray-600 dark:text-gray-400 mt-2">Top performers from the last race weekend</p></div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="perf-card bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-2xl p-6 text-center border border-blue-100 dark:border-blue-900/30 hover:shadow-xl transition-all"><div class="text-5xl mb-3">🏆</div><div class="font-bold text-lg text-gray-900 dark:text-white">Fastest Lap</div><div class="text-[#3B82F6] font-bold text-2xl mt-2">Alex Rivera</div><div class="text-sm text-gray-500 dark:text-gray-400 mt-1">23.4 seconds • New Track Record</div><div class="mt-3 inline-block px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-xs font-semibold">🏅 RECORD</div></div>
+                <div class="perf-card bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 rounded-2xl p-6 text-center border border-green-100 dark:border-green-900/30 hover:shadow-xl transition-all"><div class="text-5xl mb-3">📈</div><div class="font-bold text-lg text-gray-900 dark:text-white">Most Improved</div><div class="text-[#3B82F6] font-bold text-2xl mt-2">David Kim</div><div class="text-sm text-gray-500 dark:text-gray-400 mt-1">+4 positions • Biggest Jump</div><div class="mt-3 inline-block px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 rounded-full text-xs font-semibold">⬆️ +245 PTS</div></div>
+                <div class="perf-card bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-2xl p-6 text-center border border-purple-100 dark:border-purple-900/30 hover:shadow-xl transition-all"><div class="text-5xl mb-3">🎯</div><div class="font-bold text-lg text-gray-900 dark:text-white">Highest Accuracy</div><div class="text-[#3B82F6] font-bold text-2xl mt-2">Sarah Chen</div><div class="text-sm text-gray-500 dark:text-gray-400 mt-1">98% gate pass • Flawless Run</div><div class="mt-3 inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-xs font-semibold">🎯 PERFECT</div></div>
+                <div class="perf-card bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-950/20 dark:to-amber-950/20 rounded-2xl p-6 text-center border border-yellow-100 dark:border-yellow-900/30 hover:shadow-xl transition-all"><div class="text-5xl mb-3">⚡</div><div class="font-bold text-lg text-gray-900 dark:text-white">Rookie of the Week</div><div class="text-[#3B82F6] font-bold text-2xl mt-2">Lisa Wong</div><div class="text-sm text-gray-500 dark:text-gray-400 mt-1">First top-10 finish • Rising Star</div><div class="mt-3 inline-block px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400 rounded-full text-xs font-semibold">🌟 ROOKIE</div></div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
+    <!-- Race Highlights & Records - WHITE background -->
+    <section class="section-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10"><span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider bg-blue-50 dark:bg-blue-950/30 px-4 py-1.5 rounded-full inline-block mb-4">History in the Making</span><h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white">Race Highlights & Records</h2><p class="text-gray-600 dark:text-gray-400 mt-2">Unforgettable moments and milestone achievements</p></div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="record-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-lg transition-all border-l-4 border-[#3B82F6]"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-[#3B82F6]/20 rounded-full flex items-center justify-center"><i class="fas fa-clock text-xl text-[#3B82F6]"></i></div><div><span class="text-xs text-[#3B82F6] font-semibold">TRACK RECORD</span><h3 class="font-bold text-lg text-gray-900 dark:text-white">Fastest Lap Ever</h3></div></div><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Alex Rivera set an astonishing 22.8-second lap at the Dubai Grand Prix, breaking the previous record by 0.6 seconds.</p><div class="flex justify-between items-center"><span class="text-xs text-gray-500 dark:text-gray-400">Dubai, UAE • Nov 2024</span><span class="text-[#3B82F6] font-bold">22.8s</span></div></div>
+                <div class="record-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-lg transition-all border-l-4 border-yellow-500"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-yellow-500/20 rounded-full flex items-center justify-center"><i class="fas fa-crown text-xl text-yellow-500"></i></div><div><span class="text-xs text-yellow-500 font-semibold">3-TIME CHAMPION</span><h3 class="font-bold text-lg text-gray-900 dark:text-white">Three-peat Champion</h3></div></div><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Alex Rivera becomes the first pilot in DRL history to win three consecutive World Championships.</p><div class="flex justify-between items-center"><span class="text-xs text-gray-500 dark:text-gray-400">World Championship • Oct 2024</span><span class="text-yellow-500 font-bold">🏆🏆🏆</span></div></div>
+                <div class="record-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-lg transition-all border-l-4 border-green-500"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center"><i class="fas fa-chart-line text-xl text-green-500"></i></div><div><span class="text-xs text-green-500 font-semibold">BIGGEST COMEBACK</span><h3 class="font-bold text-lg text-gray-900 dark:text-white">From Last to First</h3></div></div><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Marcus Thompson started from last position and fought through the field to win the Miami Grand Prix.</p><div class="flex justify-between items-center"><span class="text-xs text-gray-500 dark:text-gray-400">Miami, USA • Jan 2025</span><span class="text-green-500 font-bold">+15 Positions</span></div></div>
+                <div class="record-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-lg transition-all border-l-4 border-purple-500"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center"><i class="fas fa-user-plus text-xl text-purple-500"></i></div><div><span class="text-xs text-purple-500 font-semibold">MILLESTONE</span><h3 class="font-bold text-lg text-gray-900 dark:text-white">10,000th Pilot</h3></div></div><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">DRL | FPV Arena officially registered its 10,000th active pilot from Singapore, marking a historic milestone.</p><div class="flex justify-between items-center"><span class="text-xs text-gray-500 dark:text-gray-400">Global • Feb 2025</span><span class="text-purple-500 font-bold">🎉 10K+</span></div></div>
+                <div class="record-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-lg transition-all border-l-4 border-orange-500"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center"><i class="fas fa-flag-checkered text-xl text-orange-500"></i></div><div><span class="text-xs text-orange-500 font-semibold">MOST WINS</span><h3 class="font-bold text-lg text-gray-900 dark:text-white">All-Time Win Leader</h3></div></div><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Sarah Chen achieved her 25th career victory, the most wins by any female pilot in DRL history.</p><div class="flex justify-between items-center"><span class="text-xs text-gray-500 dark:text-gray-400">Tokyo, Japan • Dec 2024</span><span class="text-orange-500 font-bold">25 Wins</span></div></div>
+                <div class="record-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-lg transition-all border-l-4 border-pink-500"><div class="flex items-center gap-3 mb-3"><div class="w-12 h-12 bg-pink-500/20 rounded-full flex items-center justify-center"><i class="fas fa-calendar-alt text-xl text-pink-500"></i></div><div><span class="text-xs text-pink-500 font-semibold">100TH EVENT</span><h3 class="font-bold text-lg text-gray-900 dark:text-white">Century Celebration</h3></div></div><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">DRL hosted its 100th official race event in Singapore, celebrating five years of drone racing excellence.</p><div class="flex justify-between items-center"><span class="text-xs text-gray-500 dark:text-gray-400">Singapore • Mar 2025</span><span class="text-pink-500 font-bold">🏁 100 Events</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - WHITE BACKGROUND IN LIGHT MODE -->
+    <footer class="bg-white dark:bg-gray-900 pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:grid md:grid-cols-4 gap-8 mb-10">
-                <div>
-                    <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
-                        <i class="fas fa-drone text-2xl text-[#3B82F6]"></i>
-                        <span class="logo-text">DRL | FPV Arena</span>
-                    </a>
-                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                        The premier destination for drone racing and FPV training. Compete, learn, and grow with the best community.
-                    </p>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fab fa-linkedin-in text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fab fa-whatsapp text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fas fa-envelope text-xs"></i></a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4 text-[#3B82F6]">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
-                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="events.html" class="hover:text-white transition">Events</a></li>
-                        <li><a href="leaderboard.html" class="hover:text-white transition">Leaderboard</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4 text-[#3B82F6]">Resources</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="training-modules.html" class="hover:text-white transition">Training Modules</a></li>
-                        <li><a href="shop.html" class="hover:text-white transition">Equipment Shop</a></li>
-                        <li><a href="#" class="hover:text-white transition">Community Guidelines</a></li>
-                        <li><a href="#" class="hover:text-white transition">Support Center</a></li>
-                        <li><a href="#" class="hover:text-white transition">Sponsorship Program</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4 text-[#3B82F6]">Contact Info</h4>
-                    <div class="space-y-3 text-gray-400 text-sm">
-                        <p><i class="fas fa-map-marker-alt text-[#3B82F6] mr-2"></i> New York, USA</p>
-                        <p><i class="fas fa-envelope text-[#3B82F6] mr-2"></i> <a href="mailto:info@drl-fpv.com" class="hover:text-white">info@drl-fpv.com</a></p>
-                        <p><i class="fas fa-phone text-[#3B82F6] mr-2"></i> <a href="tel:+12125550123" class="hover:text-white">+1 (212) 555-0123</a></p>
-                        <p><i class="fas fa-clock text-[#3B82F6] mr-2"></i> Mon-Fri: 9AM - 6PM EST</p>
-                    </div>
-                </div>
+                <div><a href="index.html" class="logo flex items-center gap-2 mb-4 group"><i class="fas fa-drone text-2xl text-[#3B82F6]"></i><span class="logo-text">DRL | FPV Arena</span></a><p class="text-gray-500 dark:text-gray-400 text-sm mb-4">The premier destination for drone racing and FPV training. Compete, learn, and grow with the best community.</p><div class="flex gap-3"><a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition"><i class="fab fa-linkedin-in text-xs"></i></a><a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition"><i class="fab fa-whatsapp text-xs"></i></a><a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition"><i class="fas fa-envelope text-xs"></i></a></div></div>
+                <div><h4 class="font-bold mb-4 text-gray-700 dark:text-[#3B82F6]">Quick Links</h4><ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm"><li><a href="index.html" class="hover:text-gray-700 dark:hover:text-white">Home</a></li><li><a href="about.html" class="hover:text-gray-700 dark:hover:text-white">About Us</a></li><li><a href="events.html" class="hover:text-gray-700 dark:hover:text-white">Events</a></li><li><a href="leaderboard.html" class="hover:text-gray-700 dark:hover:text-white">Leaderboard</a></li><li><a href="contact.html" class="hover:text-gray-700 dark:hover:text-white">Contact</a></li></ul></div>
+                <div><h4 class="font-bold mb-4 text-gray-700 dark:text-[#3B82F6]">Resources</h4><ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm"><li><a href="training-modules.html" class="hover:text-gray-700 dark:hover:text-white">Training Modules</a></li><li><a href="shop.html" class="hover:text-gray-700 dark:hover:text-white">Equipment Shop</a></li><li><a href="#" class="hover:text-gray-700 dark:hover:text-white">Community Guidelines</a></li><li><a href="#" class="hover:text-gray-700 dark:hover:text-white">Support Center</a></li><li><a href="#" class="hover:text-gray-700 dark:hover:text-white">Sponsorship Program</a></li></ul></div>
+                <div><h4 class="font-bold mb-4 text-gray-700 dark:text-[#3B82F6]">Contact Info</h4><div class="space-y-3 text-gray-500 dark:text-gray-400 text-sm"><p><i class="fas fa-map-marker-alt text-[#3B82F6] mr-2"></i> New York, USA</p><p><i class="fas fa-envelope text-[#3B82F6] mr-2"></i> <a href="mailto:info@drl-fpv.com" class="hover:text-gray-700 dark:hover:text-white">info@drl-fpv.com</a></p><p><i class="fas fa-phone text-[#3B82F6] mr-2"></i> <a href="tel:+12125550123" class="hover:text-gray-700 dark:hover:text-white">+1 (212) 555-0123</a></p><p><i class="fas fa-clock text-[#3B82F6] mr-2"></i> Mon-Fri: 9AM - 6PM EST</p></div></div>
             </div>
-            
-            <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
-                <p>© 2024 DRL | FPV Arena — Drone Racing League & FPV Training. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition">Cookie Policy</a>
-                </div>
-            </div>
+            <div class="pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-xs"><p>© 2024 DRL | FPV Arena — Drone Racing League & FPV Training. All rights reserved.</p><div class="flex gap-6"><a href="#" class="hover:text-gray-600 dark:hover:text-white">Privacy Policy</a><a href="#" class="hover:text-gray-600 dark:hover:text-white">Terms of Service</a><a href="#" class="hover:text-gray-600 dark:hover:text-white">Cookie Policy</a></div></div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
-        
-        function openMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.add('open');
-            document.getElementById('mobileOverlay').classList.add('active');
-            document.body.classList.add('menu-open');
-        }
-        
-        function closeMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.remove('open');
-            document.getElementById('mobileOverlay').classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-        
-        function toggleMobileSubmenu(id) {
-            const submenu = document.getElementById(id);
-            if (submenu) {
-                submenu.classList.toggle('open');
-                const btn = submenu.previousElementSibling;
-                const icon = btn?.querySelector('i:last-child');
-                if (icon) {
-                    icon.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-                }
-            }
-        }
-        
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            document.body.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-            setTimeout(() => lucide.createIcons(), 10);
-        }
-        
-        function toggleThemeMobile() {
-            toggleTheme();
-        }
-        
-        function toggleDirection() {
-            const currentDir = document.documentElement.dir;
-            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
-            document.documentElement.dir = newDir;
-            const dirBtn = document.querySelector('.action-btn[onclick="toggleDirection()"]');
-            if (dirBtn) {
-                dirBtn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
-            }
-            const mobileDirBtn = document.querySelector('.mobile-setting-item .action-btn');
-            if (mobileDirBtn) {
-                mobileDirBtn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
-            }
-        }
-        
-        function toggleDirectionMobile() {
-            toggleDirection();
-        }
-        
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-            document.body.classList.add('dark');
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            const dirBtn = document.querySelector('.action-btn[onclick="toggleDirection()"]');
-            if (dirBtn && document.documentElement.dir === 'rtl') {
-                dirBtn.textContent = 'RTL';
-            }
-        });
+        function openMobileMenu() { document.getElementById('mobileMenuPanel').classList.add('open'); document.getElementById('mobileOverlay').classList.add('active'); document.body.classList.add('menu-open'); }
+        function closeMobileMenu() { document.getElementById('mobileMenuPanel').classList.remove('open'); document.getElementById('mobileOverlay').classList.remove('active'); document.body.classList.remove('menu-open'); }
+        function toggleMobileSubmenu(id) { const sub = document.getElementById(id); if(sub) sub.classList.toggle('open'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); document.body.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); setTimeout(() => lucide.createIcons(), 10); }
+        function toggleThemeMobile() { toggleTheme(); }
+        function toggleDirection() { const newDir = document.documentElement.dir === 'rtl' ? 'ltr' : 'rtl'; document.documentElement.dir = newDir; const btns = document.querySelectorAll('.action-btn[onclick="toggleDirection()"], .mobile-setting-item .action-btn'); btns.forEach(btn => { if(btn && btn.textContent) btn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR'; }); }
+        function toggleDirectionMobile() { toggleDirection(); }
+        if (localStorage.getItem('theme') === 'dark') { document.documentElement.classList.add('dark'); document.body.classList.add('dark'); }
+        document.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); const dirBtn = document.querySelector('.action-btn[onclick="toggleDirection()"]'); if (dirBtn && document.documentElement.dir === 'rtl') dirBtn.textContent = 'RTL'; });
     </script>
 </body>
 </html>

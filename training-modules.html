@@ -45,7 +45,7 @@
         }
         
         body.light {
-            background: #F9F6F3;
+            background: #FFFFFF;
         }
         
         body.dark {
@@ -56,22 +56,27 @@
             overflow: hidden;
         }
         
-        /* ===== NAVBAR - PERFECT 3-PART LAYOUT ===== */
+        /* ===== NAVBAR - LIGHT MODE WHITE BACKGROUND ===== */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: #0F172A;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.25);
             transition: all 0.3s ease;
         }
         
-        .dark .navbar {
+        body.light .navbar {
+            background: #FFFFFF;
+            backdrop-filter: blur(0px);
+            border-bottom: 1px solid #E5E7EB;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        
+        body.dark .navbar {
             background: #0F172A;
-            border-bottom-color: rgba(59, 130, 246, 0.4);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.25);
         }
         
         .nav-container {
@@ -112,13 +117,9 @@
         .logo-text {
             font-weight: 900;
             font-size: 1.4rem;
-            color: #3B82F6;
             letter-spacing: -0.5px;
             font-family: 'Orbitron', monospace;
-        }
-        
-        .dark .logo-text {
-            color: #3B82F6;
+            color: #3B82F6 !important;
         }
         
         .nav-part-center {
@@ -136,7 +137,6 @@
             font-weight: 600;
             padding: 8px 12px;
             border-radius: 40px;
-            color: #F9F6F3;
             transition: all 0.3s ease;
             background: transparent;
             border: none;
@@ -148,7 +148,11 @@
             white-space: nowrap;
         }
         
-        .dark .nav-link {
+        body.light .nav-link {
+            color: #1F2937;
+        }
+        
+        body.dark .nav-link {
             color: #F9F6F3;
         }
         
@@ -164,26 +168,29 @@
             position: relative;
         }
         
+        body.light .dropdown-menu {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark .dropdown-menu {
+            background: #0F172A;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
         .dropdown-menu {
             position: absolute;
             top: 100%;
             margin-top: 12px;
             min-width: 220px;
-            background: #0F172A;
             border-radius: 24px;
             padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.2);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-8px);
             transition: all 0.25s ease;
             z-index: 1001;
-        }
-        
-        .dark .dropdown-menu {
-            background: #0F172A;
-            border-color: rgba(59, 130, 246, 0.3);
         }
         
         .dropdown:hover .dropdown-menu {
@@ -192,21 +199,24 @@
             transform: translateY(0);
         }
         
+        body.light .dropdown-item {
+            color: #1F2937;
+        }
+        
+        body.dark .dropdown-item {
+            color: #F9F6F3;
+        }
+        
         .dropdown-item {
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 10px 16px;
             border-radius: 16px;
-            color: #F9F6F3;
             font-weight: 500;
             font-size: 13px;
             transition: all 0.2s ease;
             text-decoration: none;
-        }
-        
-        .dark .dropdown-item {
-            color: #F9F6F3;
         }
         
         .dropdown-item i {
@@ -224,16 +234,23 @@
             position: relative;
         }
         
+        body.light .profile-dropdown-menu {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .profile-dropdown-menu {
+            background: #0F172A;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
         .profile-dropdown-menu {
             position: absolute;
             top: 100%;
             margin-top: 12px;
             min-width: 220px;
-            background: #0F172A;
             border-radius: 24px;
             padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.2);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-8px);
@@ -241,20 +258,8 @@
             z-index: 1001;
         }
         
-        [dir="ltr"] .profile-dropdown-menu {
-            right: 0;
-            left: auto;
-        }
-        
-        [dir="rtl"] .profile-dropdown-menu {
-            left: 0;
-            right: auto;
-        }
-        
-        .dark .profile-dropdown-menu {
-            background: #0F172A;
-            border-color: rgba(59, 130, 246, 0.3);
-        }
+        [dir="ltr"] .profile-dropdown-menu { right: 0; left: auto; }
+        [dir="rtl"] .profile-dropdown-menu { left: 0; right: auto; }
         
         .profile-dropdown:hover .profile-dropdown-menu {
             opacity: 1;
@@ -269,19 +274,29 @@
             gap: 0.5rem;
         }
         
+        body.light .action-btn {
+            background: #F3F4F6;
+            color: #374151;
+            border: 1px solid #E5E7EB;
+            box-shadow: none;
+        }
+        
+        body.dark .action-btn {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
         .action-btn {
             width: 40px;
             height: 40px;
             border-radius: 40px;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
             flex-shrink: 0;
             font-size: 14px;
             font-weight: 600;
@@ -291,124 +306,82 @@
             transform: translateY(-2px) scale(1.05);
         }
         
+        body.light .action-btn:hover { background: #E5E7EB; }
+        body.dark .action-btn:hover { background: linear-gradient(135deg, #2563EB, #1D4ED8); }
+        
         .hamburger {
             display: none;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
-            border: none;
             cursor: pointer;
             width: 40px;
             height: 40px;
             border-radius: 40px;
             align-items: center;
             justify-content: center;
-            color: white;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
             transition: all 0.3s ease;
             flex-shrink: 0;
         }
         
-        .hamburger:hover {
-            transform: scale(1.05);
+        body.light .hamburger {
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            color: #374151;
         }
         
-        .desktop-auth-buttons {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        body.dark .hamburger {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
+        .hamburger:hover { transform: scale(1.05); }
+        body.light .hamburger:hover { background: #E5E7EB; }
+        body.dark .hamburger:hover { background: linear-gradient(135deg, #2563EB, #1D4ED8); }
+        
+        .desktop-auth-buttons { display: flex; align-items: center; gap: 0.5rem; }
+        
+        /* RESPONSIVE - same as contact page */
         @media (max-width: 1200px) {
-            .nav-link {
-                padding: 8px 10px;
-                font-size: 13px;
-            }
+            .nav-link { padding: 8px 10px; font-size: 13px; }
         }
         
         @media (max-width: 1100px) {
-            .nav-link {
-                padding: 8px 8px;
-                font-size: 12px;
-            }
-            .nav-part-center {
-                gap: 0.1rem;
-            }
+            .nav-link { padding: 8px 8px; font-size: 12px; }
+            .nav-part-center { gap: 0.1rem; }
         }
         
         @media (max-width: 1000px) {
-            .nav-part-center {
-                display: none !important;
-            }
-            .desktop-auth-buttons {
-                display: none !important;
-            }
-            .hamburger {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: none !important;
-            }
+            .nav-part-center { display: none !important; }
+            .desktop-auth-buttons { display: none !important; }
+            .hamburger { display: flex !important; }
+            .profile-dropdown { display: none !important; }
         }
         
         @media (min-width: 1001px) {
-            .hamburger {
-                display: none !important;
-            }
-            .nav-part-center {
-                display: flex !important;
-            }
-            .desktop-auth-buttons {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: block !important;
-            }
+            .hamburger { display: none !important; }
+            .nav-part-center { display: flex !important; }
+            .desktop-auth-buttons { display: flex !important; }
+            .profile-dropdown { display: block !important; }
         }
         
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 0.5rem 1rem;
-            }
-            .logo {
-                padding: 4px 6px;
-            }
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            .logo i {
-                font-size: 1.5rem;
-            }
-            .action-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 12px;
-            }
-            .hamburger {
-                width: 36px;
-                height: 36px;
-            }
+            .nav-container { padding: 0.5rem 1rem; }
+            .logo { padding: 4px 6px; }
+            .logo-text { font-size: 1.2rem; }
+            .logo i { font-size: 1.5rem; }
+            .action-btn { width: 36px; height: 36px; font-size: 12px; }
+            .hamburger { width: 36px; height: 36px; }
         }
         
         @media (max-width: 480px) {
-            .nav-container {
-                padding: 0.5rem 0.75rem;
-            }
-            .logo-text {
-                font-size: 1rem;
-            }
-            .logo i {
-                font-size: 1.3rem;
-            }
-            .action-btn {
-                width: 34px;
-                height: 34px;
-                font-size: 11px;
-            }
-            .hamburger {
-                width: 34px;
-                height: 34px;
-            }
+            .nav-container { padding: 0.5rem 0.75rem; }
+            .logo-text { font-size: 1rem; }
+            .logo i { font-size: 1.3rem; }
+            .action-btn { width: 34px; height: 34px; font-size: 11px; }
+            .hamburger { width: 34px; height: 34px; }
         }
         
+        /* Mobile Menu */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -422,9 +395,17 @@
             transition: all 0.3s ease;
         }
         
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+        
+        body.light .mobile-menu {
+            background: #FFFFFF;
+            backdrop-filter: blur(0px);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark .mobile-menu {
+            background: #0F172A;
+            backdrop-filter: blur(20px);
         }
         
         .mobile-menu {
@@ -434,22 +415,16 @@
             bottom: 0;
             width: 85%;
             max-width: 380px;
-            background: #0F172A;
-            backdrop-filter: blur(20px);
             z-index: 2000;
             transform: translateX(100%);
             transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
         }
         
-        .dark .mobile-menu {
-            background: #0F172A;
-        }
+        .mobile-menu.open { transform: translateX(0); }
         
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
+        body.light .mobile-header { background: linear-gradient(135deg, #F9FAFB, #F3F4F6); }
+        body.dark .mobile-header { background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); }
         
         .mobile-header {
             display: flex;
@@ -457,27 +432,44 @@
             align-items: center;
             padding: 20px 24px;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
+        }
+        
+        .mobile-header .logo-text { color: #3B82F6 !important; }
+        
+        body.light .mobile-close {
+            background: #F3F4F6;
+            color: #1F2937;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .mobile-close {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            border: none;
         }
         
         .mobile-close {
             width: 48px;
             height: 48px;
             border-radius: 30px;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: white;
-            border: none;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
         }
         
-        .mobile-nav-items {
-            padding: 0 20px 20px 20px;
+        body.light .mobile-nav-link {
+            color: #1F2937;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .mobile-nav-link {
+            color: #F9F6F3;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
         
         .mobile-nav-link {
@@ -489,19 +481,10 @@
             border-radius: 20px;
             font-weight: 600;
             font-size: 1rem;
-            color: #F9F6F3;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
             width: 100%;
             cursor: pointer;
             transition: all 0.25s ease;
             text-decoration: none;
-        }
-        
-        .dark .mobile-nav-link {
-            color: #F9F6F3;
-            background: rgba(59, 130, 246, 0.08);
-            border-color: rgba(59, 130, 246, 0.25);
         }
         
         .mobile-nav-link:hover,
@@ -520,19 +503,23 @@
             animation: slideDown 0.25s ease;
         }
         
-        .mobile-submenu-items.open {
-            display: block;
-        }
+        .mobile-submenu-items.open { display: block; }
         
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body.light .mobile-submenu-items a {
+            color: #1F2937;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .mobile-submenu-items a {
+            color: #F9F6F3;
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.15);
         }
         
         .mobile-submenu-items a {
@@ -542,18 +529,10 @@
             padding: 12px 18px;
             margin: 8px 0;
             border-radius: 16px;
-            color: #F9F6F3;
             font-weight: 500;
             font-size: 0.9rem;
             text-decoration: none;
             transition: all 0.2s ease;
-            background: rgba(59, 130, 246, 0.08);
-            border: 1px solid rgba(59, 130, 246, 0.15);
-        }
-        
-        .dark .mobile-submenu-items a {
-            color: #F9F6F3;
-            background: rgba(59, 130, 246, 0.05);
         }
         
         .mobile-submenu-items a:hover,
@@ -563,9 +542,17 @@
             transform: translateX(5px);
         }
         
-        .mobile-settings {
+        body.light .mobile-settings {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        
+        body.dark .mobile-settings {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
             border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .mobile-settings {
             border-radius: 28px;
             padding: 20px;
             margin-top: 25px;
@@ -578,16 +565,14 @@
             padding: 12px 0;
         }
         
+        body.light .mobile-setting-label { color: #1F2937; }
+        body.dark .mobile-setting-label { color: #F9F6F3; }
+        
         .mobile-setting-label {
             font-weight: 600;
-            color: #F9F6F3;
             display: flex;
             align-items: center;
             gap: 12px;
-        }
-        
-        .dark .mobile-setting-label {
-            color: #F9F6F3;
         }
         
         /* Training Page Specific Styles */
@@ -650,71 +635,42 @@
             transition: width 0.3s ease;
         }
         
-        footer .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        footer .logo i {
-            font-size: 1.8rem;
-            color: #3B82F6;
-            transition: all 0.3s ease;
-        }
-
-        footer .logo-text {
-            font-weight: 900;
-            font-size: 1.4rem;
-            color: #3B82F6;
-            letter-spacing: -0.5px;
-            transition: all 0.3s ease;
-            font-family: 'Orbitron', monospace;
-        }
-
-        .dark footer .logo-text {
-            color: #3B82F6;
-        }
-
-        @media (max-width: 768px) {
-            footer .logo i {
-                font-size: 1.5rem !important;
-            }
-            footer .logo-text {
-                font-size: 1.2rem !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            footer .logo i {
-                font-size: 1.3rem !important;
-            }
-            footer .logo-text {
-                font-size: 1rem !important;
-            }
-        }
-
-        footer .logo:hover {
-            transform: scale(1.02);
-        }
-
-        footer .logo:hover i,
-        footer .logo:hover .logo-text {
-            transform: scale(1.02);
-        }
+        /* Section backgrounds */
+        .section-white { background: #FFFFFF; }
+        .section-light-gray { background: #F9FAFB; }
+        body.dark .section-white { background: #0F172A; }
+        body.dark .section-light-gray { background: #0A0F1A; }
         
+        /* Footer */
         footer {
-            background-color: #0F172A !important;
+            background-color: #FFFFFF !important;
+            border-top: 1px solid #E5E7EB;
         }
         
-        .dark footer {
+        body.dark footer {
             background-color: #0F172A !important;
+            border-top: 1px solid #2D2D2D;
         }
         
-        footer h4 {
-            color: #3B82F6 !important;
+        footer .logo i { color: #3B82F6; }
+        footer .logo-text { color: #3B82F6 !important; }
+        
+        body.light footer p, body.light footer li, body.light footer a { color: #6B7280 !important; }
+        body.light footer h4 { color: #1F2937 !important; }
+        body.dark footer p, body.dark footer li, body.dark footer a { color: #9CA3AF !important; }
+        body.dark footer h4 { color: #3B82F6 !important; }
+        
+        @media (max-width: 768px) {
+            footer .logo i { font-size: 1.5rem !important; }
+            footer .logo-text { font-size: 1.2rem !important; }
         }
+        
+        @media (max-width: 480px) {
+            footer .logo i { font-size: 1.3rem !important; }
+            footer .logo-text { font-size: 1rem !important; }
+        }
+        
+        footer .logo:hover { transform: scale(1.02); }
     </style>
 </head>
 <body class="light font-inter">
@@ -779,46 +735,19 @@
             <button onclick="closeMobileMenu()" class="mobile-close"><i data-lucide="x" class="w-6 h-6"></i></button>
         </div>
         <div class="mobile-nav-items">
-            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-home mr-3"></i>HOME</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileHomeSubmenu" class="mobile-submenu-items">
-                <a href="index.html" onclick="closeMobileMenu()">Home1 - Racing League</a>
-                <a href="home2.html" onclick="closeMobileMenu()">Home2 - FPV Training</a>
-            </div>
+            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link"><span><i class="fas fa-home mr-3"></i>HOME</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileHomeSubmenu" class="mobile-submenu-items"><a href="index.html" onclick="closeMobileMenu()">Home1 - Racing League</a><a href="home2.html" onclick="closeMobileMenu()">Home2 - FPV Training</a></div>
             <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span></a>
             <a href="events.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-flag-checkered mr-3"></i>EVENTS</span></a>
             <a href="leaderboard.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-trophy mr-3"></i>LEADERBOARD</span></a>
             <a href="shop.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-shopping-cart mr-3"></i>SHOP</span></a>
             <a href="training-modules.html" class="mobile-nav-link active" onclick="closeMobileMenu()"><span><i class="fas fa-graduation-cap mr-3"></i>TRAINING</span></a>
             <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span></a>
-            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileDashSubmenu" class="mobile-submenu-items">
-                <a href="dashboard-admin.html" onclick="closeMobileMenu()">Admin Dashboard</a>
-                <a href="dashboard-user.html" onclick="closeMobileMenu()">User Dashboard</a>
-            </div>
-            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileAuthSubmenu" class="mobile-submenu-items">
-                <a href="login.html" onclick="closeMobileMenu()">Login</a>
-                <a href="signup.html" onclick="closeMobileMenu()">Signup</a>
-            </div>
-            <div class="mobile-settings">
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span>
-                    <button onclick="toggleDirectionMobile()" class="action-btn" style="width: auto; padding: 0 12px;">LTR</button>
-                </div>
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span>
-                    <button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
-                </div>
-            </div>
+            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link"><span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileDashSubmenu" class="mobile-submenu-items"><a href="dashboard-admin.html" onclick="closeMobileMenu()">Admin Dashboard</a><a href="dashboard-user.html" onclick="closeMobileMenu()">User Dashboard</a></div>
+            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link"><span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileAuthSubmenu" class="mobile-submenu-items"><a href="login.html" onclick="closeMobileMenu()">Login</a><a href="signup.html" onclick="closeMobileMenu()">Signup</a></div>
+            <div class="mobile-settings"><div class="mobile-setting-item"><span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span><button onclick="toggleDirectionMobile()" class="action-btn" style="width: auto; padding: 0 12px;">LTR</button></div><div class="mobile-setting-item"><span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span><button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button></div></div>
         </div>
     </div>
 
@@ -841,32 +770,20 @@
         </div>
     </section>
 
-    <!-- Training Stats -->
-    <section class="py-12 bg-white dark:bg-gray-900">
+    <!-- Training Stats - LIGHT GREY background -->
+    <section class="section-light-gray py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="text-center p-4">
-                    <div class="text-3xl font-bold text-[#3B82F6] mb-1">50+</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">Training Modules</div>
-                </div>
-                <div class="text-center p-4">
-                    <div class="text-3xl font-bold text-[#3B82F6] mb-1">100+</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">Video Lessons</div>
-                </div>
-                <div class="text-center p-4">
-                    <div class="text-3xl font-bold text-[#3B82F6] mb-1">10K+</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">Active Students</div>
-                </div>
-                <div class="text-center p-4">
-                    <div class="text-3xl font-bold text-[#3B82F6] mb-1">94%</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">Success Rate</div>
-                </div>
+                <div class="text-center p-4 bg-white dark:bg-gray-900 rounded-xl shadow-sm"><div class="text-3xl font-bold text-[#3B82F6] mb-1">50+</div><div class="text-sm text-gray-600 dark:text-gray-400">Training Modules</div></div>
+                <div class="text-center p-4 bg-white dark:bg-gray-900 rounded-xl shadow-sm"><div class="text-3xl font-bold text-[#3B82F6] mb-1">100+</div><div class="text-sm text-gray-600 dark:text-gray-400">Video Lessons</div></div>
+                <div class="text-center p-4 bg-white dark:bg-gray-900 rounded-xl shadow-sm"><div class="text-3xl font-bold text-[#3B82F6] mb-1">10K+</div><div class="text-sm text-gray-600 dark:text-gray-400">Active Students</div></div>
+                <div class="text-center p-4 bg-white dark:bg-gray-900 rounded-xl shadow-sm"><div class="text-3xl font-bold text-[#3B82F6] mb-1">94%</div><div class="text-sm text-gray-600 dark:text-gray-400">Success Rate</div></div>
             </div>
         </div>
     </section>
 
-    <!-- Training Modules Grid -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <!-- Training Modules Grid - WHITE background -->
+    <section class="section-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white">Training Modules</h2>
@@ -874,213 +791,64 @@
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Module 1 - Beginner -->
-                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg relative">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/d1.jpeg" alt="Beginner Module" class="w-full h-full object-cover">
-                        <div class="level-badge bg-green-500 text-white">Beginner</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-play-circle text-[#3B82F6]"></i>
-                            <span class="text-sm text-gray-500">8 Lessons • 2.5 hours</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">FPV Fundamentals</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Learn the basics of FPV drones, safety protocols, and first flight techniques.</p>
-                        <div class="mb-3">
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="text-gray-500">Progress</span>
-                                <span class="text-[#3B82F6] font-semibold">0%</span>
-                            </div>
-                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
-                        </div>
-                        <button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button>
-                    </div>
+                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 relative">
+                    <div class="relative h-48 overflow-hidden"><img src="images/d1.jpeg" alt="Beginner Module" class="w-full h-full object-cover"><div class="level-badge bg-green-500 text-white">Beginner</div></div>
+                    <div class="p-6"><div class="flex items-center gap-2 mb-2"><i class="fas fa-play-circle text-[#3B82F6]"></i><span class="text-sm text-gray-500">8 Lessons • 2.5 hours</span></div><h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">FPV Fundamentals</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Learn the basics of FPV drones, safety protocols, and first flight techniques.</p><div class="mb-3"><div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Progress</span><span class="text-[#3B82F6] font-semibold">0%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div></div><button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button></div>
                 </div>
 
                 <!-- Module 2 - Intermediate -->
-                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg relative">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/j1.jpeg" alt="Intermediate Module" class="w-full h-full object-cover">
-                        <div class="level-badge bg-blue-500 text-white">Intermediate</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-play-circle text-[#3B82F6]"></i>
-                            <span class="text-sm text-gray-500">10 Lessons • 4 hours</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Racing Techniques</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Master racing lines, gate navigation, and advanced flight maneuvers.</p>
-                        <div class="mb-3">
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="text-gray-500">Progress</span>
-                                <span class="text-[#3B82F6] font-semibold">0%</span>
-                            </div>
-                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
-                        </div>
-                        <button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button>
-                    </div>
+                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 relative">
+                    <div class="relative h-48 overflow-hidden"><img src="images/j1.jpeg" alt="Intermediate Module" class="w-full h-full object-cover"><div class="level-badge bg-blue-500 text-white">Intermediate</div></div>
+                    <div class="p-6"><div class="flex items-center gap-2 mb-2"><i class="fas fa-play-circle text-[#3B82F6]"></i><span class="text-sm text-gray-500">10 Lessons • 4 hours</span></div><h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Racing Techniques</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Master racing lines, gate navigation, and advanced flight maneuvers.</p><div class="mb-3"><div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Progress</span><span class="text-[#3B82F6] font-semibold">0%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div></div><button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button></div>
                 </div>
 
                 <!-- Module 3 - Advanced -->
-                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg relative">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/home-bg.jpg" alt="Advanced Module" class="w-full h-full object-cover">
-                        <div class="level-badge bg-purple-500 text-white">Advanced</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-play-circle text-[#3B82F6]"></i>
-                            <span class="text-sm text-gray-500">12 Lessons • 6 hours</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Pro Racing Mastery</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Elite racing strategies, drone tuning, and competition preparation.</p>
-                        <div class="mb-3">
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="text-gray-500">Progress</span>
-                                <span class="text-[#3B82F6] font-semibold">0%</span>
-                            </div>
-                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
-                        </div>
-                        <button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button>
-                    </div>
+                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 relative">
+                    <div class="relative h-48 overflow-hidden"><img src="images/home-bg.jpg" alt="Advanced Module" class="w-full h-full object-cover"><div class="level-badge bg-purple-500 text-white">Advanced</div></div>
+                    <div class="p-6"><div class="flex items-center gap-2 mb-2"><i class="fas fa-play-circle text-[#3B82F6]"></i><span class="text-sm text-gray-500">12 Lessons • 6 hours</span></div><h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Pro Racing Mastery</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Elite racing strategies, drone tuning, and competition preparation.</p><div class="mb-3"><div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Progress</span><span class="text-[#3B82F6] font-semibold">0%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div></div><button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button></div>
                 </div>
 
                 <!-- Module 4 - Freestyle -->
-                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg relative">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/p1.jpeg" alt="Freestyle Module" class="w-full h-full object-cover">
-                        <div class="level-badge bg-orange-500 text-white">Freestyle</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-play-circle text-[#3B82F6]"></i>
-                            <span class="text-sm text-gray-500">8 Lessons • 3.5 hours</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">FPV Freestyle</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Learn creative freestyle tricks, power loops, and cinematic flying.</p>
-                        <div class="mb-3">
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="text-gray-500">Progress</span>
-                                <span class="text-[#3B82F6] font-semibold">0%</span>
-                            </div>
-                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
-                        </div>
-                        <button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button>
-                    </div>
+                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 relative">
+                    <div class="relative h-48 overflow-hidden"><img src="images/p1.jpeg" alt="Freestyle Module" class="w-full h-full object-cover"><div class="level-badge bg-orange-500 text-white">Freestyle</div></div>
+                    <div class="p-6"><div class="flex items-center gap-2 mb-2"><i class="fas fa-play-circle text-[#3B82F6]"></i><span class="text-sm text-gray-500">8 Lessons • 3.5 hours</span></div><h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">FPV Freestyle</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Learn creative freestyle tricks, power loops, and cinematic flying.</p><div class="mb-3"><div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Progress</span><span class="text-[#3B82F6] font-semibold">0%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div></div><button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button></div>
                 </div>
 
                 <!-- Module 5 - Simulator -->
-                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg relative">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/home2-bg.jpg" alt="Simulator Module" class="w-full h-full object-cover">
-                        <div class="level-badge bg-teal-500 text-white">Simulator</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-play-circle text-[#3B82F6]"></i>
-                            <span class="text-sm text-gray-500">6 Lessons • 2 hours</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Simulator Training</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Practice risk-free with our advanced drone simulator integration.</p>
-                        <div class="mb-3">
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="text-gray-500">Progress</span>
-                                <span class="text-[#3B82F6] font-semibold">0%</span>
-                            </div>
-                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
-                        </div>
-                        <button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button>
-                    </div>
+                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 relative">
+                    <div class="relative h-48 overflow-hidden"><img src="images/home2-bg.jpg" alt="Simulator Module" class="w-full h-full object-cover"><div class="level-badge bg-teal-500 text-white">Simulator</div></div>
+                    <div class="p-6"><div class="flex items-center gap-2 mb-2"><i class="fas fa-play-circle text-[#3B82F6]"></i><span class="text-sm text-gray-500">6 Lessons • 2 hours</span></div><h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Simulator Training</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Practice risk-free with our advanced drone simulator integration.</p><div class="mb-3"><div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Progress</span><span class="text-[#3B82F6] font-semibold">0%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div></div><button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button></div>
                 </div>
 
                 <!-- Module 6 - Certification -->
-                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg relative">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/t1.jpeg" alt="Certification" class="w-full h-full object-cover">
-                        <div class="level-badge bg-yellow-600 text-white">Certification</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-play-circle text-[#3B82F6]"></i>
-                            <span class="text-sm text-gray-500">5 Lessons • 3 hours</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">FPV Certification</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Earn your official DRL FPV certification and showcase your skills.</p>
-                        <div class="mb-3">
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="text-gray-500">Progress</span>
-                                <span class="text-[#3B82F6] font-semibold">0%</span>
-                            </div>
-                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
-                        </div>
-                        <button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button>
-                    </div>
+                <div class="module-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 relative">
+                    <div class="relative h-48 overflow-hidden"><img src="images/t1.jpeg" alt="Certification" class="w-full h-full object-cover"><div class="level-badge bg-yellow-600 text-white">Certification</div></div>
+                    <div class="p-6"><div class="flex items-center gap-2 mb-2"><i class="fas fa-play-circle text-[#3B82F6]"></i><span class="text-sm text-gray-500">5 Lessons • 3 hours</span></div><h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">FPV Certification</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Earn your official DRL FPV certification and showcase your skills.</p><div class="mb-3"><div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Progress</span><span class="text-[#3B82F6] font-semibold">0%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div></div><button class="w-full bg-[#3B82F6] text-white py-2 rounded-lg font-semibold hover:bg-[#2563EB] transition">Start Learning →</button></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Learning Path Section -->
-    <section class="py-16 bg-white dark:bg-gray-900">
+    <!-- Learning Path Section - LIGHT GREY background -->
+    <section class="section-light-gray py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-gradient-to-r from-[#0F172A] to-[#1E3A5F] rounded-3xl p-8 md:p-12">
                 <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <span class="text-[#3B82F6] text-sm font-semibold uppercase tracking-wider">Recommended Path</span>
-                        <h2 class="text-3xl md:text-4xl font-black text-white mt-2 mb-4">Complete Learning Journey</h2>
-                        <p class="text-gray-300 mb-6">Follow our structured path from absolute beginner to professional racer. Get certified at each level and unlock exclusive content.</p>
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-[#3B82F6]"></i> Beginner → Intermediate → Advanced</li>
-                            <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-[#3B82F6]"></i> Simulator training included</li>
-                            <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-[#3B82F6]"></i> Official DRL certification upon completion</li>
-                        </ul>
-                        <button class="bg-[#3B82F6] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#2563EB] transition">View Full Curriculum →</button>
-                    </div>
-                    <div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="text-white font-semibold">Overall Progress</span>
-                                <span class="text-[#3B82F6] font-bold">0%</span>
-                            </div>
-                            <div class="progress-bar bg-white/20"><div class="progress-fill" style="width: 0%"></div></div>
-                            <div class="mt-6 space-y-3">
-                                <div class="flex justify-between text-sm text-gray-300"><span>📗 Beginner Path</span><span>0/8 modules</span></div>
-                                <div class="flex justify-between text-sm text-gray-300"><span>📘 Intermediate Path</span><span>0/10 modules</span></div>
-                                <div class="flex justify-between text-sm text-gray-300"><span>📕 Advanced Path</span><span>0/12 modules</span></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div><span class="text-[#3B82F6] text-sm font-semibold uppercase tracking-wider">Recommended Path</span><h2 class="text-3xl md:text-4xl font-black text-white mt-2 mb-4">Complete Learning Journey</h2><p class="text-gray-300 mb-6">Follow our structured path from absolute beginner to professional racer. Get certified at each level and unlock exclusive content.</p><ul class="space-y-3 mb-6"><li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-[#3B82F6]"></i> Beginner → Intermediate → Advanced</li><li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-[#3B82F6]"></i> Simulator training included</li><li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-[#3B82F6]"></i> Official DRL certification upon completion</li></ul><button class="bg-[#3B82F6] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#2563EB] transition">View Full Curriculum →</button></div>
+                    <div><div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6"><div class="flex items-center justify-between mb-4"><span class="text-white font-semibold">Overall Progress</span><span class="text-[#3B82F6] font-bold">0%</span></div><div class="progress-bar bg-white/20"><div class="progress-fill" style="width: 0%"></div></div><div class="mt-6 space-y-3"><div class="flex justify-between text-sm text-gray-300"><span>📗 Beginner Path</span><span>0/8 modules</span></div><div class="flex justify-between text-sm text-gray-300"><span>📘 Intermediate Path</span><span>0/10 modules</span></div><div class="flex justify-between text-sm text-gray-300"><span>📕 Advanced Path</span><span>0/12 modules</span></div></div></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <!-- Testimonials - WHITE background -->
+    <section class="section-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">Success Stories</span>
-                <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">What Our Students Say</h2>
-            </div>
+            <div class="text-center mb-12"><span class="text-[#3B82F6] font-semibold text-sm uppercase tracking-wider">Success Stories</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">What Our Students Say</h2></div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
-                    <div class="flex text-[#3B82F6] mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">"The training modules are incredibly well-structured. I went from never flying a drone to winning my first local race in 3 months!"</p>
-                    <div class="font-bold text-gray-900 dark:text-white">David Kim</div>
-                    <div class="text-sm text-gray-500">Graduate, Class of 2024</div>
-                </div>
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
-                    <div class="flex text-[#3B82F6] mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">"The simulator training saved me thousands in crashed drones. Best investment in my FPV journey!"</p>
-                    <div class="font-bold text-gray-900 dark:text-white">Lisa Wong</div>
-                    <div class="text-sm text-gray-500">FPV Racer</div>
-                </div>
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
-                    <div class="flex text-[#3B82F6] mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">"The instructors are world-class. The feedback and community support helped me improve rapidly."</p>
-                    <div class="font-bold text-gray-900 dark:text-white">Carlos Mendez</div>
-                    <div class="text-sm text-gray-500">Certified Pilot</div>
-                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-sm"><div class="flex text-[#3B82F6] mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-600 dark:text-gray-400 mb-4">"The training modules are incredibly well-structured. I went from never flying a drone to winning my first local race in 3 months!"</p><div class="font-bold text-gray-900 dark:text-white">David Kim</div><div class="text-sm text-gray-500">Graduate, Class of 2024</div></div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-sm"><div class="flex text-[#3B82F6] mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-600 dark:text-gray-400 mb-4">"The simulator training saved me thousands in crashed drones. Best investment in my FPV journey!"</p><div class="font-bold text-gray-900 dark:text-white">Lisa Wong</div><div class="text-sm text-gray-500">FPV Racer</div></div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-sm"><div class="flex text-[#3B82F6] mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-600 dark:text-gray-400 mb-4">"The instructors are world-class. The feedback and community support helped me improve rapidly."</p><div class="font-bold text-gray-900 dark:text-white">Carlos Mendez</div><div class="text-sm text-gray-500">Certified Pilot</div></div>
             </div>
         </div>
     </section>
@@ -1088,153 +856,37 @@
     <!-- CTA Section -->
     <section class="py-16 bg-gradient-to-r from-[#0F172A] to-[#1E3A5F]">
         <div class="max-w-4xl mx-auto text-center px-4">
-            <div class="inline-flex items-center gap-2 bg-[#3B82F6]/20 text-[#3B82F6] px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                <i class="fas fa-rocket"></i> Start Your Journey Today
-            </div>
+            <div class="inline-flex items-center gap-2 bg-[#3B82F6]/20 text-[#3B82F6] px-4 py-2 rounded-full text-sm font-semibold mb-6"><i class="fas fa-rocket"></i> Start Your Journey Today</div>
             <h2 class="text-3xl md:text-5xl font-black text-white mb-4">Ready to Master FPV?</h2>
             <p class="text-xl text-gray-300 mb-8">Join thousands of pilots already training with us. Get instant access to all modules.</p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="signup.html" class="bg-[#3B82F6] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#2563EB] transition inline-flex items-center gap-2">
-                    <i class="fas fa-user-plus"></i> Start Free Trial
-                </a>
-                <a href="contact.html" class="bg-white/10 border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition inline-flex items-center gap-2">
-                    <i class="fas fa-eye"></i> View Curriculum
-                </a>
-            </div>
+            <div class="flex flex-wrap gap-4 justify-center"><a href="signup.html" class="bg-[#3B82F6] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#2563EB] transition inline-flex items-center gap-2"><i class="fas fa-user-plus"></i> Start Free Trial</a><a href="contact.html" class="bg-white/10 border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition inline-flex items-center gap-2"><i class="fas fa-eye"></i> View Curriculum</a></div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
+    <!-- Footer - WHITE BACKGROUND IN LIGHT MODE -->
+    <footer class="bg-white dark:bg-gray-900 pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:grid md:grid-cols-4 gap-8 mb-10">
-                <div>
-                    <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
-                        <i class="fas fa-drone text-2xl text-[#3B82F6]"></i>
-                        <span class="logo-text">DRL | FPV Arena</span>
-                    </a>
-                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                        The premier destination for drone racing and FPV training. Compete, learn, and grow with the best community.
-                    </p>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fab fa-linkedin-in text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fab fa-whatsapp text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] transition"><i class="fas fa-envelope text-xs"></i></a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4 text-[#3B82F6]">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
-                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="events.html" class="hover:text-white transition">Events</a></li>
-                        <li><a href="leaderboard.html" class="hover:text-white transition">Leaderboard</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4 text-[#3B82F6]">Resources</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="training-modules.html" class="hover:text-white transition">Training Modules</a></li>
-                        <li><a href="shop.html" class="hover:text-white transition">Equipment Shop</a></li>
-                        <li><a href="#" class="hover:text-white transition">Community Guidelines</a></li>
-                        <li><a href="#" class="hover:text-white transition">Support Center</a></li>
-                        <li><a href="#" class="hover:text-white transition">Sponsorship Program</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4 text-[#3B82F6]">Contact Info</h4>
-                    <div class="space-y-3 text-gray-400 text-sm">
-                        <p><i class="fas fa-map-marker-alt text-[#3B82F6] mr-2"></i> New York, USA</p>
-                        <p><i class="fas fa-envelope text-[#3B82F6] mr-2"></i> <a href="mailto:info@drl-fpv.com" class="hover:text-white">info@drl-fpv.com</a></p>
-                        <p><i class="fas fa-phone text-[#3B82F6] mr-2"></i> <a href="tel:+12125550123" class="hover:text-white">+1 (212) 555-0123</a></p>
-                        <p><i class="fas fa-clock text-[#3B82F6] mr-2"></i> Mon-Fri: 9AM - 6PM EST</p>
-                    </div>
-                </div>
+                <div><a href="index.html" class="logo flex items-center gap-2 mb-4 group"><i class="fas fa-drone text-2xl text-[#3B82F6]"></i><span class="logo-text">DRL | FPV Arena</span></a><p class="text-gray-500 dark:text-gray-400 text-sm mb-4">The premier destination for drone racing and FPV training. Compete, learn, and grow with the best community.</p><div class="flex gap-3"><a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition"><i class="fab fa-linkedin-in text-xs"></i></a><a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition"><i class="fab fa-whatsapp text-xs"></i></a><a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition"><i class="fas fa-envelope text-xs"></i></a></div></div>
+                <div><h4 class="font-bold mb-4 text-gray-700 dark:text-[#3B82F6]">Quick Links</h4><ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm"><li><a href="index.html" class="hover:text-gray-700 dark:hover:text-white">Home</a></li><li><a href="about.html" class="hover:text-gray-700 dark:hover:text-white">About Us</a></li><li><a href="events.html" class="hover:text-gray-700 dark:hover:text-white">Events</a></li><li><a href="leaderboard.html" class="hover:text-gray-700 dark:hover:text-white">Leaderboard</a></li><li><a href="contact.html" class="hover:text-gray-700 dark:hover:text-white">Contact</a></li></ul></div>
+                <div><h4 class="font-bold mb-4 text-gray-700 dark:text-[#3B82F6]">Resources</h4><ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm"><li><a href="training-modules.html" class="hover:text-gray-700 dark:hover:text-white">Training Modules</a></li><li><a href="shop.html" class="hover:text-gray-700 dark:hover:text-white">Equipment Shop</a></li><li><a href="#" class="hover:text-gray-700 dark:hover:text-white">Community Guidelines</a></li><li><a href="#" class="hover:text-gray-700 dark:hover:text-white">Support Center</a></li><li><a href="#" class="hover:text-gray-700 dark:hover:text-white">Sponsorship Program</a></li></ul></div>
+                <div><h4 class="font-bold mb-4 text-gray-700 dark:text-[#3B82F6]">Contact Info</h4><div class="space-y-3 text-gray-500 dark:text-gray-400 text-sm"><p><i class="fas fa-map-marker-alt text-[#3B82F6] mr-2"></i> New York, USA</p><p><i class="fas fa-envelope text-[#3B82F6] mr-2"></i> <a href="mailto:info@drl-fpv.com" class="hover:text-gray-700 dark:hover:text-white">info@drl-fpv.com</a></p><p><i class="fas fa-phone text-[#3B82F6] mr-2"></i> <a href="tel:+12125550123" class="hover:text-gray-700 dark:hover:text-white">+1 (212) 555-0123</a></p><p><i class="fas fa-clock text-[#3B82F6] mr-2"></i> Mon-Fri: 9AM - 6PM EST</p></div></div>
             </div>
-            
-            <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
-                <p>© 2024 DRL | FPV Arena — Drone Racing League & FPV Training. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition">Cookie Policy</a>
-                </div>
-            </div>
+            <div class="pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-xs"><p>© 2024 DRL | FPV Arena — Drone Racing League & FPV Training. All rights reserved.</p><div class="flex gap-6"><a href="#" class="hover:text-gray-600 dark:hover:text-white">Privacy Policy</a><a href="#" class="hover:text-gray-600 dark:hover:text-white">Terms of Service</a><a href="#" class="hover:text-gray-600 dark:hover:text-white">Cookie Policy</a></div></div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
-        
-        function openMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.add('open');
-            document.getElementById('mobileOverlay').classList.add('active');
-            document.body.classList.add('menu-open');
-        }
-        
-        function closeMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.remove('open');
-            document.getElementById('mobileOverlay').classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-        
-        function toggleMobileSubmenu(id) {
-            const submenu = document.getElementById(id);
-            if (submenu) {
-                submenu.classList.toggle('open');
-                const btn = submenu.previousElementSibling;
-                const icon = btn?.querySelector('i:last-child');
-                if (icon) {
-                    icon.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-                }
-            }
-        }
-        
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            document.body.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-            setTimeout(() => lucide.createIcons(), 10);
-        }
-        
-        function toggleThemeMobile() {
-            toggleTheme();
-        }
-        
-        function toggleDirection() {
-            const currentDir = document.documentElement.dir;
-            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
-            document.documentElement.dir = newDir;
-            const dirBtn = document.querySelector('.action-btn[onclick="toggleDirection()"]');
-            if (dirBtn) {
-                dirBtn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
-            }
-            const mobileDirBtn = document.querySelector('.mobile-setting-item .action-btn');
-            if (mobileDirBtn) {
-                mobileDirBtn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR';
-            }
-        }
-        
-        function toggleDirectionMobile() {
-            toggleDirection();
-        }
-        
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-            document.body.classList.add('dark');
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            const dirBtn = document.querySelector('.action-btn[onclick="toggleDirection()"]');
-            if (dirBtn && document.documentElement.dir === 'rtl') {
-                dirBtn.textContent = 'RTL';
-            }
-        });
+        function openMobileMenu() { document.getElementById('mobileMenuPanel').classList.add('open'); document.getElementById('mobileOverlay').classList.add('active'); document.body.classList.add('menu-open'); }
+        function closeMobileMenu() { document.getElementById('mobileMenuPanel').classList.remove('open'); document.getElementById('mobileOverlay').classList.remove('active'); document.body.classList.remove('menu-open'); }
+        function toggleMobileSubmenu(id) { const sub = document.getElementById(id); if(sub) sub.classList.toggle('open'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); document.body.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); setTimeout(() => lucide.createIcons(), 10); }
+        function toggleThemeMobile() { toggleTheme(); }
+        function toggleDirection() { const newDir = document.documentElement.dir === 'rtl' ? 'ltr' : 'rtl'; document.documentElement.dir = newDir; const btns = document.querySelectorAll('.action-btn[onclick="toggleDirection()"], .mobile-setting-item .action-btn'); btns.forEach(btn => { if(btn && btn.textContent) btn.textContent = newDir === 'rtl' ? 'RTL' : 'LTR'; }); }
+        function toggleDirectionMobile() { toggleDirection(); }
+        if (localStorage.getItem('theme') === 'dark') { document.documentElement.classList.add('dark'); document.body.classList.add('dark'); }
+        document.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); const dirBtn = document.querySelector('.action-btn[onclick="toggleDirection()"]'); if (dirBtn && document.documentElement.dir === 'rtl') dirBtn.textContent = 'RTL'; });
     </script>
 </body>
 </html>
